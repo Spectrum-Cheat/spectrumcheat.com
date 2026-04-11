@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { SubpageShell } from "../_components/subpage-shell";
+
+export const metadata: Metadata = {
+  title: "Refund Policy",
+  description:
+    "Review the Spectrum Cheat Refund Policy to understand purchase expectations, refund eligibility, dispute handling, and what users should know after completing checkout for Spectrum access.",
+};
 
 export default function RefundPolicyPage() {
   return (

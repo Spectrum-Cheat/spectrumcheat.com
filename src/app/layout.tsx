@@ -22,9 +22,49 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Spectrum Cheat | AI Infrastructure Platform",
+  metadataBase: new URL("https://spectrumcheat.com"),
+  title: {
+    default: "Spectrum Cheat",
+    template: "%s | Spectrum Cheat",
+  },
   description:
-    "Spectrum Cheat — The enterprise-grade AI infrastructure platform. Deploy, scale, and secure your machine learning workloads globally.",
+    "Spectrum Cheat is a premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience. Explore supported games, track live script status, unlock access through a cleaner key system, and stay connected to a long-running community shaped by steady updates, fast support, and years of trusted service.",
+  keywords: [
+    "Spectrum Cheat",
+    "Spectrum Scripts",
+    "Roblox cheat",
+    "Roblox scripts",
+    "Roblox exploit",
+    "Roblox script hub",
+    "Spectrum key",
+    "Spectrum status",
+  ],
+  alternates: {
+    canonical: "https://spectrumcheat.com",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://spectrumcheat.com",
+    siteName: "Spectrum Cheat",
+    title: "Spectrum Cheat",
+    description:
+      "Premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience.",
+    images: [
+      {
+        url: "/images/Spectrum Banner.png",
+        width: 2000,
+        height: 600,
+        alt: "Spectrum Cheat banner",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spectrum Cheat",
+    description:
+      "Premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience.",
+    images: ["/images/Spectrum Console Gameplay Pro.png"],
+  },
 };
 
 export default function RootLayout({

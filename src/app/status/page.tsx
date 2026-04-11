@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { SubpageShell } from "../_components/subpage-shell";
 
 const statusHighlights = [
@@ -110,6 +111,12 @@ const retiredGames = [
   "Untitled Boxing Game",
   "Volleyball Legends",
 ];
+
+export const metadata: Metadata = {
+  title: "Live Status",
+  description:
+    "Track the live Spectrum status board to see which Roblox scripts are working right now, which titles are waiting for updates, and which older entries have already left the active lineup. Built for fast checks without digging through old messages.",
+};
 
 export default function StatusPage() {
   return (

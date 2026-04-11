@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { SubpageShell } from "../_components/subpage-shell";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "Read the Spectrum Cheat Terms of Service to review access rules, service boundaries, payment expectations, and the responsibilities tied to using the Spectrum platform and its related services.",
+};
 
 export default function TermsPage() {
   return (

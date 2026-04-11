@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { SubpageShell } from "../_components/subpage-shell";
 
 const keyProviders = [
@@ -32,6 +33,12 @@ const keyProviders = [
     logo: "https://s3-eu-west-1.amazonaws.com/tpd/logos/60f32c3fa0f0500001ab7c87/0x0.png",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Get Key",
+  description:
+    "Open the Spectrum key page to access the active unlock route, check which key providers are live, and see which extra routes are still waiting for rollout. Built to keep the access flow clean, fast, and easy to understand.",
+};
 
 export default function GetKeyPage() {
   return (
