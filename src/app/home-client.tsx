@@ -86,7 +86,7 @@ const testimonials = [
       "Used Spectrum Hub for years now. Smooth execution, clean updates, and the support team actually replies fast when something breaks (which is rare in this space). Highly recommend for anyone looking for a reliable Roblox cheat.",
     author: "nebulathedragon",
     role: "Shop owner",
-    avatar: "https://cdn.discordapp.com/avatars/1262548755090247814/a5214d109f81b593d96b39f83e1ed68b.png",
+    avatar: "https://i.pinimg.com/736x/46/aa/72/46aa72f43fff5e080125e9822d0d4699.jpg",
     tag: "Long-time user",
     featured: true,
   },
@@ -95,7 +95,7 @@ const testimonials = [
       "this script is the best fisch script i've used till now. just add a new feature in which we can teleport to megaladon when it spawns and catch it. and also add a feature to catch the megaladon without teleporting to it. rest all are good.",
     author: "exoticastral",
     role: "Community member",
-    avatar: "https://cdn.discordapp.com/avatars/402542751855673344/c5f8b46f8219c8750f2bd90b90099491.png",
+    avatar: "https://i.pinimg.com/736x/c3/23/f1/c323f1e89ba607b7ee60e4bb5aedd180.jpg",
     tag: "Daily user",
   },
   {
@@ -103,7 +103,7 @@ const testimonials = [
       "The key flow is simple, the scripts feel optimized, and updates land way faster than most hubs I have tried in the past. Really impressive work and it shows that a lot of care went into building this.",
     author: "mzikks",
     role: "Verified buyer",
-    avatar: "https://cdn.discordapp.com/avatars/1267240150589767710/a5a99a919f019788a3dbe8a5ff0cb09c.png",
+    avatar: "https://i.pinimg.com/736x/e6/a1/72/e6a172a208ce137525c52a5bfa12955a.jpg",
     tag: "Fast updates",
   },
   {
@@ -111,7 +111,7 @@ const testimonials = [
       "Support is active, responses are quick, and the overall feel of the product is way more polished than average Roblox cheat suites out there â€” it's clear a lot of care and experience went into building it. Highly recommended.",
     author: "feronei",
     role: "Store owner",
-    avatar: "https://cdn.discordapp.com/avatars/921819344307126283/1858074d8d26fc0ca6cb71d39eb9619c.png",
+    avatar: "https://i.pinimg.com/1200x/12/c5/eb/12c5eb5945be954b341425ca00bc0df0.jpg",
     tag: "Support",
   },
   {
@@ -119,7 +119,7 @@ const testimonials = [
       "The best sailor piece script ever. It has a lot of features and it is very stable. The support team is also very responsive and helpful. I highly recommend this script to anyone who wants to play sailor piece.",
     author: "solakemi",
     role: "Premium member",
-    avatar: "https://cdn.discordapp.com/avatars/755225346906783754/46ff4b53da2a213783d0249c54fea9ab.png",
+    avatar: "https://i.pinimg.com/736x/e2/5f/a3/e25fa3d34c8d9e67b61e0c450acd7af4.jpg",
     tag: "Cross-platform",
   },
 ];
@@ -974,6 +974,5 @@ export default function Home() {
     </>
   );
 }
-
 
 

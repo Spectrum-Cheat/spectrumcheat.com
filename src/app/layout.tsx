@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://spectrumcheat.com",
     siteName: "Spectrum Cheat",
-    title: "Spectrum Cheat",
+    title: "Spectrum Cheat - Premium Roblox Cheat Suite",
     description:
       "Premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience.",
     images: [
@@ -60,10 +60,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spectrum Cheat",
+    title: "Spectrum Cheat - Premium Roblox Cheat Suite",
     description:
       "Premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience.",
-    images: ["/images/Spectrum Console Gameplay Pro.png"],
+    images: ["/images/Spectrum Banner.png"],
   },
 };
 
