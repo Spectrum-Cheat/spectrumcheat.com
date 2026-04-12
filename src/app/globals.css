@@ -1706,3 +1706,43 @@ blockquote::after  { content: close-quote; color: var(--accent); }
     justify-content: center;
   }
 }
+
+.legal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.legal-card {
+  gap: 0.9rem;
+}
+
+.legal-card h2 {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  color: rgba(245, 247, 255, 0.98);
+}
+
+.legal-card p {
+  margin: 0;
+  color: rgba(202, 209, 235, 0.84);
+  line-height: 1.8;
+}
+
+.legal-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: rgba(214, 220, 241, 0.88);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.legal-list li {
+  line-height: 1.75;
+}
