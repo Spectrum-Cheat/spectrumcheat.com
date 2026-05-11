@@ -77,6 +77,13 @@ export default function RootLayout({
       lang="en"
       className={`${syne.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6153597331765787"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
