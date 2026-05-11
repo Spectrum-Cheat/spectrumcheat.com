@@ -676,7 +676,7 @@ export default function Home() {
                 </li>
               </ul>
               <a
-                href="https://www.youtube.com/watch?v=hAAh27jXunA"
+                href="https://www.youtube.com/watch?v=ixX8GAHZlwM"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-primary"
@@ -687,7 +687,7 @@ export default function Home() {
             <div className="demo-media">
               <div className="video-frame-wrap">
                 <iframe
-                  src="https://www.youtube.com/embed/hAAh27jXunA?rel=0&modestbranding=1&color=white"
+                  src="https://www.youtube.com/embed/ixX8GAHZlwM?rel=0&modestbranding=1&color=white"
                   title="Spectrum Cheat Showcase"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
