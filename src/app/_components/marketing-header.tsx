@@ -8,8 +8,8 @@ const navItems = [
   { href: "/scripts", label: "Scripts" },
   { href: "/status", label: "Status" },
   { href: "/getkey", label: "Get Key" },
-  { href: "/#pricing", label: "Pricing" },
-  { href: "/#features", label: "Features" },
+  { href: "/executors", label: "Executors" },
+  { href: "/bloxcheat", label: "Blox Cheat" },
 ];
 
 const discordUrl = "https://discord.gg/hackerclub";
@@ -62,6 +62,16 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
             <a href={discordUrl} target="_blank" rel="noreferrer" className="btn-primary">
               Discord
             </a>
+            <button
+              className="btn-ghost nav-lang-btn"
+              aria-label="Change language"
+              onClick={() => window.dispatchEvent(new CustomEvent("spectrum:show-lang"))}
+            >
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </button>
             <button
               className="hamburger"
               id="hamburger"

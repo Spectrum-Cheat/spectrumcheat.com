@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Mono, Instrument_Serif, Syne } from "next/font/google";
 import "./globals.css";
+import { LanguagePopup } from "./_components/language-popup";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -84,7 +85,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <div id="google_translate_element" style={{ display: "none" }} />
+        <LanguagePopup />
+        {children}
+      </body>
     </html>
   );
 }

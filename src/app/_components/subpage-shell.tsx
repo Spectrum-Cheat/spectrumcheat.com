@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { MarketingHeader } from "./marketing-header";
+import { SiteFooter } from "./site-footer";
 
 type SubpageShellProps = {
   badge: string;
   title: string;
   subtitle: string;
   children: React.ReactNode;
+  ctaLabel?: string;
+  ctaHref?: string;
 };
 
-export function SubpageShell({ badge, title, subtitle, children }: SubpageShellProps) {
+export function SubpageShell({ badge, title, subtitle, children, ctaLabel = "Join Discord", ctaHref = "https://discord.gg/hackerclub" }: SubpageShellProps) {
   return (
     <>
       <div className="noise-overlay" />
@@ -27,8 +30,8 @@ export function SubpageShell({ badge, title, subtitle, children }: SubpageShellP
               <Link href="/" className="btn-outline">
                 Back Home
               </Link>
-              <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer" className="btn-primary">
-                Join Discord
+              <a href={ctaHref} target="_blank" rel="noreferrer" className="btn-primary">
+                {ctaLabel}
               </a>
             </div>
           </div>
@@ -37,6 +40,7 @@ export function SubpageShell({ badge, title, subtitle, children }: SubpageShellP
         <section className="subpage-content">
           <div className="subpage-inner">{children}</div>
         </section>
+        <SiteFooter />
       </main>
     </>
   );
