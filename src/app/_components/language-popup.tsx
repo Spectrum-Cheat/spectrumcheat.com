@@ -149,7 +149,9 @@ export function LanguagePopup() {
 
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) {
-      setVisible(true);
+      // Delay popup so it doesn't block LCP
+      const t = setTimeout(() => setVisible(true), 800);
+      return () => clearTimeout(t);
     } else {
       document.documentElement.lang = saved;
       if (saved !== "en") {
