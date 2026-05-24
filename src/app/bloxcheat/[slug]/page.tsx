@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarketingHeader } from "../../_components/marketing-header";
 import { SiteFooter } from "../../_components/site-footer";
 import { CopyButtons, RawHeader } from "./copy-buttons";
 import { LuaCode } from "./lua-code";
+import { SlugHero } from "./slug-hero";
+import { LikesCount, DescriptionHeading, BadgeLabel } from "./slug-labels";
 
 interface ScriptDetail {
   _id: string;
@@ -81,13 +82,14 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
   const gameImgSrc = script.game?.imageUrl ?? null;
   const date = script.lastBump || script.createdAt;
 
-  const badges = [
-    script.key && { label: "Key System", cls: "blox-badge--key" },
-    script.isPatched && { label: "Patched", cls: "blox-badge--patched" },
-    script.isUniversal && { label: "Universal", cls: "blox-badge--universal" },
-    script.verified && { label: "Verified", cls: "blox-badge--verified" },
-    script.scriptType === "free" && { label: "Free", cls: "blox-badge--free" },
-  ].filter(Boolean) as { label: string; cls: string }[];
+  type BadgeEntry = { type: "key" | "patched" | "universal" | "verified" | "free"; cls: string };
+  const badges: BadgeEntry[] = [
+    script.key            && { type: "key" as const,       cls: "blox-badge--key" },
+    script.isPatched      && { type: "patched" as const,   cls: "blox-badge--patched" },
+    script.isUniversal    && { type: "universal" as const, cls: "blox-badge--universal" },
+    script.verified       && { type: "verified" as const,  cls: "blox-badge--verified" },
+    script.scriptType === "free" && { type: "free" as const, cls: "blox-badge--free" },
+  ].filter(Boolean) as BadgeEntry[];
 
   return (
     <>
@@ -95,20 +97,7 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
       <MarketingHeader homeBrandHref="/" />
       <main className="subpage">
         {/* Mini hero */}
-        <section className="subpage-hero" style={{ paddingBottom: "28px" }}>
-          <div className="hero-grid-lines subpage-grid" />
-          <div className="subpage-inner">
-            <div className="hero-badge">
-              <span className="badge-dot" />
-              <span>Spectrum Cheat // Blox Cheat</span>
-            </div>
-            <div style={{ marginTop: 14 }}>
-              <Link href="/bloxcheat" className="btn-outline" style={{ fontSize: "0.85rem", padding: "8px 18px" }}>
-                ← Back to Scripts
-              </Link>
-            </div>
-          </div>
-        </section>
+        <SlugHero />
 
         <section className="subpage-content">
           <div className="subpage-inner">
@@ -136,7 +125,9 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
                 )}
                 <div className="sdetail-thumb-badges">
                   {badges.map((b) => (
-                    <span key={b.label} className={`blox-badge ${b.cls}`}>{b.label}</span>
+                    <span key={b.type} className={`blox-badge ${b.cls}`}>
+                      <BadgeLabel type={b.type} />
+                    </span>
                   ))}
                 </div>
                 <div className="sdetail-views">
@@ -145,7 +136,7 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
                     <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
                     <circle cx="12" cy="12" r="3" />
                   </svg>
-                  {script.likeCount ?? 0} Likes
+                  <LikesCount count={script.likeCount ?? 0} />
                 </div>
               </div>
 
@@ -203,24 +194,19 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
                   </div>
                 )}
 
-                <CopyButtons script={script.script} title={script.title} />
-
-                {script.key && (
-                  <a href={`https://scriptblox.com/script/${script.slug}`} target="_blank" rel="noreferrer" className="sdetail-key-btn">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
-                    </svg>
-                    Get Key
-                  </a>
-                )}
+                <CopyButtons
+                  script={script.script}
+                  title={script.title}
+                  hasKey={!!script.key}
+                  keySlug={script.slug}
+                />
               </div>
             </div>
 
             {/* Description / Features */}
             {script.features && (
               <div className="sdetail-section">
-                <h2 className="sdetail-section-title">Description</h2>
+                <DescriptionHeading />
                 <div className="sdetail-card">
                   <p className="sdetail-desc" style={{ whiteSpace: "pre-wrap" }}>{script.features}</p>
                 </div>

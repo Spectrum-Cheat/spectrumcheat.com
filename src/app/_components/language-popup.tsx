@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLang } from "../_i18n/context";
 
 const LANGUAGES = [
   { code: "af", country: "za", name: "Afrikaans",              native: "Afrikaans"           },
@@ -87,6 +88,7 @@ function GlobeIcon() {
 const STORAGE_KEY = "spectrum-lang";
 
 export function LanguagePopup() {
+  const { setLang } = useLang();
   const [visible, setVisible] = useState(false);
   const [showOther, setShowOther] = useState(false);
   const [search, setSearch] = useState("");
@@ -154,23 +156,31 @@ export function LanguagePopup() {
       return () => clearTimeout(t);
     } else {
       document.documentElement.lang = saved;
-      if (saved !== "en") {
-        setTimeout(() => triggerGoogleTranslate(saved), 1500);
+      if (saved === "th") {
+        setLang("th"); // use custom translation
+      } else if (saved !== "en") {
+        setTimeout(() => triggerGoogleTranslate(saved), 1500); // other → Google Translate
       }
     }
-  }, []);
+  }, [setLang]);
 
   function select(code: string) {
     localStorage.setItem(STORAGE_KEY, code);
     document.documentElement.lang = code;
     setVisible(false);
 
-    if (code === "en") {
-      // ลบ cookie ของ Google Translate แล้ว reload เพื่อ restore ภาษาเดิม
+    if (code === "th") {
+      // ใช้ custom translation — ไม่ต้องใช้ Google Translate
+      setLang("th");
+      // ลบ Google Translate cookie เผื่อเคยใช้มาก่อน
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
-      window.location.reload();
+    } else if (code === "en") {
+      setLang("en");
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
     } else {
+      // Other → Google Translate
       triggerGoogleTranslate(code);
     }
   }

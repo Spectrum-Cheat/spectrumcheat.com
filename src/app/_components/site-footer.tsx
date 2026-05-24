@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useLang } from "../_i18n/context";
 
 export function SiteFooter() {
+  const { t } = useLang();
+
   return (
     <footer className="footer">
       <div className="footer-inner">
@@ -17,36 +22,34 @@ export function SiteFooter() {
               />
             </div>
             <span className="brand-name">Spectrum Cheat</span>
-            <p className="footer-tagline">
-              A premium Roblox cheat built for smooth performance and reliable daily use, and trusted for over 5 years!
-            </p>
+            <p className="footer-tagline">{t("footerTagline")}</p>
           </div>
 
           <div className="footer-links">
             <div className="link-col">
-              <h4>Platform</h4>
+              <h4>{t("footerPlatform")}</h4>
               <ul>
-                <li><Link href="/bloxcheat">Blox Cheat</Link></li>
-                <li><Link href="/scripts">Scripts</Link></li>
-                <li><Link href="/status">Status</Link></li>
-                <li><Link href="/getkey">Get Key</Link></li>
-                <li><Link href="/#executor">Executors</Link></li>
+                <li><Link href="/bloxcheat">{t("navBloxCheat")}</Link></li>
+                <li><Link href="/scripts">{t("navScripts")}</Link></li>
+                <li><Link href="/status">{t("navStatus")}</Link></li>
+                <li><Link href="/getkey">{t("navGetKey")}</Link></li>
+                <li><Link href="/#executor">{t("navExecutors")}</Link></li>
               </ul>
             </div>
             <div className="link-col">
-              <h4>Legal</h4>
+              <h4>{t("footerLegal")}</h4>
               <ul>
-                <li><Link href="/terms">Terms of Service</Link></li>
-                <li><Link href="/privacy">Privacy Policy</Link></li>
-                <li><Link href="/security">Security</Link></li>
-                <li><Link href="/refund-policy">Refund Policy</Link></li>
+                <li><Link href="/terms">{t("footerTerms")}</Link></li>
+                <li><Link href="/privacy">{t("footerPrivacy")}</Link></li>
+                <li><Link href="/security">{t("footerSecurity")}</Link></li>
+                <li><Link href="/refund-policy">{t("footerRefund")}</Link></li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <span>© 2021–2026 Spectrum Cheat. All rights reserved.</span>
+          <span>{t("footerCopyright")}</span>
           <div className="footer-socials">
             <a href="https://www.youtube.com/@xZPUHigh" target="_blank" rel="noreferrer" aria-label="YouTube">
               <svg viewBox="0 0 24 24" aria-hidden="true">

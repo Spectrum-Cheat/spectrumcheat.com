@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useTransition, useRef, useEffect } from "react";
+import { useLang } from "../_i18n/context";
 
 interface Filters {
   verified: boolean;
@@ -39,6 +40,7 @@ function readFilters(params: URLSearchParams): Filters {
 }
 
 export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { defaultValue?: string; searchParamsStr?: string }) {
+  const { t } = useLang();
   const router = useRouter();
   const pathname = usePathname();
   const [value, setValue] = useState(defaultValue);
@@ -109,7 +111,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
   return (
     <div className="blox-search-section">
       <p className="blox-search-desc">
-        Stop grinding. Find a <code className="blox-lua-label">script</code>, copy it, execute it.
+        {t("bloxSearchDesc")}
       </p>
 
       <form className="blox-search-form" onSubmit={handleSubmit}>
@@ -122,7 +124,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
           <input
             className="blox-search-input"
             type="text"
-            placeholder='Search any game, script, or feature...'
+            placeholder={t("bloxPlaceholder")}
             value={value}
             onChange={(e) => setValue(e.target.value)}
             disabled={isPending}
@@ -138,7 +140,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
               type="button"
               className={`blox-filter-btn ${showFilter ? "active" : ""} ${activeFilterCount > 0 ? "has-filters" : ""}`}
               onClick={() => setShowFilter((v) => !v)}
-              title="Advanced search"
+              title={t("filterTitle")}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -153,18 +155,18 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
             {showFilter && (
               <div className="blox-filter-panel">
                 <div className="blox-filter-header">
-                  <strong>Advanced search</strong>
-                  <p>Use these settings to customize and fine-tune searches</p>
+                  <strong>{t("filterTitle")}</strong>
+                  <p>{t("filterDesc")}</p>
                 </div>
 
                 <div className="blox-filter-group">
-                  <p className="blox-filter-group-title">Filter</p>
+                  <p className="blox-filter-group-title">{t("filterGroup")}</p>
 
                   {[
-                    { key: "verified",  label: "Verified" },
-                    { key: "universal", label: "Universal" },
-                    { key: "patched",   label: "Patched" },
-                    { key: "keySystem", label: "Key system" },
+                    { key: "verified",  label: t("filterVerified") },
+                    { key: "universal", label: t("filterUniversal") },
+                    { key: "patched",   label: t("filterPatched") },
+                    { key: "keySystem", label: t("filterKey") },
                   ].map(({ key, label }) => (
                     <label key={key} className="blox-filter-check">
                       <span>{label}</span>
@@ -177,56 +179,56 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
                   ))}
 
                   <label className="blox-filter-row">
-                    <span>Script type</span>
+                    <span>{t("filterType")}</span>
                     <select
                       className="blox-filter-select"
                       value={filters.scriptType}
                       onChange={(e) => setFilters((f) => ({ ...f, scriptType: e.target.value as Filters["scriptType"] }))}
                     >
-                      <option value="">Any</option>
-                      <option value="free">Free</option>
-                      <option value="paid">Paid</option>
+                      <option value="">{t("filterAny")}</option>
+                      <option value="free">{t("filterFree")}</option>
+                      <option value="paid">{t("filterPaid")}</option>
                     </select>
                   </label>
                 </div>
 
                 <div className="blox-filter-group">
-                  <p className="blox-filter-group-title">Sort</p>
+                  <p className="blox-filter-group-title">{t("sortGroup")}</p>
 
                   <label className="blox-filter-row">
-                    <span>Sort by</span>
+                    <span>{t("sortBy")}</span>
                     <select
                       className="blox-filter-select"
                       value={filters.sortBy}
                       onChange={(e) => setFilters((f) => ({ ...f, sortBy: e.target.value as Filters["sortBy"] }))}
                     >
-                      <option value="">Default</option>
-                      <option value="views">Views</option>
-                      <option value="createdAt">Date</option>
-                      <option value="likeCount">Likes</option>
+                      <option value="">{t("sortDefault")}</option>
+                      <option value="views">{t("sortViews")}</option>
+                      <option value="createdAt">{t("sortDate")}</option>
+                      <option value="likeCount">{t("sortLikes")}</option>
                     </select>
                   </label>
 
                   <label className="blox-filter-row">
-                    <span>Sort order</span>
+                    <span>{t("sortOrder")}</span>
                     <select
                       className="blox-filter-select"
                       value={filters.sortOrder}
                       onChange={(e) => setFilters((f) => ({ ...f, sortOrder: e.target.value as Filters["sortOrder"] }))}
                     >
-                      <option value="">Default</option>
-                      <option value="desc">Descending</option>
-                      <option value="asc">Ascending</option>
+                      <option value="">{t("sortDefault")}</option>
+                      <option value="desc">{t("sortDesc")}</option>
+                      <option value="asc">{t("sortAsc")}</option>
                     </select>
                   </label>
                 </div>
 
                 <div className="blox-filter-actions">
                   <button type="button" className="blox-filter-save" onClick={() => applyFilters(filters)}>
-                    Save changes
+                    {t("filterSave")}
                   </button>
                   <button type="button" className="blox-filter-reset" onClick={resetFilters}>
-                    Reset all
+                    {t("filterReset")}
                   </button>
                 </div>
               </div>
@@ -234,7 +236,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
           </div>
 
           <button className="blox-search-btn" type="submit" disabled={isPending}>
-            {isPending ? "..." : "Search"}
+            {isPending ? "..." : t("btnSearch")}
           </button>
         </div>
 
@@ -246,7 +248,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
           >
             <div className="blox-toggle-knob" />
           </div>
-          <span>Strict search (match exact input)</span>
+          <span>{t("strictSearch")}</span>
         </label>
       </form>
     </div>

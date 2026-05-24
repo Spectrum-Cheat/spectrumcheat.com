@@ -3,14 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-const navItems = [
-  { href: "/scripts", label: "Scripts" },
-  { href: "/status", label: "Status" },
-  { href: "/getkey", label: "Get Key" },
-  { href: "/executors", label: "Executors" },
-  { href: "/bloxcheat", label: "Blox Cheat" },
-];
+import { useLang } from "../_i18n/context";
 
 const discordUrl = "https://discord.gg/hackerclub";
 const buyNowUrl = "https://spectrumcheat.rexzy.xyz/";
@@ -20,9 +13,18 @@ type MarketingHeaderProps = {
 };
 
 export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderProps) {
+  const { t } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const navItems = [
+    { href: "/scripts",   label: t("navScripts") },
+    { href: "/status",    label: t("navStatus") },
+    { href: "/getkey",    label: t("navGetKey") },
+    { href: "/executors", label: t("navExecutors") },
+    { href: "/bloxcheat", label: t("navBloxCheat") },
+  ];
 
   return (
     <>
@@ -57,10 +59,10 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
 
           <div className="navRight">
             <a href={buyNowUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-              Buy Now
+              {t("navBuyNow")}
             </a>
             <a href={discordUrl} target="_blank" rel="noreferrer" className="btn-primary">
-              Discord
+              {t("navDiscord")}
             </a>
             <button
               className="btn-ghost nav-lang-btn"
@@ -99,10 +101,10 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
         </ul>
         <div className="mobile-cta">
           <a href={buyNowUrl} target="_blank" rel="noreferrer" className="btn-ghost" onClick={closeMenu}>
-            Buy Now
+            {t("navBuyNow")}
           </a>
           <a href={discordUrl} target="_blank" rel="noreferrer" className="btn-primary" onClick={closeMenu}>
-            Discord
+            {t("navDiscord")}
           </a>
         </div>
       </div>

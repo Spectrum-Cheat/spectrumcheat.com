@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { MarketingHeader } from "./_components/marketing-header";
 import { SiteFooter } from "./_components/site-footer";
+import { useLang } from "./_i18n/context";
 
 const heroSubtitleText =
   "A premium Roblox cheat built for smooth performance and reliable daily use. Supports multiple games & working on mobile and PC, and trusted for over 5 years!";
@@ -276,6 +277,7 @@ const pricingPlans = [
 ];
 
 export default function Home() {
+  const { t } = useLang();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [typedSubtitle, setTypedSubtitle] = useState("");
   const typedSubtitleFirstLine = typedSubtitle.slice(0, heroSubtitleBreakIndex);
@@ -485,20 +487,19 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-badge">
             <span className="badge-dot" />
-            <span>Spectrum Cheat // Premium Roblox Suite</span>
+            <span>{t("heroBadge")}</span>
           </div>
           <h1 className="hero-title hero-title-fade-up">
-            The next generation
+            {t("heroTitle1")}
             <br />
-            <em>of</em>
+            <em>{t("heroTitleOf")}</em>
             <br />
-            <span className="hero-accent">Roblox Cheats</span>
+            <span className="hero-accent">{t("heroTitle2")}</span>
           </h1>
           <p className="hero-subtitle">
-            <strong className="hero-sub-highlight">A premium Roblox cheat</strong>
-            {" "}built for smooth performance and reliable daily use.
-            {" "}Supports multiple games &amp; working on mobile and PC, and{" "}
-            <strong className="hero-sub-highlight">trusted for over 5 years!</strong>
+            <strong className="hero-sub-highlight">{t("heroSubH1")}</strong>
+            {t("heroSubMid")}
+            <strong className="hero-sub-highlight">{t("heroSubH2")}</strong>
           </p>
           <div className="hero-actions">
             <a href="/scripts" className="btn-primary btn-large">

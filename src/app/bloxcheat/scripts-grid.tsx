@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BloxImage } from "./blox-image";
+import { useLang } from "../_i18n/context";
 
 interface ScriptGame {
   name: string;
@@ -40,10 +41,10 @@ interface Props {
   sortOrder: string;
 }
 
-const TAG_STYLE: Record<string, string> = {
-  "Key System": "blox-badge--key",
-  "Patched":    "blox-badge--patched",
-  "Universal":  "blox-badge--universal",
+const TAG_CLS: Record<string, string> = {
+  key:       "blox-badge--key",
+  patched:   "blox-badge--patched",
+  universal: "blox-badge--universal",
 };
 
 function timeAgo(dateStr: string): string {
@@ -83,6 +84,7 @@ function applyFiltersAndSort(scripts: Script[], props: Omit<Props, "initialScrip
 }
 
 export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) {
+  const { t } = useLang();
   const [allScripts, setAllScripts] = useState<Script[]>(initialScripts);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(initialHasMore);
@@ -111,7 +113,9 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
     return (
       <div className="subpage-card" style={{ textAlign: "center", padding: "48px 28px" }}>
         <p style={{ color: "var(--muted)" }}>
-          {rest.query ? `No scripts found for "${rest.query}".` : "Unable to load scripts. Please try again later."}
+          {rest.query
+            ? `${t("bloxEmpty")} "${rest.query}".`
+            : t("bloxError")}
         </p>
       </div>
     );
@@ -122,11 +126,11 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
       <div className="blox-grid">
         {displayed.map((script) => {
           const href = `/bloxcheat/${script.slug}`;
-          const tags = [
-            script.key && "Key System",
-            script.isPatched && "Patched",
-            script.isUniversal && "Universal",
-          ].filter(Boolean) as string[];
+          const tags: { key: string; label: string }[] = [
+            script.key        && { key: "key",       label: t("badgeKeySystem") },
+            script.isPatched  && { key: "patched",   label: t("badgePatched") },
+            script.isUniversal && { key: "universal", label: t("badgeUniversal") },
+          ].filter(Boolean) as { key: string; label: string }[];
 
           return (
             <Link key={script._id} href={href} className="blox-card">
@@ -145,8 +149,8 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
                 </div>
                 {tags.length > 0 && (
                   <div className="blox-badges">
-                    {tags.map((tag) => (
-                      <span key={tag} className={`blox-badge ${TAG_STYLE[tag] ?? ""}`}>{tag}</span>
+                    {tags.map(({ key, label }) => (
+                      <span key={key} className={`blox-badge ${TAG_CLS[key] ?? ""}`}>{label}</span>
                     ))}
                   </div>
                 )}
@@ -170,10 +174,10 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
             {loading ? (
               <>
                 <span className="blox-load-spinner" />
-                Loading...
+                {t("btnLoading")}
               </>
             ) : (
-              "Load More"
+              t("btnLoadMore")
             )}
           </button>
         </div>

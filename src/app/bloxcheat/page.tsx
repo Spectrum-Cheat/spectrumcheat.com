@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { MarketingHeader } from "../_components/marketing-header";
 import { SearchBar } from "./search-bar";
 import { ScriptsGrid } from "./scripts-grid";
 import { SiteFooter } from "../_components/site-footer";
+import { BloxHeroSection } from "./blox-hero-section";
+import { BloxStatsBar } from "./blox-stats-bar";
 
 export const dynamic = "force-dynamic";
 
@@ -83,51 +84,24 @@ export default async function BloxCheatPage({
 
   const { scripts, hasMore } = await fetchInitial(query, strict);
 
-  const label = query
-    ? `Results for "${query}"`
-    : sortBy === "views" && sortOrder === "desc"
-    ? "Trending Scripts"
-    : "Recent Scripts";
-
   return (
     <>
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
       <main className="subpage">
-        <section className="subpage-hero">
-          <div className="hero-grid-lines subpage-grid" />
-          <div className="subpage-inner">
-            <div className="hero-badge">
-              <span className="badge-dot" />
-              <span>Spectrum Cheat // Blox Cheat</span>
-            </div>
-            <h1 className="subpage-title">Blox Cheat</h1>
-            <p className="subpage-subtitle">
-              Find the best Roblox scripts for any game. Auto farms, ESP, aimbots and more — updated daily by the community.
-            </p>
-            <div className="subpage-actions">
-              <Link href="/" className="btn-outline">Back Home</Link>
-              <Link href="/bloxcheat?sortBy=views&sortOrder=desc" className="btn-primary">
-                Trending
-              </Link>
-            </div>
-          </div>
-        </section>
+        <BloxHeroSection />
 
         <section className="subpage-content">
           <div className="subpage-inner">
 
             <SearchBar defaultValue={query} searchParamsStr={searchParamsStr} />
 
-            <div className="blox-stats-bar">
-              <span className="blox-stats-item">
-                <span className="badge-dot" />
-                {label}
-              </span>
-              {scripts.length > 0 && (
-                <span className="blox-stats-count">{scripts.length} scripts</span>
-              )}
-            </div>
+            <BloxStatsBar
+              query={query}
+              sortBy={sortBy}
+              sortOrder={sortOrder}
+              scriptCount={scripts.length}
+            />
 
             <ScriptsGrid
               initialScripts={scripts}

@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { MarketingHeader } from "./marketing-header";
 import { SiteFooter } from "./site-footer";
+import { useLang } from "../_i18n/context";
 
 type SubpageShellProps = {
   badge: string;
@@ -11,7 +14,10 @@ type SubpageShellProps = {
   ctaHref?: string;
 };
 
-export function SubpageShell({ badge, title, subtitle, children, ctaLabel = "Join Discord", ctaHref = "https://discord.gg/hackerclub" }: SubpageShellProps) {
+export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHref = "https://discord.gg/hackerclub" }: SubpageShellProps) {
+  const { t } = useLang();
+  const resolvedCtaLabel = ctaLabel ?? t("btnJoinDiscord");
+
   return (
     <>
       <div className="noise-overlay" />
@@ -28,10 +34,10 @@ export function SubpageShell({ badge, title, subtitle, children, ctaLabel = "Joi
             <p className="subpage-subtitle">{subtitle}</p>
             <div className="subpage-actions">
               <Link href="/" className="btn-outline">
-                Back Home
+                {t("btnBackHome")}
               </Link>
               <a href={ctaHref} target="_blank" rel="noreferrer" className="btn-primary">
-                {ctaLabel}
+                {resolvedCtaLabel}
               </a>
             </div>
           </div>
