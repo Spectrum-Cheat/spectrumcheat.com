@@ -161,11 +161,6 @@ export default function ExecutorsClient({ exploits, versions }: Props) {
         </>
       )}
 
-      <p className="exec-attribution">
-        {t("executorsAttrib1")}{" "}
-        <a href="https://weao.xyz" target="_blank" rel="noreferrer">WEAO (WhatExpsAre.Online)</a>.{" "}
-        {t("executorsAttrib2")}
-      </p>
     </SubpageShell>
   );
 }

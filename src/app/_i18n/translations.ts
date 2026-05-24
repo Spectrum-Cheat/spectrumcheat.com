@@ -239,7 +239,7 @@ export const translations = {
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executors",
     executorsPageTitle: "Executors",
-    executorsPageSub:   "Live executor status, version info, and compatibility data — powered by WEAO. Refreshed every 5 minutes.",
+    executorsPageSub:   "Live executor status, version info, and compatibility data. Refreshed every 5 minutes.",
     executorsBuyKey:    "Buy Key Executors",
     executorsVersions:  "Roblox Live Versions",
     executorsAutoUpd:   "Auto-updated",
@@ -249,7 +249,7 @@ export const translations = {
     executorsNotUpd:    "Not Updated",
     executorsNotUpdDesc:"Executors pending a patch for the latest Roblox build.",
     executorsTotal:     "Total Tracked",
-    executorsTotalDesc: "All executors currently monitored by WEAO live data.",
+    executorsTotalDesc: "All executors currently tracked with live data.",
     executorsNoData:    "Unable to load executor data right now. Please try again later.",
     executorsFree:      "Free",
     executorsKeySystem: "Key System",
@@ -492,8 +492,8 @@ export const translations = {
     statusDiscCount:    "62 เกม",
 
     // ─── Get Key page ────────────────────────────
-    getkeyBadge:       "Spectrum Cheat // คีย์เข้าถึง",
-    getkeyPageTitle:   "รับคีย์",
+    getkeyBadge:       "Spectrum Cheat // ระบบคีย์",
+    getkeyPageTitle:   "หาคีย์สคริปต์",
     getkeyPageSub:     "เลือกช่องทางปลดล็อคด้านล่าง Linkvertise ใช้งานได้แล้ว ส่วนช่องทางอื่นๆ กำลังจะมาเร็วๆ นี้",
     getkeyRecommended: "แนะนำ",
     getkeyComingSoon:  "เร็วๆ นี้",
@@ -504,8 +504,8 @@ export const translations = {
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // ตัวรัน",
-    executorsPageTitle: "ตัวรัน",
-    executorsPageSub:   "สถานะตัวรัน ข้อมูลเวอร์ชัน และข้อมูลความเข้ากันได้สด — powered by WEAO อัปเดตทุก 5 นาที",
+    executorsPageTitle: "สถานะตัวรัน",
+    executorsPageSub:   "สถานะตัวรันสด ข้อมูลเวอร์ชัน และข้อมูลความเข้ากันได้ อัปเดตทุก 5 นาที",
     executorsBuyKey:    "ซื้อคีย์ตัวรัน",
     executorsVersions:  "เวอร์ชัน Roblox สด",
     executorsAutoUpd:   "อัปเดตอัตโนมัติ",
@@ -515,7 +515,7 @@ export const translations = {
     executorsNotUpd:    "ยังไม่อัปเดต",
     executorsNotUpdDesc:"ตัวรันที่รอแพทช์สำหรับ Roblox บิลด์ล่าสุด",
     executorsTotal:     "ติดตามทั้งหมด",
-    executorsTotalDesc: "ตัวรันทั้งหมดที่ WEAO ติดตามข้อมูลอยู่",
+    executorsTotalDesc: "ตัวรันทั้งหมดที่ติดตามข้อมูลสดอยู่",
     executorsNoData:    "โหลดข้อมูลตัวรันไม่ได้ กรุณาลองใหม่อีกครั้ง",
     executorsFree:      "ฟรี",
     executorsKeySystem: "ระบบคีย์",

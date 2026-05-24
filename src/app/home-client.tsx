@@ -26,11 +26,11 @@ const supportedGames = [
 const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
 
 const testimonials = [
-  { quote: "Used Spectrum Hub for years now. Smooth execution, clean updates, and the support team actually replies fast when something breaks (which is rare in this space). Highly recommend for anyone looking for a reliable Roblox cheat.", author: "nebulathedragon", role: "Shop owner", avatar: "https://i.pinimg.com/736x/46/aa/72/46aa72f43fff5e080125e9822d0d4699.jpg", tag: "Long-time user", featured: true },
-  { quote: "this script is the best fisch script i've used till now. just add a new feature in which we can teleport to megaladon when it spawns and catch it. and also add a feature to catch the megaladon without teleporting to it. rest all are good.", author: "exoticastral", role: "Community member", avatar: "https://i.pinimg.com/736x/c3/23/f1/c323f1e89ba607b7ee60e4bb5aedd180.jpg", tag: "Daily user" },
-  { quote: "The key flow is simple, the scripts feel optimized, and updates land way faster than most hubs I have tried in the past. Really impressive work and it shows that a lot of care went into building this.", author: "mzikks", role: "Verified buyer", avatar: "https://i.pinimg.com/736x/e6/a1/72/e6a172a208ce137525c52a5bfa12955a.jpg", tag: "Fast updates" },
-  { quote: "Support is active, responses are quick, and the overall feel of the product is way more polished than average Roblox cheat suites out there — it's clear a lot of care and experience went into building it. Highly recommended.", author: "feronei", role: "Store owner", avatar: "https://i.pinimg.com/1200x/12/c5/eb/12c5eb5945be954b341425ca00bc0df0.jpg", tag: "Support" },
-  { quote: "The best sailor piece script ever. It has a lot of features and it is very stable. The support team is also very responsive and helpful. I highly recommend this script to anyone who wants to play sailor piece.", author: "solakemi", role: "Premium member", avatar: "https://i.pinimg.com/736x/e2/5f/a3/e25fa3d34c8d9e67b61e0c450acd7af4.jpg", tag: "Cross-platform" },
+  { quote: "Used Spectrum Hub for years now. Smooth execution, clean updates, and the support team actually replies fast when something breaks (which is rare in this space). Highly recommend for anyone looking for a reliable Roblox cheat.", quoteTH: "ใช้ Spectrum Hub มาหลายปีแล้วตั้งแต่ชื่อว่า ZPU Hub และโฟกัสในแมพ Mad City เป็นหลัก สคริปต์รันได้ลื่น อัปเดตตลอด และทีมซัพพอร์ตตอบเร็วมากเวลาเกิดปัญหา ซึ่งหาได้ยากในวงการนี้ แนะนำอย่างยิ่งสำหรับใครที่มองหาโปรแกรมโกง Roblox ที่เชื่อถือได้", author: "nebulathedragon", role: "Shop owner", avatar: "https://i.pinimg.com/736x/46/aa/72/46aa72f43fff5e080125e9822d0d4699.jpg", tag: "Long-time user", featured: true },
+  { quote: "this script is the best fisch script i've used till now. just add a new feature in which we can teleport to megaladon when it spawns and catch it. and also add a feature to catch the megaladon without teleporting to it. rest all are good.", quoteTH: "สคริปต์ Fisch ที่ดีที่สุดที่เคยใช้มา อยากให้เพิ่มฟีเจอร์เทเลพอร์ตไปหา Megaladon ตอนที่มันสปอว์น และจับมันได้โดยไม่ต้องเทเลพอร์ตด้วย นอกนั้นดีมากทุกอย่าง", author: "exoticastral", role: "Community member", avatar: "https://i.pinimg.com/736x/c3/23/f1/c323f1e89ba607b7ee60e4bb5aedd180.jpg", tag: "Daily user" },
+  { quote: "The key flow is simple, the scripts feel optimized, and updates land way faster than most hubs I have tried in the past. Really impressive work and it shows that a lot of care went into building this.", quoteTH: "ระบบคีย์ใช้งานง่าย สคริปต์รู้สึก optimize มาดี และอัปเดตเร็วกว่า hub อื่นที่เคยลองมามาก ผลงานน่าประทับใจมาก เห็นชัดว่าใส่ใจในทุกรายละเอียดจริงๆ", author: "mzikks", role: "Verified buyer", avatar: "https://i.pinimg.com/736x/e6/a1/72/e6a172a208ce137525c52a5bfa12955a.jpg", tag: "Fast updates" },
+  { quote: "Support is active, responses are quick, and the overall feel of the product is way more polished than average Roblox cheat suites out there — it's clear a lot of care and experience went into building it. Highly recommended.", quoteTH: "ซัพพอร์ตแอคทีฟ ตอบกลับเร็ว และความรู้สึกโดยรวมของตัวโปรแกรมดูพอลิชกว่า cheat suite Roblox ทั่วไปมาก เห็นชัดว่ามีความใส่ใจและประสบการณ์ในการสร้าง แนะนำเลย", author: "feronei", role: "Store owner", avatar: "https://i.pinimg.com/1200x/12/c5/eb/12c5eb5945be954b341425ca00bc0df0.jpg", tag: "Support" },
+  { quote: "The best sailor piece script ever. It has a lot of features and it is very stable. The support team is also very responsive and helpful. I highly recommend this script to anyone who wants to play sailor piece.", quoteTH: "สคริปต์ Sailor Piece ที่ดีที่สุดเท่าที่มี มีฟีเจอร์เยอะและเสถียรมาก ทีมซัพพอร์ตก็รับฟังและช่วยเหลือดีเยี่ยม แนะนำสำหรับทุกคนที่อยากเล่น Sailor Piece", author: "solakemi", role: "Premium member", avatar: "https://i.pinimg.com/736x/e2/5f/a3/e25fa3d34c8d9e67b61e0c450acd7af4.jpg", tag: "Cross-platform" },
 ];
 
 export default function Home() {
@@ -179,8 +179,8 @@ export default function Home() {
             <span className="badge-dot" />
             <span>{t("heroBadge")}</span>
           </div>
-          <h1 className="hero-title hero-title-fade-up">
-            {t("heroTitle1")}<br /><em>{t("heroTitleOf")}</em><br />
+          <h1 className="hero-title hero-title-fade-up" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
+            {t("heroTitle1")}<br /><em style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>{t("heroTitleOf")}</em><br />
             <span className="hero-accent">{t("heroTitle2")}</span>
           </h1>
           <p className="hero-subtitle">
@@ -231,6 +231,10 @@ export default function Home() {
               <span>{game.name}</span>
             </a>
           ))}
+          <a href="/scripts" className="supported-game-card">
+            <div className="supported-game-fallback" aria-label={t("andMore")}>+</div>
+            <span>{t("andMore")}</span>
+          </a>
         </div>
         <p className="supported-games-note">{t("trustNote")}</p>
       </section>
@@ -240,11 +244,11 @@ export default function Home() {
         <div className="section-inner">
           <div className="features-header">
             <p className="eyebrow">{t("featEyebrow")}</p>
-            <h2 className="section-title">
+            <h2 className="section-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
               {lang === "en" ? (
                 <>A <em>stability-first</em><br />Roblox cheat</>
               ) : (
-                <>โปรแกรมโกง Roblox<br /><em>ที่เน้นความเสถียร</em></>
+                <>โปรแกรมโกง Roblox<br /><em style={{ fontFamily: "var(--font-body)" }}>ที่เน้นความเสถียร</em></>
               )}
             </h2>
             <p className="section-sub">{t("featSub")}</p>
@@ -286,11 +290,11 @@ export default function Home() {
           <div className="demo-layout">
             <div className="demo-text">
               <p className="eyebrow">Spectrum-Cheat Showcase | Sailor Piece</p>
-              <h2 className="section-title">
+              <h2 className="section-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
                 {lang === "en" ? (
                   <>See how Spectrum<br />performs in<br /><em>real gameplay</em></>
                 ) : (
-                  <>ดูว่า Spectrum<br />ทำงานอย่างไรใน<br /><em>เกมจริง</em></>
+                  <>ดูว่า Spectrum<br />ทำงานอย่างไรใน<br /><em style={{ fontFamily: "var(--font-body)" }}>เกมจริง</em></>
                 )}
               </h2>
               <p className="section-sub">{t("demoSub")}</p>
@@ -314,11 +318,11 @@ export default function Home() {
       <section className="services-section">
         <div className="section-inner">
           <p className="eyebrow" style={{ textAlign: "center" }}>{t("servEyebrow")}</p>
-          <h2 className="section-title" style={{ textAlign: "center" }}>
+          <h2 className="section-title" style={{ textAlign: "center", ...(lang === "th" ? { fontFamily: "var(--font-body)" } : {}) }}>
             {lang === "en" ? (
               <>Everything you need<br /><em>in one premium suite.</em></>
             ) : (
-              <>ทุกอย่างที่คุณต้องการ<br /><em>ในชุดพรีเมียมเดียว</em></>
+              <>ทุกอย่างที่คุณต้องการ<br /><em style={{ fontFamily: "var(--font-body)" }}>ในชุดพรีเมียมเดียว</em></>
             )}
           </h2>
           <div className="services-grid">
@@ -339,11 +343,11 @@ export default function Home() {
       <section className="testimonials-section">
         <div className="section-inner">
           <p className="eyebrow" style={{ textAlign: "center" }}>{t("testiEyebrow")}</p>
-          <h2 className="section-title" style={{ textAlign: "center" }}>
+          <h2 className="section-title" style={{ textAlign: "center", ...(lang === "th" ? { fontFamily: "var(--font-body)" } : {}) }}>
             {lang === "en" ? (
               <>Trusted by users<br /><em>who stay.</em></>
             ) : (
-              <>ไว้วางใจโดยผู้ใช้<br /><em>ที่ติดตามมาตลอด</em></>
+              <>ไว้วางใจโดยผู้ใช้<br /><em style={{ fontFamily: "var(--font-body)" }}>ใช้งานมาโดยตลอด</em></>
             )}
           </h2>
           <p className="section-sub" style={{ textAlign: "center" }}>{t("testiSub")}</p>
@@ -352,7 +356,7 @@ export default function Home() {
               <div key={item.author} className="testi-featured reveal">
                 <div className="testi-featured-avatar-wrap"><img src={item.avatar} alt={item.author} className="testi-featured-avatar" /></div>
                 <div className="testi-stars testi-stars-featured">★★★★★</div>
-                <blockquote className="testi-featured-quote">{item.quote}</blockquote>
+                <blockquote className="testi-featured-quote">{lang === "th" ? item.quoteTH : item.quote}</blockquote>
                 <div className="testi-featured-meta">
                   <span className="testi-pill">{item.author}</span>
                   <span className="testi-pill">{item.role}</span>
@@ -364,7 +368,7 @@ export default function Home() {
               {testimonials.filter((item) => !item.featured).map((item) => (
                 <div key={item.author} className="testi-card reveal">
                   <div className="testi-stars">★★★★★</div>
-                  <blockquote>{item.quote}</blockquote>
+                  <blockquote>{lang === "th" ? item.quoteTH : item.quote}</blockquote>
                   <div className="testi-author">
                     <img src={item.avatar} alt={item.author} className="testi-avatar" />
                     <div><strong>{item.author}</strong><span>{item.role}</span></div>
@@ -380,11 +384,11 @@ export default function Home() {
       <section className="pricing-section" id="pricing">
         <div className="section-inner">
           <p className="eyebrow" style={{ textAlign: "center" }}>{t("pricingEyebrow")}</p>
-          <h2 className="section-title" style={{ textAlign: "center" }}>
+          <h2 className="section-title" style={{ textAlign: "center", ...(lang === "th" ? { fontFamily: "var(--font-body)" } : {}) }}>
             {lang === "en" ? (
               <>Choose your<br /><em>Spectrum access.</em></>
             ) : (
-              <>เลือกการเข้าถึง<br /><em>Spectrum ของคุณ</em></>
+              <>เลือกการเข้าถึง<br /><em style={{ fontFamily: "var(--font-body)" }}>Spectrum ของคุณ</em></>
             )}
           </h2>
           <p className="section-sub" style={{ textAlign: "center" }}>{t("pricingSub")}</p>
@@ -414,7 +418,7 @@ export default function Home() {
       <section className="cta-section">
         <div className="cta-inner">
           <div className="cta-glow" />
-          <h2 className="cta-title">{t("ctaTitle")}</h2>
+          <h2 className="cta-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>{t("ctaTitle")}</h2>
           <p className="cta-sub">{t("ctaSub")}</p>
           <div className="cta-actions">
             <a href="https://spectrumcheat.rexzy.xyz/" target="_blank" rel="noreferrer" className="btn-primary btn-large">{t("btnBuyNow")}</a>

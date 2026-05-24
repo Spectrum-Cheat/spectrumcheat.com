@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLang } from "../_i18n/context";
 
 export function BloxHeroSection() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <section className="subpage-hero">
       <div className="hero-grid-lines subpage-grid" />
@@ -13,7 +13,7 @@ export function BloxHeroSection() {
           <span className="badge-dot" />
           <span>{t("bloxBadge")}</span>
         </div>
-        <h1 className="subpage-title">{t("bloxTitle")}</h1>
+        <h1 className="subpage-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>{t("bloxTitle")}</h1>
         <p className="subpage-subtitle">{t("bloxSubtitle")}</p>
         <div className="subpage-actions">
           <Link href="/" className="btn-outline">{t("btnBackHome")}</Link>

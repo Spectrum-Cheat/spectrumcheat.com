@@ -15,7 +15,7 @@ type SubpageShellProps = {
 };
 
 export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHref = "https://discord.gg/hackerclub" }: SubpageShellProps) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const resolvedCtaLabel = ctaLabel ?? t("btnJoinDiscord");
 
   return (
@@ -30,7 +30,7 @@ export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHr
               <span className="badge-dot" />
               <span>{badge}</span>
             </div>
-            <h1 className="subpage-title">{title}</h1>
+            <h1 className="subpage-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>{title}</h1>
             <p className="subpage-subtitle">{subtitle}</p>
             <div className="subpage-actions">
               <Link href="/" className="btn-outline">
