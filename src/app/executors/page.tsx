@@ -6,6 +6,7 @@ interface Exploit {
   free: boolean; detected: boolean; cost: string; platform: string; extype: string;
   uncPercentage: number; suncPercentage: number; keysystem: boolean;
   websitelink: string; discordlink: string; purchaselink: string;
+  note?: string; decompiler?: boolean; multiInject?: boolean; raknet?: boolean;
 }
 
 interface VersionsData {

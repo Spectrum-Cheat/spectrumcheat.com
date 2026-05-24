@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { SubpageShell } from "../_components/subpage-shell";
 import { useLang } from "../_i18n/context";
 import type { TranslationKey } from "../_i18n/translations";
@@ -9,6 +10,7 @@ interface Exploit {
   free: boolean; detected: boolean; cost: string; platform: string; extype: string;
   uncPercentage: number; suncPercentage: number; keysystem: boolean;
   websitelink: string; discordlink: string; purchaselink: string;
+  note?: string; decompiler?: boolean; multiInject?: boolean; raknet?: boolean;
 }
 
 interface VersionsData {
@@ -37,6 +39,7 @@ interface Props {
 
 export default function ExecutorsClient({ exploits, versions }: Props) {
   const { t } = useLang();
+  const [expanded, setExpanded] = useState<string | null>(null);
 
   const updatedCount    = exploits.filter((e) => e.updateStatus).length;
   const notUpdatedCount = exploits.filter((e) => !e.updateStatus).length;
@@ -127,33 +130,126 @@ export default function ExecutorsClient({ exploits, versions }: Props) {
                   <span className="subpage-chip">{group.length}</span>
                 </div>
                 <div className="exec-list">
-                  {group.map((exploit) => (
-                    <div key={exploit.title} className={`exec-row ${exploit.updateStatus ? "exec-row--updated" : "exec-row--outdated"}`}>
-                      <div className="exec-row-left">
-                        <div className="exec-row-name">
-                          <span className="exec-title">{exploit.title}</span>
-                          {exploit.version && <span className="exec-tag version">{exploit.version}</span>}
-                          {exploit.suncPercentage > 0 && <span className="exec-tag sunc">sUNC {exploit.suncPercentage}%</span>}
-                          {exploit.free && <span className="exec-tag free">{t("executorsFree")}</span>}
-                          {exploit.keysystem && <span className="exec-tag key">{t("executorsKeySystem")}</span>}
-                          {exploit.detected && <span className="exec-tag detected">{t("executorsDetected")}</span>}
+                  {group.map((exploit) => {
+                    const isOpen = expanded === exploit.title;
+                    const hasLinks = exploit.websitelink || exploit.discordlink || exploit.purchaselink;
+                    const hasStats = exploit.suncPercentage > 0 || exploit.uncPercentage > 0;
+                    const hasCapabilities = exploit.decompiler !== undefined || exploit.multiInject !== undefined || exploit.raknet !== undefined;
+                    const hasExpand = hasLinks || hasStats || hasCapabilities || exploit.note;
+                    return (
+                      <div key={exploit.title} className={`exec-row ${exploit.updateStatus ? "exec-row--updated" : "exec-row--outdated"} ${isOpen ? "exec-row--open" : ""}`}>
+                        {/* ── Collapsed row ── */}
+                        <div
+                          className="exec-row-main"
+                          onClick={() => hasExpand && setExpanded(isOpen ? null : exploit.title)}
+                          style={{ cursor: hasExpand ? "pointer" : "default" }}
+                        >
+                          <div className="exec-row-left">
+                            <div className="exec-row-name">
+                              <span className="exec-title">{exploit.title}</span>
+                              {exploit.version && <span className="exec-tag version">{exploit.version}</span>}
+                              {exploit.suncPercentage > 0 && <span className="exec-tag sunc">sUNC {exploit.suncPercentage}%</span>}
+                              {exploit.free && <span className="exec-tag free">{t("executorsFree")}</span>}
+                              {exploit.keysystem && <span className="exec-tag key">{t("executorsKeySystem")}</span>}
+                              {exploit.detected && !exploit.updateStatus && <span className="exec-tag detected">{t("executorsDetected")}</span>}
+                            </div>
+                            <div className="exec-row-meta">
+                              {exploit.cost && !exploit.free && <span className="exec-meta-item">{exploit.cost}</span>}
+                              {exploit.updatedDate && <span className="exec-meta-item exec-meta-date">{t("executorsLastUpdPrefix")} {formatDate(exploit.updatedDate)}</span>}
+                            </div>
+                          </div>
+                          <div className="exec-row-right">
+                            <span className={`exec-status-pill ${exploit.updateStatus ? "updated" : "outdated"}`}>
+                              {exploit.updateStatus ? t("executorsUpdPill") : t("executorsNotUpdPill")}
+                            </span>
+                            {hasExpand && (
+                              <svg
+                                className={`exec-chevron ${isOpen ? "exec-chevron--open" : ""}`}
+                                width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" strokeWidth="2.5"
+                                strokeLinecap="round" strokeLinejoin="round"
+                              >
+                                <polyline points="6 9 12 15 18 9" />
+                              </svg>
+                            )}
+                          </div>
                         </div>
-                        <div className="exec-row-meta">
-                          {exploit.cost && !exploit.free && <span className="exec-meta-item">{exploit.cost}</span>}
-                          {exploit.updatedDate && <span className="exec-meta-item exec-meta-date">{t("executorsLastUpdPrefix")} {formatDate(exploit.updatedDate)}</span>}
-                        </div>
+
+                        {/* ── Expanded content ── */}
+                        {isOpen && (
+                          <div className="exec-row-expand">
+                            {exploit.note && (
+                              <div className="exec-note">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                                  <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+                                </svg>
+                                <span>{exploit.note}</span>
+                              </div>
+                            )}
+                            {hasCapabilities && (
+                              <div className="exec-capabilities">
+                                {exploit.decompiler !== undefined && (
+                                  <span className={`exec-cap-item ${exploit.decompiler ? "exec-cap--yes" : "exec-cap--no"}`}>
+                                    Decompiler: {exploit.decompiler ? "✓" : "✗"}
+                                  </span>
+                                )}
+                                {exploit.multiInject !== undefined && (
+                                  <span className={`exec-cap-item ${exploit.multiInject ? "exec-cap--yes" : "exec-cap--no"}`}>
+                                    Multi-Inject: {exploit.multiInject ? "✓" : "✗"}
+                                  </span>
+                                )}
+                                {exploit.raknet !== undefined && (
+                                  <span className={`exec-cap-item ${exploit.raknet ? "exec-cap--yes" : "exec-cap--no"}`}>
+                                    Raknet: {exploit.raknet ? "✓" : "✗"}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                            <div className="exec-expand-body">
+                              {hasLinks && (
+                                <div className="exec-expand-links">
+                                  {exploit.websitelink && (
+                                    <a href={exploit.websitelink} target="_blank" rel="noreferrer" className="exec-link-btn" onClick={(e) => e.stopPropagation()}>
+                                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                      {t("executorsWebsite")}
+                                    </a>
+                                  )}
+                                  {exploit.discordlink && (
+                                    <a href={exploit.discordlink} target="_blank" rel="noreferrer" className="exec-link-btn" onClick={(e) => e.stopPropagation()}>
+                                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                                      {t("navDiscord")}
+                                    </a>
+                                  )}
+                                  {exploit.purchaselink && (
+                                    <a href="https://spectrumcheat.rexzy.xyz/shop/category/Mg==" target="_blank" rel="noreferrer" className="exec-link-btn exec-link-btn--purchase" onClick={(e) => e.stopPropagation()}>
+                                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                                      {t("executorsPurchase")}
+                                    </a>
+                                  )}
+                                </div>
+                              )}
+                              {hasStats && (
+                                <div className="exec-expand-stats">
+                                  {exploit.suncPercentage > 0 && (
+                                    <div className="exec-stat-item">
+                                      <span className="exec-stat-label">sUNC</span>
+                                      <span className="exec-stat-value">{exploit.suncPercentage}%</span>
+                                    </div>
+                                  )}
+                                  {exploit.uncPercentage > 0 && (
+                                    <div className="exec-stat-item">
+                                      <span className="exec-stat-label">UNC</span>
+                                      <span className="exec-stat-value">{exploit.uncPercentage}%</span>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <div className="exec-row-right">
-                        <div className="exec-links">
-                          {exploit.websitelink && <a href={exploit.websitelink} target="_blank" rel="noreferrer" className="exec-link-btn">{t("executorsWebsite")}</a>}
-                          {exploit.discordlink && <a href={exploit.discordlink} target="_blank" rel="noreferrer" className="exec-link-btn">{t("navDiscord")}</a>}
-                        </div>
-                        <span className={`exec-status-pill ${exploit.updateStatus ? "updated" : "outdated"}`}>
-                          {exploit.updateStatus ? t("executorsUpdPill") : t("executorsNotUpdPill")}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             );
