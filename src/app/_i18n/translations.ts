@@ -304,7 +304,7 @@ export const translations = {
     btnLoadMore:    "โหลดเพิ่ม",
     btnLoading:     "กำลังโหลด...",
     btnSearch:      "ค้นหา",
-    btnExploreScripts: "ดูสคริปต์",
+    btnExploreScripts: "ดูเพิ่มเติม",
 
     // ─── Home: Stats ────────────────────────────
     statGames:       "เกมที่รองรับ",
