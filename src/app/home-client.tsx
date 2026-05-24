@@ -2,384 +2,129 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { MarketingHeader } from "./_components/marketing-header";
 import { SiteFooter } from "./_components/site-footer";
 import { useLang } from "./_i18n/context";
 
-const heroSubtitleText =
-  "A premium Roblox cheat built for smooth performance and reliable daily use. Supports multiple games & working on mobile and PC, and trusted for over 5 years!";
-const heroSubtitleBreakIndex =
-  "A premium Roblox cheat built for smooth performance and reliable daily use.".length;
-
-const featureCards = [
-  {
-    icon: "shield",
-    title: "Undetected",
-    description:
-      "Scripts are maintained frequently to stay undetected, stable, and safer to use over time.",
-    delay: "0s",
-  },
-  {
-    icon: "spark",
-    title: "Best Features",
-    description:
-      "Packed with strong in-game features, auto farming tools, and premium utilities built for real everyday use.",
-    delay: "0.1s",
-  },
-  {
-    icon: "chip",
-    title: "Optimized Code",
-    description:
-      "Clean, lightweight scripts engineered to run smoothly without dragging down your game performance.",
-    delay: "0.2s",
-  },
-  {
-    icon: "bolt",
-    title: "Instant Access",
-    description:
-      "Our automated flow helps users get started immediately after purchase with no unnecessary waiting around.",
-    delay: "0.3s",
-  },
-  {
-    icon: "crown",
-    title: "Premium Quality",
-    description:
-      "Built with years of scripting experience behind it, refined for smoother farming and a cleaner overall feel.",
-    delay: "0.4s",
-  },
-  {
-    icon: "headset",
-    title: "24/7 Support",
-    description:
-      "Fast replies, active help, and real support whenever users need answers, updates, or technical assistance.",
-    delay: "0.5s",
-  },
+const supportedGames = [
+  { name: "Blox Fruits",              image: "https://tr.rbxcdn.com/180DAY-90afa57850c8c8d1518b398b6c119ee9/256/256/Image/Webp/noFilter", badge: "BF",  href: "https://www.roblox.com/games/2753915549/Blox-Fruits" },
+  { name: "King Legacy",              image: "https://tr.rbxcdn.com/180DAY-2b339527dbcd7808790f274f8a9c9aab/256/256/Image/Webp/noFilter", badge: "KL",  href: "https://www.roblox.com/games/4520749081/King-Legacy" },
+  { name: "Driving Empire",           image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/256/256/Image/Webp/noFilter", badge: "DE",  href: "https://www.roblox.com/games/3351674303/Driving-Empire-Car-Racing" },
+  { name: "Fisch",                    image: "https://tr.rbxcdn.com/180DAY-911933467f0dc8e467cf3e305ea78882/256/256/Image/Webp/noFilter", badge: "FI",  href: "https://www.roblox.com/games/16732694052/Fisch" },
+  { name: "Rivals",                   image: "https://tr.rbxcdn.com/180DAY-3df3c12313ef02c6656f378f110d72cd/256/256/Image/Webp/noFilter", badge: "RV",  href: "https://www.roblox.com/games/17625359962/RIVALS" },
+  { name: "Sailor Piece",             image: "https://tr.rbxcdn.com/180DAY-af4eed326351cb513869c431e3d88787/256/256/Image/Webp/noFilter", badge: "SP",  href: "https://www.roblox.com/games/77747658251236/Sailor-Piece" },
+  { name: "Steal a Brainrot",         image: "https://tr.rbxcdn.com/180DAY-1676319b53fd6fca7765674d84f36f3d/256/256/Image/Webp/noFilter", badge: "SB",  href: "https://www.roblox.com/games/109983668079237/Steal-a-Brainrot" },
+  { name: "Pet Simulator 99",         image: "https://tr.rbxcdn.com/180DAY-03854432095bc666d812e935e8aa758f/256/256/Image/Webp/noFilter", badge: "P99", href: "https://www.roblox.com/games/8737899170/Pet-Simulator-99" },
+  { name: "The Strongest Battlegrounds", image: "https://tr.rbxcdn.com/180DAY-85755b822cee060522bc974f98924350/256/256/Image/Webp/noFilter", badge: "TSB", href: "https://www.roblox.com/games/10449761463/The-Strongest-Battlegrounds" },
+  { name: "Dead Rails",               image: "https://tr.rbxcdn.com/180DAY-f305cb56061e478b368dca1d03dad855/256/256/Image/Webp/noFilter", badge: "DR",  href: "https://www.roblox.com/games/116495829188952/Dead-Rails" },
+  { name: "Fish It!",                 image: "https://tr.rbxcdn.com/180DAY-a56d534bcf394a40e11dc1aba795253b/256/256/Image/Webp/noFilter", badge: "F!",  href: "https://www.roblox.com/games/121864768012064/Fish-It" },
+  { name: "Anime Rangers X",          image: "https://tr.rbxcdn.com/180DAY-ae109a4f98423482b900aadfa48e32db/256/256/Image/Webp/noFilter", badge: "ARX", href: "https://www.roblox.com/games/111446873000464/Re-Rangers-X" },
+  { name: "Bite By Night",            image: "https://tr.rbxcdn.com/180DAY-2b392211182b7171397e09caa3be62de/256/256/Image/Webp/noFilter", badge: "BBN", href: "https://www.roblox.com/games/70845479499574/Bite-By-Night" },
 ];
 
-const serviceBlocks = [
-  {
-    title: "Script Library",
-    description:
-      "Browse supported games, jump between titles fast, and keep your full Spectrum lineup organized in one clean place.",
-    image: "/images/Script Library Preview.png",
-    alt: "Blox Fruits showcase art",
-    wide: true,
-  },
-  {
-    title: "Status Tracker",
-    description:
-      "Check which games are currently working or retired without digging through messages or old posts, And automatic Webhook Systems in script!",
-    image: "/images/Webhook Notify Preview.png",
-    alt: "Rivals artwork",
-  },
-  {
-    title: "Key Access",
-    description:
-      "Move from purchase to use faster with a cleaner unlock flow, direct key steps, and less friction for new users.",
-    image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb",
-    alt: "Sailor Piece key access preview",
-  },
-];
+const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
 
 const testimonials = [
-  {
-    quote:
-      "Used Spectrum Hub for years now. Smooth execution, clean updates, and the support team actually replies fast when something breaks (which is rare in this space). Highly recommend for anyone looking for a reliable Roblox cheat.",
-    author: "nebulathedragon",
-    role: "Shop owner",
-    avatar: "https://i.pinimg.com/736x/46/aa/72/46aa72f43fff5e080125e9822d0d4699.jpg",
-    tag: "Long-time user",
-    featured: true,
-  },
-  {
-    quote:
-      "this script is the best fisch script i've used till now. just add a new feature in which we can teleport to megaladon when it spawns and catch it. and also add a feature to catch the megaladon without teleporting to it. rest all are good.",
-    author: "exoticastral",
-    role: "Community member",
-    avatar: "https://i.pinimg.com/736x/c3/23/f1/c323f1e89ba607b7ee60e4bb5aedd180.jpg",
-    tag: "Daily user",
-  },
-  {
-    quote:
-      "The key flow is simple, the scripts feel optimized, and updates land way faster than most hubs I have tried in the past. Really impressive work and it shows that a lot of care went into building this.",
-    author: "mzikks",
-    role: "Verified buyer",
-    avatar: "https://i.pinimg.com/736x/e6/a1/72/e6a172a208ce137525c52a5bfa12955a.jpg",
-    tag: "Fast updates",
-  },
-  {
-    quote:
-      "Support is active, responses are quick, and the overall feel of the product is way more polished than average Roblox cheat suites out there â€” it's clear a lot of care and experience went into building it. Highly recommended.",
-    author: "feronei",
-    role: "Store owner",
-    avatar: "https://i.pinimg.com/1200x/12/c5/eb/12c5eb5945be954b341425ca00bc0df0.jpg",
-    tag: "Support",
-  },
-  {
-    quote:
-      "The best sailor piece script ever. It has a lot of features and it is very stable. The support team is also very responsive and helpful. I highly recommend this script to anyone who wants to play sailor piece.",
-    author: "solakemi",
-    role: "Premium member",
-    avatar: "https://i.pinimg.com/736x/e2/5f/a3/e25fa3d34c8d9e67b61e0c450acd7af4.jpg",
-    tag: "Cross-platform",
-  },
-];
-
-const supportedGames = [
-  {
-    name: "Blox Fruits",
-    image: "https://tr.rbxcdn.com/180DAY-90afa57850c8c8d1518b398b6c119ee9/256/256/Image/Webp/noFilter",
-    badge: "BF",
-    href: "https://www.roblox.com/games/2753915549/Blox-Fruits",
-  },
-  {
-    name: "King Legacy",
-    image: "https://tr.rbxcdn.com/180DAY-2b339527dbcd7808790f274f8a9c9aab/256/256/Image/Webp/noFilter",
-    badge: "KL",
-    href: "https://www.roblox.com/games/4520749081/King-Legacy",
-  },
-  {
-    name: "Driving Empire",
-    image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/256/256/Image/Webp/noFilter",
-    badge: "DE",
-    href: "https://www.roblox.com/games/3351674303/Driving-Empire-Car-Racing",
-  },
-  {
-    name: "Fisch",
-    image: "https://tr.rbxcdn.com/180DAY-911933467f0dc8e467cf3e305ea78882/256/256/Image/Webp/noFilter",
-    badge: "FI",
-    href: "https://www.roblox.com/games/16732694052/Fisch",
-  },
-  {
-    name: "Rivals",
-    image: "https://tr.rbxcdn.com/180DAY-3df3c12313ef02c6656f378f110d72cd/256/256/Image/Webp/noFilter",
-    badge: "RV",
-    href: "https://www.roblox.com/games/17625359962/RIVALS",
-  },
-  {
-    name: "Sailor Piece",
-    image: "https://tr.rbxcdn.com/180DAY-af4eed326351cb513869c431e3d88787/256/256/Image/Webp/noFilter",
-    badge: "SP",
-    href: "https://www.roblox.com/games/77747658251236/Sailor-Piece",
-  },
-  {
-    name: "Steal a Brainrot",
-    image: "https://tr.rbxcdn.com/180DAY-1676319b53fd6fca7765674d84f36f3d/256/256/Image/Webp/noFilter",
-    badge: "SB",
-    href: "https://www.roblox.com/games/109983668079237/Steal-a-Brainrot",
-  },
-  {
-    name: "Pet Simulator 99",
-    image: "https://tr.rbxcdn.com/180DAY-03854432095bc666d812e935e8aa758f/256/256/Image/Webp/noFilter",
-    badge: "P99",
-    href: "https://www.roblox.com/games/8737899170/Pet-Simulator-99",
-  },
-  {
-    name: "The Strongest Battlegrounds",
-    image: "https://tr.rbxcdn.com/180DAY-85755b822cee060522bc974f98924350/256/256/Image/Webp/noFilter",
-    badge: "TSB",
-    href: "https://www.roblox.com/games/10449761463/The-Strongest-Battlegrounds",
-  },
-  {
-    name: "Dead Rails",
-    image: "https://tr.rbxcdn.com/180DAY-f305cb56061e478b368dca1d03dad855/256/256/Image/Webp/noFilter",
-    badge: "DR",
-    href: "https://www.roblox.com/games/116495829188952/Dead-Rails",
-  },
-  {
-    name: "Fish It!",
-    image: "https://tr.rbxcdn.com/180DAY-a56d534bcf394a40e11dc1aba795253b/256/256/Image/Webp/noFilter",
-    badge: "F!",
-    href: "https://www.roblox.com/games/121864768012064/Fish-It",
-  },
-  {
-    name: "Anime Rangers X",
-    image: "https://tr.rbxcdn.com/180DAY-ae109a4f98423482b900aadfa48e32db/256/256/Image/Webp/noFilter",
-    badge: "ARX",
-    href: "https://www.roblox.com/games/111446873000464/Re-Rangers-X",
-  },
-  {
-    name: "Bite By Night",
-    image: "https://tr.rbxcdn.com/180DAY-2b392211182b7171397e09caa3be62de/256/256/Image/Webp/noFilter",
-    badge: "BBN",
-    href: "https://www.roblox.com/games/70845479499574/Bite-By-Night",
-  },
-  {
-    name: "And more",
-    image: "",
-    badge: "+",
-    href: "/scripts",
-  },
-];
-
-const pricingPlans = [
-  {
-    tier: "Weekly",
-    description:
-      "Quick access for short sessions, testing, and trying Spectrum before moving into longer plans.",
-    amount: "$1.79",
-    per: "/week",
-    cta: "Buy Weekly Plan",
-    href: "https://spectrumcheat.rexzy.xyz/shop/product/Mw==",
-    primary: false,
-    popular: false,
-    features: [
-      "Fast one-day access",
-      "Works on mobile and PC",
-      "Smooth runtime experience",
-      "Great for testing and short use",
-      "Discord-based support",
-      "Instant access after purchase",
-      "Perfect for trying Spectrum first",
-    ],
-  },
-  {
-    tier: "Monthly",
-    description:
-      "The main plan for everyday users who want full Spectrum access without constantly renewing.",
-    amount: "$4.69",
-    per: "/month",
-    cta: "Buy Monthly Plan",
-    href: "https://spectrumcheat.rexzy.xyz/shop/product/NA==",
-    popular: true,
-    primary: true,
-    features: [
-      "Best value for long-term use",
-      "67+ supported games catalog",
-      "Priority update access",
-      "Mobile and PC ready",
-      "Cleaner day-to-day workflow",
-      "Most popular Spectrum plan",
-      "Built for daily use",
-    ],
-  },
-  {
-    tier: "Quarterly",
-    description:
-      "A longer-term plan for committed users who want premium access, fewer renewals, and stronger overall value.",
-    amount: "$9.99",
-    per: "/3 months",
-    cta: "Buy Quarterly Plan",
-    href: "https://spectrumcheat.rexzy.xyz/shop/product/OA==",
-    popular: false,
-    primary: false,
-    features: [
-      "Extended premium access",
-      "Fewer renewals to manage",
-      "Premium script experience",
-      "Trusted by long-term users",
-      "Fast support through Discord",
-      "Built for long-term value",
-      "Best for committed users",
-    ],
-  },
+  { quote: "Used Spectrum Hub for years now. Smooth execution, clean updates, and the support team actually replies fast when something breaks (which is rare in this space). Highly recommend for anyone looking for a reliable Roblox cheat.", author: "nebulathedragon", role: "Shop owner", avatar: "https://i.pinimg.com/736x/46/aa/72/46aa72f43fff5e080125e9822d0d4699.jpg", tag: "Long-time user", featured: true },
+  { quote: "this script is the best fisch script i've used till now. just add a new feature in which we can teleport to megaladon when it spawns and catch it. and also add a feature to catch the megaladon without teleporting to it. rest all are good.", author: "exoticastral", role: "Community member", avatar: "https://i.pinimg.com/736x/c3/23/f1/c323f1e89ba607b7ee60e4bb5aedd180.jpg", tag: "Daily user" },
+  { quote: "The key flow is simple, the scripts feel optimized, and updates land way faster than most hubs I have tried in the past. Really impressive work and it shows that a lot of care went into building this.", author: "mzikks", role: "Verified buyer", avatar: "https://i.pinimg.com/736x/e6/a1/72/e6a172a208ce137525c52a5bfa12955a.jpg", tag: "Fast updates" },
+  { quote: "Support is active, responses are quick, and the overall feel of the product is way more polished than average Roblox cheat suites out there — it's clear a lot of care and experience went into building it. Highly recommended.", author: "feronei", role: "Store owner", avatar: "https://i.pinimg.com/1200x/12/c5/eb/12c5eb5945be954b341425ca00bc0df0.jpg", tag: "Support" },
+  { quote: "The best sailor piece script ever. It has a lot of features and it is very stable. The support team is also very responsive and helpful. I highly recommend this script to anyone who wants to play sailor piece.", author: "solakemi", role: "Premium member", avatar: "https://i.pinimg.com/736x/e2/5f/a3/e25fa3d34c8d9e67b61e0c450acd7af4.jpg", tag: "Cross-platform" },
 ];
 
 export default function Home() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [typedSubtitle, setTypedSubtitle] = useState("");
-  const typedSubtitleFirstLine = typedSubtitle.slice(0, heroSubtitleBreakIndex);
-  const typedSubtitleSecondLine =
-    typedSubtitle.length > heroSubtitleBreakIndex
-      ? typedSubtitle.slice(heroSubtitleBreakIndex).trimStart()
-      : "";
+
+  const featureCards = [
+    { icon: "shield", titleKey: "feat1Title" as const, descKey: "feat1Desc" as const, delay: "0s" },
+    { icon: "spark",  titleKey: "feat2Title" as const, descKey: "feat2Desc" as const, delay: "0.1s" },
+    { icon: "chip",   titleKey: "feat3Title" as const, descKey: "feat3Desc" as const, delay: "0.2s" },
+    { icon: "bolt",   titleKey: "feat4Title" as const, descKey: "feat4Desc" as const, delay: "0.3s" },
+    { icon: "crown",  titleKey: "feat5Title" as const, descKey: "feat5Desc" as const, delay: "0.4s" },
+    { icon: "headset",titleKey: "feat6Title" as const, descKey: "feat6Desc" as const, delay: "0.5s" },
+  ];
+
+  const serviceBlocks = [
+    { titleKey: "serv1Title" as const, descKey: "serv1Desc" as const, image: "/images/Script Library Preview.png",    alt: "Blox Fruits showcase art", wide: true },
+    { titleKey: "serv2Title" as const, descKey: "serv2Desc" as const, image: "/images/Webhook Notify Preview.png",    alt: "Rivals artwork" },
+    { titleKey: "serv3Title" as const, descKey: "serv3Desc" as const, image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb", alt: "Sailor Piece key access preview" },
+  ];
+
+  const pricingPlans = [
+    {
+      tierKey: "planWeekly" as const, descKey: "planWeeklyDesc" as const, amountUSD: "$1.79", amountTHB: "59฿", perKey: "planWeeklyPer" as const, ctaKey: "planWeeklyCta" as const,
+      href: "https://spectrumcheat.rexzy.xyz/shop/product/Mw==", primary: false, popular: false,
+      featureKeys: ["planWeeklyF1","planWeeklyF2","planWeeklyF3","planWeeklyF4","planWeeklyF5","planWeeklyF6","planWeeklyF7"] as const,
+    },
+    {
+      tierKey: "planMonthly" as const, descKey: "planMonthlyDesc" as const, amountUSD: "$4.69", amountTHB: "149฿", perKey: "planMonthlyPer" as const, ctaKey: "planMonthlyCta" as const,
+      href: "https://spectrumcheat.rexzy.xyz/shop/product/NA==", primary: true, popular: true,
+      featureKeys: ["planMonthlyF1","planMonthlyF2","planMonthlyF3","planMonthlyF4","planMonthlyF5","planMonthlyF6","planMonthlyF7"] as const,
+    },
+    {
+      tierKey: "planQuarterly" as const, descKey: "planQuarterlyDesc" as const, amountUSD: "$9.99", amountTHB: "319฿", perKey: "planQuarterlyPer" as const, ctaKey: "planQuarterlyCta" as const,
+      href: "https://spectrumcheat.rexzy.xyz/shop/product/OA==", primary: false, popular: false,
+      featureKeys: ["planQuarterlyF1","planQuarterlyF2","planQuarterlyF3","planQuarterlyF4","planQuarterlyF5","planQuarterlyF6","planQuarterlyF7"] as const,
+    },
+  ];
 
   useEffect(() => {
     const topbar = document.getElementById("topbar");
-    const updateScroll = () => {
-      topbar?.classList.toggle("scrolled", window.scrollY > 30);
-    };
+    const updateScroll = () => { topbar?.classList.toggle("scrolled", window.scrollY > 30); };
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.animationPlayState = "running";
-            revealObserver.unobserve(entry.target);
-          }
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { (entry.target as HTMLElement).style.animationPlayState = "running"; revealObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll<HTMLElement>(".reveal").forEach((el) => { el.style.animationPlayState = "paused"; revealObserver.observe(el); });
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll<HTMLElement>(".stat-num").forEach((el) => {
+          const raw = (el.dataset.value ?? el.textContent ?? "").replace(/[^0-9.]/g, "");
+          const target = Number.parseFloat(raw);
+          if (Number.isNaN(target)) return;
+          let start: number | null = null;
+          const isFloat = raw.includes(".");
+          const suffix = el.dataset.suffix ?? "";
+          const prefix = el.dataset.prefix ?? "";
+          const animate = (ts: number) => {
+            if (start === null) start = ts;
+            const progress = Math.min((ts - start) / 1800, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = isFloat ? (ease * target).toFixed(2) : Math.floor(ease * target).toString();
+            el.textContent = `${prefix}${current}${suffix}`;
+            if (progress < 1) window.requestAnimationFrame(animate);
+          };
+          window.requestAnimationFrame(animate);
         });
-      },
-      { threshold: 0.15 },
-    );
-
-    document.querySelectorAll<HTMLElement>(".reveal").forEach((element) => {
-      element.style.animationPlayState = "paused";
-      revealObserver.observe(element);
-    });
-
-    const statsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          entry.target.querySelectorAll<HTMLElement>(".stat-num").forEach((element) => {
-            const raw = (element.dataset.value ?? element.textContent ?? "").replace(/[^0-9.]/g, "");
-            const target = Number.parseFloat(raw);
-
-            if (Number.isNaN(target)) return;
-
-            let start: number | null = null;
-            const isFloat = raw.includes(".");
-            const suffix = element.dataset.suffix ?? "";
-            const prefix = element.dataset.prefix ?? "";
-
-            const animate = (timestamp: number) => {
-              if (start === null) start = timestamp;
-              const progress = Math.min((timestamp - start) / 1800, 1);
-              const ease = 1 - Math.pow(1 - progress, 3);
-              const current = isFloat ? (ease * target).toFixed(2) : Math.floor(ease * target).toString();
-              element.textContent = `${prefix}${current}${suffix}`;
-              if (progress < 1) window.requestAnimationFrame(animate);
-            };
-
-            window.requestAnimationFrame(animate);
-          });
-
-          statsObserver.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.5 },
-    );
+        statsObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.5 });
 
     const heroStats = document.querySelector(".hero-stats");
     if (heroStats) statsObserver.observe(heroStats);
 
     const cursorGlow = document.createElement("div");
-    cursorGlow.style.cssText = `
-      position:fixed; pointer-events:none; z-index:9998;
-      width:300px; height:300px;
-      border-radius:50%;
-      background: radial-gradient(circle, rgba(192,132,252,0.08) 0%, rgba(139,92,246,0.04) 38%, transparent 72%);
-      transform:translate(-50%,-50%);
-      transition: transform 0.15s ease;
-      top:0; left:0;
-    `;
+    cursorGlow.style.cssText = `position:fixed;pointer-events:none;z-index:9998;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,0.08) 0%,rgba(139,92,246,0.04) 38%,transparent 72%);transform:translate(-50%,-50%);transition:transform 0.15s ease;top:0;left:0;`;
     document.body.appendChild(cursorGlow);
+    const onMouseMove = (e: MouseEvent) => { cursorGlow.style.left = `${e.clientX}px`; cursorGlow.style.top = `${e.clientY}px`; };
 
-    const onMouseMove = (event: MouseEvent) => {
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
+    const tiltTargets = document.querySelectorAll<HTMLElement>(".feature-card,.price-card,.testi-card");
+    const handleTiltMove = (e: Event) => {
+      const el = e.currentTarget as HTMLElement; const me = e as MouseEvent;
+      const rect = el.getBoundingClientRect();
+      const x = (me.clientX - rect.left) / rect.width - 0.5;
+      const y = (me.clientY - rect.top) / rect.height - 0.5;
+      el.style.transform = `translateY(-4px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
     };
-
-    const tiltTargets = document.querySelectorAll<HTMLElement>(".feature-card, .price-card, .testi-card");
-    const handleTiltMove = (event: Event) => {
-      const element = event.currentTarget as HTMLElement;
-      const mouseEvent = event as MouseEvent;
-      const rect = element.getBoundingClientRect();
-      const x = (mouseEvent.clientX - rect.left) / rect.width - 0.5;
-      const y = (mouseEvent.clientY - rect.top) / rect.height - 0.5;
-      element.style.transform = `translateY(-4px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
-    };
-    const handleTiltLeave = (event: Event) => {
-      (event.currentTarget as HTMLElement).style.transform = "";
-    };
-
-    tiltTargets.forEach((element) => {
-      element.addEventListener("mousemove", handleTiltMove);
-      element.addEventListener("mouseleave", handleTiltLeave);
-    });
+    const handleTiltLeave = (e: Event) => { (e.currentTarget as HTMLElement).style.transform = ""; };
+    tiltTargets.forEach((el) => { el.addEventListener("mousemove", handleTiltMove); el.addEventListener("mouseleave", handleTiltLeave); });
 
     window.addEventListener("scroll", updateScroll, { passive: true });
     document.addEventListener("mousemove", onMouseMove, { passive: true });
@@ -388,29 +133,10 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", updateScroll);
       document.removeEventListener("mousemove", onMouseMove);
-      revealObserver.disconnect();
-      statsObserver.disconnect();
-      tiltTargets.forEach((element) => {
-        element.removeEventListener("mousemove", handleTiltMove);
-        element.removeEventListener("mouseleave", handleTiltLeave);
-      });
+      revealObserver.disconnect(); statsObserver.disconnect();
+      tiltTargets.forEach((el) => { el.removeEventListener("mousemove", handleTiltMove); el.removeEventListener("mouseleave", handleTiltLeave); });
       cursorGlow.remove();
     };
-  }, []);
-
-  useEffect(() => {
-    let currentIndex = 0;
-
-    const timer = window.setInterval(() => {
-      currentIndex += 1;
-      setTypedSubtitle(heroSubtitleText.slice(0, currentIndex));
-
-      if (currentIndex >= heroSubtitleText.length) {
-        window.clearInterval(timer);
-      }
-    }, 15);
-
-    return () => window.clearInterval(timer);
   }, []);
 
   // Starfield
@@ -419,81 +145,42 @@ export default function Home() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     let animId: number;
-
-    const resize = () => {
-      const hero = canvas.parentElement;
-      canvas.width = hero ? hero.offsetWidth : window.innerWidth;
-      canvas.height = hero ? hero.offsetHeight : window.innerHeight;
-    };
+    const resize = () => { const hero = canvas.parentElement; canvas.width = hero ? hero.offsetWidth : window.innerWidth; canvas.height = hero ? hero.offsetHeight : window.innerHeight; };
     resize();
     window.addEventListener("resize", resize);
-
-    const STAR_COUNT = 180;
-    const stars = Array.from({ length: STAR_COUNT }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.2 + 0.2,
-      speed: Math.random() * 0.25 + 0.05,
-      opacity: Math.random() * 0.6 + 0.2,
-      twinkleSpeed: Math.random() * 0.008 + 0.003,
-      twinkleDir: Math.random() > 0.5 ? 1 : -1,
-    }));
-
+    const stars = Array.from({ length: 180 }, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.2 + 0.2, speed: Math.random() * 0.25 + 0.05, opacity: Math.random() * 0.6 + 0.2, twinkleSpeed: Math.random() * 0.008 + 0.003, twinkleDir: Math.random() > 0.5 ? 1 : -1 }));
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       stars.forEach((star) => {
-        // twinkle
         star.opacity += star.twinkleSpeed * star.twinkleDir;
         if (star.opacity >= 0.85 || star.opacity <= 0.1) star.twinkleDir *= -1;
-
-        // drift down slowly
         star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.fill();
+        if (star.y > canvas.height) { star.y = 0; star.x = Math.random() * canvas.width; }
+        ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${star.opacity})`; ctx.fill();
       });
-
       animId = requestAnimationFrame(draw);
     };
-
     draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
+    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
   }, []);
 
   return (
     <>
       <div className="noise-overlay" />
-
       <MarketingHeader />
 
+      {/* ── Hero ── */}
       <section className="hero" id="hero">
-
         <canvas ref={canvasRef} className="hero-starfield" />
-
-
         <div className="hero-content">
           <div className="hero-badge">
             <span className="badge-dot" />
             <span>{t("heroBadge")}</span>
           </div>
           <h1 className="hero-title hero-title-fade-up">
-            {t("heroTitle1")}
-            <br />
-            <em>{t("heroTitleOf")}</em>
-            <br />
+            {t("heroTitle1")}<br /><em>{t("heroTitleOf")}</em><br />
             <span className="hero-accent">{t("heroTitle2")}</span>
           </h1>
           <p className="hero-subtitle">
@@ -503,282 +190,143 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a href="/scripts" className="btn-primary btn-large">
-              <span>Explore Scripts</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M3 8H13M13 8L9 4M13 8L9 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <span>{t("btnExploreScripts")}</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
             </a>
-            <a
-              href="https://spectrumcheat.rexzy.xyz"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-outline btn-large"
-            >
-              <span>Buy Now</span>
+            <a href="https://spectrumcheat.rexzy.xyz" target="_blank" rel="noreferrer" className="btn-outline btn-large">
+              <span>{t("btnBuyNow")}</span>
             </a>
           </div>
-
           <div className="hero-stats">
-            <div className="stat">
-              <span className="stat-num" data-value="67" data-suffix="+">
-                67+
-              </span>
-              <span className="stat-label">Supported Games</span>
-            </div>
+            <div className="stat"><span className="stat-num" data-value="67" data-suffix="+">67+</span><span className="stat-label">{t("statGames")}</span></div>
             <div className="stat-divider" />
-            <div className="stat">
-              <span className="stat-num" data-value="99.94" data-suffix="%">
-                99.94%
-              </span>
-              <span className="stat-label">Stability Rate</span>
-            </div>
+            <div className="stat"><span className="stat-num" data-value="99.94" data-suffix="%">99.94%</span><span className="stat-label">{t("statStability")}</span></div>
             <div className="stat-divider" />
-            <div className="stat">
-              <span className="stat-num" data-prefix="<" data-value="5" data-suffix="ms">
-                {"<5ms"}
-              </span>
-              <span className="stat-label">Runtime Performance</span>
-            </div>
+            <div className="stat"><span className="stat-num" data-prefix="<" data-value="5" data-suffix="ms">{"<5ms"}</span><span className="stat-label">{t("statPerformance")}</span></div>
             <div className="stat-divider" />
-            <div className="stat">
-              <span className="stat-num" data-value="447" data-suffix="M+">
-                447M+
-              </span>
-              <span className="stat-label">Total Executions</span>
-            </div>
+            <div className="stat"><span className="stat-num" data-value="447" data-suffix="M+">447M+</span><span className="stat-label">{t("statExecutions")}</span></div>
           </div>
         </div>
 
         <div className="hero-mockup" id="platform">
           <div className="mockup-frame">
             <div className="mockup-bar">
-              <span className="dot r" />
-              <span className="dot y" />
-              <span className="dot g" />
+              <span className="dot r" /><span className="dot y" /><span className="dot g" />
               <span className="mockup-url">spectrumcheat.com/console</span>
             </div>
-            <img
-              src="/images/Spectrum Console Gameplay Pro.png"
-              alt="Spectrum Cheat interface shown on a laptop over Roblox gameplay"
-              className="mockup-img"
-              loading="lazy"
-            />
-            <div className="mockup-overlay-chip chip-1">
-              <span className="chip-dot green" /> Spectrum Active
-            </div>
-            <div className="mockup-overlay-chip chip-2">
-              <span className="chip-dot amber" /> 44K+ Executions/Hr
-            </div>
+            <img src="/images/Spectrum Console Gameplay Pro.png" alt="Spectrum Cheat interface shown on a laptop over Roblox gameplay" className="mockup-img" loading="lazy" />
+            <div className="mockup-overlay-chip chip-1"><span className="chip-dot green" /> Spectrum Active</div>
+            <div className="mockup-overlay-chip chip-2"><span className="chip-dot amber" /> 44K+ Executions/Hr</div>
           </div>
         </div>
       </section>
 
+      {/* ── Trust ── */}
       <section className="trust-section">
-        <p className="trust-label">Supported games</p>
+        <p className="trust-label">{t("trustLabel")}</p>
         <div className="supported-games">
           {supportedGames.map((game) => (
-            <a
-              key={game.name}
-              href={game.href}
-              className="supported-game-card"
-              target={game.href.startsWith("http") ? "_blank" : undefined}
-              rel={game.href.startsWith("http") ? "noreferrer" : undefined}
-            >
-              {game.image ? (
-                <img src={game.image} alt={game.name} className="supported-game-image" loading="lazy" />
-              ) : (
-                <div className="supported-game-fallback" aria-label={game.name}>
-                  {game.badge}
-                </div>
-              )}
+            <a key={game.name} href={game.href} className="supported-game-card" target={game.href.startsWith("http") ? "_blank" : undefined} rel={game.href.startsWith("http") ? "noreferrer" : undefined}>
+              {game.image ? <img src={game.image} alt={game.name} className="supported-game-image" loading="lazy" /> : <div className="supported-game-fallback" aria-label={game.name}>{game.badge}</div>}
               <span>{game.name}</span>
             </a>
           ))}
         </div>
-        <p className="supported-games-note">67+ supported games across the full Spectrum catalog.</p>
+        <p className="supported-games-note">{t("trustNote")}</p>
       </section>
 
+      {/* ── Features ── */}
       <section className="features-section" id="features">
         <div className="section-inner">
           <div className="features-header">
-            <p className="eyebrow">Why Choose Spectrum?</p>
+            <p className="eyebrow">{t("featEyebrow")}</p>
             <h2 className="section-title">
-              A <em>stability-first</em>
-              <br />
-              Roblox cheat
+              {lang === "en" ? (
+                <>A <em>stability-first</em><br />Roblox cheat</>
+              ) : (
+                <>โปรแกรมโกง Roblox<br /><em>ที่เน้นความเสถียร</em></>
+              )}
             </h2>
-            <p className="section-sub">
-              A premium Roblox cheat suite focused on smooth performance, reliable updates, and a sharper everyday experience.
-            </p>
+            <p className="section-sub">{t("featSub")}</p>
           </div>
 
           <div className="map-wrapper">
-            <img
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80&auto=format&fit=crop"
-              alt="Global server infrastructure map"
-              className="world-map-img"
-              loading="lazy"
-            />
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80&auto=format&fit=crop" alt="Global server infrastructure map" className="world-map-img" loading="lazy" />
             <div className="map-gradient" />
             <div className="map-pings">
-              <div className="ping" style={{ left: "18%", top: "38%" }}>
-                <div className="ping-dot" />
-                <div className="ping-ring" />
-              </div>
-              <div className="ping" style={{ left: "47%", top: "28%" }}>
-                <div className="ping-dot" />
-                <div className="ping-ring" />
-              </div>
-              <div className="ping" style={{ left: "72%", top: "35%" }}>
-                <div className="ping-dot" />
-                <div className="ping-ring" />
-              </div>
-              <div className="ping" style={{ left: "82%", top: "55%" }}>
-                <div className="ping-dot" />
-                <div className="ping-ring" />
-              </div>
-              <div className="ping" style={{ left: "55%", top: "55%" }}>
-                <div className="ping-dot" />
-                <div className="ping-ring" />
-              </div>
+              {[{l:"18%",t:"38%"},{l:"47%",t:"28%"},{l:"72%",t:"35%"},{l:"82%",t:"55%"},{l:"55%",t:"55%"}].map((p,i) => (
+                <div key={i} className="ping" style={{ left: p.l, top: p.t }}><div className="ping-dot" /><div className="ping-ring" /></div>
+              ))}
             </div>
             <span className="map-caption">spectrum://global.mesh</span>
           </div>
 
           <div className="feature-cards">
             {featureCards.map((card) => (
-              <div
-                key={card.title}
-                className="feature-card reveal"
-                style={{ animationDelay: card.delay }}
-              >
+              <div key={card.titleKey} className="feature-card reveal" style={{ animationDelay: card.delay }}>
                 <div className="fc-icon" aria-hidden="true">
-                  {card.icon === "shield" ? (
-                    <svg viewBox="0 0 24 24">
-                      <path d="M12 3l6 2.5v5.8c0 4.2-2.5 8-6 9.7-3.5-1.7-6-5.5-6-9.7V5.5L12 3Z" />
-                      <path d="m9.4 12.2 1.8 1.8 3.6-4.1" />
-                    </svg>
-                  ) : null}
-                  {card.icon === "spark" ? (
-                    <svg viewBox="0 0 24 24">
-                      <path d="M12 3 9.9 8.1 5 10.2l4.9 2.1L12 17.4l2.1-5.1 4.9-2.1-4.9-2.1L12 3Z" />
-                      <path d="M5 4.5 5.8 6.4 7.7 7.2 5.8 8 5 9.9 4.2 8 2.3 7.2 4.2 6.4 5 4.5Z" />
-                    </svg>
-                  ) : null}
-                  {card.icon === "chip" ? (
-                    <svg viewBox="0 0 24 24">
-                      <rect x="7" y="7" width="10" height="10" rx="2" />
-                      <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
-                    </svg>
-                  ) : null}
-                  {card.icon === "bolt" ? (
-                    <svg viewBox="0 0 24 24">
-                      <path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z" />
-                    </svg>
-                  ) : null}
-                  {card.icon === "crown" ? (
-                    <svg viewBox="0 0 24 24">
-                      <path d="m4 18 1.5-10 4.5 4 2-5 2 5 4.5-4L20 18H4Z" />
-                      <path d="M4 18h16" />
-                    </svg>
-                  ) : null}
-                  {card.icon === "headset" ? (
-                    <svg viewBox="0 0 24 24">
-                      <path d="M4 13a8 8 0 1 1 16 0" />
-                      <rect x="3" y="12" width="4" height="7" rx="2" />
-                      <rect x="17" y="12" width="4" height="7" rx="2" />
-                      <path d="M19 19a3 3 0 0 1-3 3h-2" />
-                    </svg>
-                  ) : null}
+                  {card.icon === "shield" && <svg viewBox="0 0 24 24"><path d="M12 3l6 2.5v5.8c0 4.2-2.5 8-6 9.7-3.5-1.7-6-5.5-6-9.7V5.5L12 3Z" /><path d="m9.4 12.2 1.8 1.8 3.6-4.1" /></svg>}
+                  {card.icon === "spark"  && <svg viewBox="0 0 24 24"><path d="M12 3 9.9 8.1 5 10.2l4.9 2.1L12 17.4l2.1-5.1 4.9-2.1-4.9-2.1L12 3Z" /><path d="M5 4.5 5.8 6.4 7.7 7.2 5.8 8 5 9.9 4.2 8 2.3 7.2 4.2 6.4 5 4.5Z" /></svg>}
+                  {card.icon === "chip"   && <svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2" /><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" /></svg>}
+                  {card.icon === "bolt"   && <svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9Z" /></svg>}
+                  {card.icon === "crown"  && <svg viewBox="0 0 24 24"><path d="m4 18 1.5-10 4.5 4 2-5 2 5 4.5-4L20 18H4Z" /><path d="M4 18h16" /></svg>}
+                  {card.icon === "headset"&& <svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 1 1 16 0" /><rect x="3" y="12" width="4" height="7" rx="2" /><rect x="17" y="12" width="4" height="7" rx="2" /><path d="M19 19a3 3 0 0 1-3 3h-2" /></svg>}
                 </div>
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
+                <h3>{t(card.titleKey)}</h3>
+                <p>{t(card.descKey)}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── Demo ── */}
       <section className="demo-section" id="demo">
         <div className="section-inner">
           <div className="demo-layout">
             <div className="demo-text">
               <p className="eyebrow">Spectrum-Cheat Showcase | Sailor Piece</p>
               <h2 className="section-title">
-                See how Spectrum
-                <br />
-                performs in
-                <br />
-                <em>real gameplay</em>
+                {lang === "en" ? (
+                  <>See how Spectrum<br />performs in<br /><em>real gameplay</em></>
+                ) : (
+                  <>ดูว่า Spectrum<br />ทำงานอย่างไรใน<br /><em>เกมจริง</em></>
+                )}
               </h2>
-              <p className="section-sub">
-                Watch Spectrum Hub in live action with smooth execution, clean visuals, and premium features built for real everyday use.
-              </p>
+              <p className="section-sub">{t("demoSub")}</p>
               <ul className="demo-checklist">
-                <li>
-                  <span className="check">✓</span> Smooth execution shown in real gameplay
-                </li>
-                <li>
-                  <span className="check">✓</span> Premium features built for daily use
-                </li>
-                <li>
-                  <span className="check">✓</span> Frequent updates across supported games
-                </li>
-                <li>
-                  <span className="check">✓</span> Mobile and PC ready experience
-                </li>
+                {(["demoCheck1","demoCheck2","demoCheck3","demoCheck4"] as const).map((k) => (
+                  <li key={k}><span className="check">✓</span> {t(k)}</li>
+                ))}
               </ul>
-              <a
-                href="https://www.youtube.com/watch?v=ixX8GAHZlwM"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-primary"
-              >
-                Watch on YouTube →
-              </a>
+              <a href="https://www.youtube.com/watch?v=ixX8GAHZlwM" target="_blank" rel="noreferrer" className="btn-primary">{t("demoWatch")}</a>
             </div>
             <div className="demo-media">
               <div className="video-frame-wrap">
-                <iframe
-                  src="https://www.youtube.com/embed/ixX8GAHZlwM?rel=0&modestbranding=1&color=white"
-                  title="Spectrum Cheat Showcase"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  className="demo-iframe"
-                />
+                <iframe src="https://www.youtube.com/embed/ixX8GAHZlwM?rel=0&modestbranding=1&color=white" title="Spectrum Cheat Showcase" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen loading="lazy" className="demo-iframe" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* ── Services ── */}
       <section className="services-section">
         <div className="section-inner">
-          <p className="eyebrow" style={{ textAlign: "center" }}>
-            The Platform
-          </p>
+          <p className="eyebrow" style={{ textAlign: "center" }}>{t("servEyebrow")}</p>
           <h2 className="section-title" style={{ textAlign: "center" }}>
-            Everything you need
-            <br />
-            <em>in one premium suite.</em>
+            {lang === "en" ? (
+              <>Everything you need<br /><em>in one premium suite.</em></>
+            ) : (
+              <>ทุกอย่างที่คุณต้องการ<br /><em>ในชุดพรีเมียมเดียว</em></>
+            )}
           </h2>
-
           <div className="services-grid">
             {serviceBlocks.map((block) => (
-              <div
-                key={block.title}
-                className={block.wide ? "service-block wide" : "service-block"}
-              >
+              <div key={block.titleKey} className={block.wide ? "service-block wide" : "service-block"}>
                 <div className="service-text">
-                  <h3>{block.title}</h3>
-                  <p>{block.description}</p>
+                  <h3>{t(block.titleKey)}</h3>
+                  <p>{t(block.descKey)}</p>
                 </div>
                 <img src={block.image} alt={block.alt} className="service-img" loading="lazy" />
               </div>
@@ -787,102 +335,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Testimonials ── */}
       <section className="testimonials-section">
         <div className="section-inner">
-          <p className="eyebrow" style={{ textAlign: "center" }}>
-            Reviews from real users
-          </p>
+          <p className="eyebrow" style={{ textAlign: "center" }}>{t("testiEyebrow")}</p>
           <h2 className="section-title" style={{ textAlign: "center" }}>
-            Trusted by users
-            <br />
-            <em>who stay.</em>
+            {lang === "en" ? (
+              <>Trusted by users<br /><em>who stay.</em></>
+            ) : (
+              <>ไว้วางใจโดยผู้ใช้<br /><em>ที่ติดตามมาตลอด</em></>
+            )}
           </h2>
-          <p className="section-sub" style={{ textAlign: "center" }}>
-            Real feedback from long-time buyers, shop owners, and everyday users across the Spectrum community.
-          </p>
+          <p className="section-sub" style={{ textAlign: "center" }}>{t("testiSub")}</p>
           <div className="testimonials-stage">
-            {testimonials
-              .filter((item) => item.featured)
-              .map((item) => (
-                <div key={item.author} className="testi-featured reveal">
-                  <div className="testi-featured-avatar-wrap">
-                    <img src={item.avatar} alt={item.author} className="testi-featured-avatar" />
-                  </div>
-                  <div className="testi-stars testi-stars-featured">★★★★★</div>
-                  <blockquote className="testi-featured-quote">{item.quote}</blockquote>
-                  <div className="testi-featured-meta">
-                    <span className="testi-pill">{item.author}</span>
-                    <span className="testi-pill">{item.role}</span>
-                    <span className="testi-pill">{item.tag}</span>
-                  </div>
-                </div>
-              ))}
-            <div className="testimonials-grid">
-            {testimonials.filter((item) => !item.featured).map((item) => (
-              <div
-                key={item.author}
-                className="testi-card reveal"
-              >
-                <div className="testi-stars">★★★★★</div>
-                <blockquote>{item.quote}</blockquote>
-                <div className="testi-author">
-                  <img src={item.avatar} alt={item.author} className="testi-avatar" />
-                  <div>
-                    <strong>{item.author}</strong>
-                    <span>{item.role}</span>
-                  </div>
+            {testimonials.filter((item) => item.featured).map((item) => (
+              <div key={item.author} className="testi-featured reveal">
+                <div className="testi-featured-avatar-wrap"><img src={item.avatar} alt={item.author} className="testi-featured-avatar" /></div>
+                <div className="testi-stars testi-stars-featured">★★★★★</div>
+                <blockquote className="testi-featured-quote">{item.quote}</blockquote>
+                <div className="testi-featured-meta">
+                  <span className="testi-pill">{item.author}</span>
+                  <span className="testi-pill">{item.role}</span>
+                  <span className="testi-pill">{item.tag}</span>
                 </div>
               </div>
             ))}
-          </div>
+            <div className="testimonials-grid">
+              {testimonials.filter((item) => !item.featured).map((item) => (
+                <div key={item.author} className="testi-card reveal">
+                  <div className="testi-stars">★★★★★</div>
+                  <blockquote>{item.quote}</blockquote>
+                  <div className="testi-author">
+                    <img src={item.avatar} alt={item.author} className="testi-avatar" />
+                    <div><strong>{item.author}</strong><span>{item.role}</span></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
+      {/* ── Pricing ── */}
       <section className="pricing-section" id="pricing">
         <div className="section-inner">
-          <p className="eyebrow" style={{ textAlign: "center" }}>
-            Pricing
-          </p>
+          <p className="eyebrow" style={{ textAlign: "center" }}>{t("pricingEyebrow")}</p>
           <h2 className="section-title" style={{ textAlign: "center" }}>
-            Choose your
-            <br />
-            <em>Spectrum access.</em>
+            {lang === "en" ? (
+              <>Choose your<br /><em>Spectrum access.</em></>
+            ) : (
+              <>เลือกการเข้าถึง<br /><em>Spectrum ของคุณ</em></>
+            )}
           </h2>
-          <p className="section-sub" style={{ textAlign: "center" }}>
-            Choose the right plan for quick access, daily use, or long-term value.
-          </p>
-
+          <p className="section-sub" style={{ textAlign: "center" }}>{t("pricingSub")}</p>
           <div className="pricing-grid">
             {pricingPlans.map((plan) => (
-              <div
-                key={plan.tier}
-                className={plan.popular ? "price-card popular" : "price-card"}
-              >
-                {plan.popular ? <div className="popular-badge">Most Popular</div> : null}
-                <div className="price-tier">{plan.tier}</div>
-                <p className="price-desc">{plan.description}</p>
+              <div key={plan.tierKey} className={plan.popular ? "price-card popular" : "price-card"}>
+                {plan.popular && <div className="popular-badge">{t("mostPopular")}</div>}
+                <div className="price-tier">{t(plan.tierKey)}</div>
+                <p className="price-desc">{t(plan.descKey)}</p>
                 <div className="price-amount">
-                  <span
-                    className="price-num"
-                    style={plan.amount === "Custom" ? { fontSize: "2rem" } : undefined}
-                  >
-                    {plan.amount}
-                  </span>
-                  {plan.per ? <span className="price-per">{plan.per}</span> : null}
+                  <span className="price-num">{lang === "th" ? plan.amountTHB : plan.amountUSD}</span>
+                  <span className="price-per">{t(plan.perKey)}</span>
                 </div>
                 <ul className="price-features">
-                  {plan.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
+                  {plan.featureKeys.map((fk) => <li key={fk}>{t(fk)}</li>)}
                 </ul>
-                <a
-                  href={plan.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={plan.primary ? "btn-primary w-full" : "btn-outline w-full"}
-                >
-                  {plan.cta}
+                <a href={plan.href} target="_blank" rel="noreferrer" className={plan.primary ? "btn-primary w-full" : "btn-outline w-full"}>
+                  {t(plan.ctaKey)}
                 </a>
               </div>
             ))}
@@ -890,37 +410,20 @@ export default function Home() {
         </div>
       </section>
 
-        <section className="cta-section">
-    <div className="cta-inner">
-      <div className="cta-glow" />
-      <h2 className="cta-title">Ready to use Spectrum?</h2>
-      <p className="cta-sub">
-        Get instant access, explore supported games, and join the community behind Spectrum Cheat.
-      </p>
-      <div className="cta-actions">
-        <a
-          href="https://spectrumcheat.rexzy.xyz/"
-          target="_blank"
-          rel="noreferrer"
-          className="btn-primary btn-large"
-        >
-          Buy Now
-        </a>
-        <a
-          href="https://discord.gg/hackerclub"
-          target="_blank"
-          rel="noreferrer"
-          className=" btn-outline btn-large"
-        >
-          Join Discord
-        </a>
-      </div>
-    </div>
-  </section>
+      {/* ── CTA ── */}
+      <section className="cta-section">
+        <div className="cta-inner">
+          <div className="cta-glow" />
+          <h2 className="cta-title">{t("ctaTitle")}</h2>
+          <p className="cta-sub">{t("ctaSub")}</p>
+          <div className="cta-actions">
+            <a href="https://spectrumcheat.rexzy.xyz/" target="_blank" rel="noreferrer" className="btn-primary btn-large">{t("btnBuyNow")}</a>
+            <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer" className="btn-outline btn-large">{t("btnJoinDiscord")}</a>
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </>
   );
 }
-
-
