@@ -506,7 +506,7 @@ export const translations = {
     executorsBadge:     "Spectrum Cheat // ตัวรัน",
     executorsPageTitle: "ตัวรัน",
     executorsPageSub:   "สถานะตัวรัน ข้อมูลเวอร์ชัน และข้อมูลความเข้ากันได้สด — powered by WEAO อัปเดตทุก 5 นาที",
-    executorsBuyKey:    "ซื้อตัวรันแบบคีย์",
+    executorsBuyKey:    "ซื้อคีย์ตัวรัน",
     executorsVersions:  "เวอร์ชัน Roblox สด",
     executorsAutoUpd:   "อัปเดตอัตโนมัติ",
     executorsLastUpd:   "อัปเดต",
