@@ -269,7 +269,7 @@ export const translations = {
 
   th: {
     // ─── Hero ───────────────────────────────────
-    heroTitle1:   "ก้าวไปสู่อีกขั้น",
+    heroTitle1:   "ก้าวไปสู่อีกขั้นหนึ่ง",
     heroTitleOf:  "ของ",
     heroTitle2:   "โปรแกรมโกง Roblox",
     heroBadge:      "Spectrum Cheat // โปรแกรมโกง Roblox",
