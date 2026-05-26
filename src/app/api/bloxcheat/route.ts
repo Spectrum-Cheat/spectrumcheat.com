@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const res = await fetch(apiUrl, { headers: HEADERS });
+    const res = await fetch(apiUrl, { cache: "no-store", headers: HEADERS });
     if (!res.ok) return NextResponse.json({ scripts: [], hasMore: false });
     const data = await res.json();
     const scripts = data?.result?.scripts ?? [];

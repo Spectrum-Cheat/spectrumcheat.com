@@ -208,11 +208,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-scroll-hint">
+        <button
+          type="button"
+          className="hero-scroll-hint"
+          aria-label="Scroll down"
+          onClick={() => {
+            const target = document.querySelector(".trust-section");
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            else window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+          }}
+        >
           <svg className="hero-scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </div>
+        </button>
 
       </section>
 

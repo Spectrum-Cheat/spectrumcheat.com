@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useTransition, useRef, useEffect } from "react";
+import { BloxImage } from "./blox-image";
 import { useLang } from "../_i18n/context";
 
 interface Filters {
@@ -13,6 +14,16 @@ interface Filters {
   sortBy: "" | "views" | "createdAt" | "likeCount";
   sortOrder: "" | "desc" | "asc";
   strict: boolean;
+}
+
+interface Suggestion {
+  _id: string;
+  title: string;
+  slug: string;
+  image?: string;
+  game: { name: string; imageUrl?: string };
+  matched?: string[];
+  verified?: boolean;
 }
 
 const DEFAULT_FILTERS: Filters = {
@@ -48,6 +59,14 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
   const [showFilter, setShowFilter] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // Suggestions (autocomplete)
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const suggestionsRef = useRef<HTMLDivElement>(null);
+  const inputWrapRef = useRef<HTMLDivElement>(null);
+
   const initialParams = new URLSearchParams(searchParamsStr);
   const [filters, setFilters] = useState<Filters>(() => readFilters(initialParams));
 
@@ -56,7 +75,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
     !!filters.scriptType, !!filters.sortBy, filters.strict,
   ].filter(Boolean).length;
 
-  // Close on outside click
+  // Close filter panel on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
@@ -66,6 +85,57 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
     if (showFilter) document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [showFilter]);
+
+  // Close suggestions on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (
+        inputWrapRef.current && !inputWrapRef.current.contains(e.target as Node) &&
+        suggestionsRef.current && !suggestionsRef.current.contains(e.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    }
+    if (showSuggestions) document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [showSuggestions]);
+
+  // Debounced autocomplete fetch
+  useEffect(() => {
+    const q = value.trim();
+    if (q.length < 2) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      setLoadingSuggestions(false);
+      return;
+    }
+    setLoadingSuggestions(true);
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      try {
+        const params = new URLSearchParams({ q, page: "1" });
+        if (filters.strict) params.set("strict", "1");
+        const res = await fetch(`/api/bloxcheat?${params}`, { signal: controller.signal });
+        if (!res.ok) {
+          setSuggestions([]);
+          return;
+        }
+        const data = await res.json();
+        const items = (data.scripts ?? []).slice(0, 6) as Suggestion[];
+        setSuggestions(items);
+        setShowSuggestions(items.length > 0);
+        setActiveIndex(-1);
+      } catch {
+        // Aborted or failed
+      } finally {
+        setLoadingSuggestions(false);
+      }
+    }, 280);
+    return () => {
+      controller.abort();
+      clearTimeout(timer);
+    };
+  }, [value, filters.strict]);
 
   function buildParams(q: string, f: Filters) {
     const p = new URLSearchParams();
@@ -84,10 +154,29 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setShowFilter(false);
+    setShowSuggestions(false);
     startTransition(() => {
       const p = buildParams(value, filters);
       router.push(`${pathname}${p.toString() ? "?" + p.toString() : ""}`);
     });
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (!showSuggestions || suggestions.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
+    } else if (e.key === "Enter" && activeIndex >= 0) {
+      e.preventDefault();
+      const s = suggestions[activeIndex];
+      setShowSuggestions(false);
+      router.push(`/bloxcheat/${s.slug}`);
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+    }
   }
 
   function applyFilters(f: Filters) {
@@ -115,7 +204,7 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
       </p>
 
       <form className="blox-search-form" onSubmit={handleSubmit}>
-        <div className="blox-search-wrap">
+        <div className="blox-search-wrap" ref={inputWrapRef}>
           <svg className="blox-search-icon" width="18" height="18" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8" />
@@ -127,11 +216,14 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
             placeholder={t("bloxPlaceholder")}
             value={value}
             onChange={(e) => setValue(e.target.value)}
+            onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+            onKeyDown={handleKeyDown}
             disabled={isPending}
+            autoComplete="off"
           />
           {value && (
             <button className="blox-search-clear" type="button"
-              onClick={() => { setValue(""); startTransition(() => router.push(pathname)); }}>✕</button>
+              onClick={() => { setValue(""); setSuggestions([]); setShowSuggestions(false); startTransition(() => router.push(pathname)); }}>✕</button>
           )}
 
           {/* Filter button */}
@@ -238,6 +330,51 @@ export function SearchBar({ defaultValue = "", searchParamsStr = "" }: { default
           <button className="blox-search-btn" type="submit" disabled={isPending}>
             {isPending ? "..." : t("btnSearch")}
           </button>
+
+          {/* Autocomplete dropdown */}
+          {showSuggestions && (
+            <div className="blox-suggestions" ref={suggestionsRef}>
+              {loadingSuggestions && suggestions.length === 0 && (
+                <div className="blox-suggestion-empty">{t("btnLoading")}</div>
+              )}
+              {suggestions.map((s, i) => (
+                <button
+                  key={s._id}
+                  type="button"
+                  className={`blox-suggestion-item ${i === activeIndex ? "active" : ""}`}
+                  onClick={() => {
+                    setShowSuggestions(false);
+                    router.push(`/bloxcheat/${s.slug}`);
+                  }}
+                  onMouseEnter={() => setActiveIndex(i)}
+                >
+                  <div className="blox-suggestion-thumb">
+                    <BloxImage image={s.image} title={s.title} />
+                  </div>
+                  <div className="blox-suggestion-body">
+                    <div className="blox-suggestion-title">
+                      {s.verified && (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ color: "#3b82f6" }}>
+                          <path d="M12 2 9.6 4.4 6.3 4 5.5 7.3 2.6 9l1.5 3-1.5 3 2.9 1.7.8 3.3 3.3-.4L12 22l2.4-2.4 3.3.4.8-3.3 2.9-1.7-1.5-3 1.5-3-2.9-1.7-.8-3.3-3.3.4L12 2Z"/>
+                          <path d="m9 12 2 2 4-4" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                      <span>{s.title}</span>
+                    </div>
+                    <div className="blox-suggestion-game">{s.game?.name ?? ""}</div>
+                  </div>
+                  {s.matched && s.matched.length > 0 && (
+                    <div className="blox-suggestion-matched">
+                      <span className="blox-suggestion-matched-label">{t("matchedIn")}:</span>
+                      {s.matched.slice(0, 3).map((m) => (
+                        <span key={m} className="blox-suggestion-tag">{m}</span>
+                      ))}
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Strict search toggle */}

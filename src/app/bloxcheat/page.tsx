@@ -45,14 +45,19 @@ async function fetchInitial(query: string, strict: boolean): Promise<{ scripts: 
     } else {
       url = `https://scriptblox.com/api/script/fetch?page=1&max=20`;
     }
-    const res = await fetch(url, { next: { revalidate: 300 }, headers: HEADERS });
-    if (!res.ok) return { scripts: [], hasMore: false };
+    console.log("[bloxcheat] fetching:", url);
+    const res = await fetch(url, { cache: "no-store", headers: HEADERS });
+    if (!res.ok) {
+      console.error("[bloxcheat] fetch failed:", res.status);
+      return { scripts: [], hasMore: false };
+    }
     const data = await res.json();
     return {
       scripts: data?.result?.scripts ?? [],
       hasMore: data?.result?.nextPage != null,
     };
-  } catch {
+  } catch (err) {
+    console.error("[bloxcheat] fetch error:", err);
     return { scripts: [], hasMore: false };
   }
 }

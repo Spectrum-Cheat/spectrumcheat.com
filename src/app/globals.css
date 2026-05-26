@@ -1292,11 +1292,28 @@ body {
   position: relative; z-index: 2;
   display: flex; justify-content: center; align-items: center;
   padding: 32px 0 48px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+.hero-scroll-hint:hover .hero-scroll-arrow {
+  opacity: 1;
+  color: var(--accent);
+}
+.hero-scroll-hint:focus-visible {
+  outline: none;
+}
+.hero-scroll-hint:focus-visible .hero-scroll-arrow {
+  opacity: 1;
+  color: var(--accent);
 }
 .hero-scroll-arrow {
   color: var(--text-muted);
   opacity: 0.5;
   animation: scroll-bounce 2s ease-in-out infinite;
+  transition: color 0.2s, opacity 0.2s;
 }
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); opacity: 0.5; }
@@ -2804,6 +2821,127 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 .blox-search-wrap:focus-within {
   border-color: rgba(168, 85, 247, 0.55);
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
+}
+
+/* Autocomplete suggestions dropdown */
+.blox-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(13, 17, 32, 0.98);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 12px;
+  padding: 6px;
+  max-height: 480px;
+  overflow-y: auto;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  animation: blox-suggest-in 0.18s ease-out;
+}
+@keyframes blox-suggest-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.blox-suggestion-empty {
+  padding: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.blox-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font-family: inherit;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.blox-suggestion-item:hover,
+.blox-suggestion-item.active {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+.blox-suggestion-thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blox-suggestion-thumb img,
+.blox-suggestion-thumb .blox-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blox-suggestion-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.blox-suggestion-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.blox-suggestion-title span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.blox-suggestion-game {
+  font-size: 0.78rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.blox-suggestion-matched {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.blox-suggestion-matched-label {
+  opacity: 0.7;
+}
+.blox-suggestion-tag {
+  background: rgba(139, 92, 246, 0.15);
+  color: rgba(192, 132, 252, 0.95);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-style: normal;
+  text-transform: capitalize;
+}
+@media (max-width: 640px) {
+  .blox-suggestion-matched { display: none; }
+  .blox-suggestion-thumb { width: 44px; height: 44px; }
 }
 
 .blox-search-icon {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BloxImage } from "./blox-image";
 import { useLang } from "../_i18n/context";
@@ -89,6 +89,13 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(initialHasMore);
   const [loading, setLoading] = useState(false);
+
+  // Sync state when search/filter changes (server re-fetches initialScripts)
+  useEffect(() => {
+    setAllScripts(initialScripts);
+    setHasMore(initialHasMore);
+    setPage(1);
+  }, [initialScripts, initialHasMore]);
 
   async function loadMore() {
     setLoading(true);
