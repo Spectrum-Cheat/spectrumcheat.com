@@ -580,7 +580,7 @@ body {
 .hero-content {
   position: relative; z-index: 2;
   max-width: 900px; width: 100%;
-  padding: 80px 24px 60px;
+  padding: 80px 24px 20px;
   text-align: center;
   display: flex; flex-direction: column; align-items: center; gap: 28px;
 }
@@ -1232,21 +1232,21 @@ body {
 
 /* Stats */
 .hero-stats {
-  display: flex; align-items: center; gap: 24px;
+  display: flex; align-items: center; gap: 40px;
   flex-wrap: wrap; justify-content: center;
-  margin-top: 8px;
+  margin-top: 16px;
 }
-.stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .stat-num {
-  font-family: var(--font-body); font-size: 1.8rem; font-weight: 800;
+  font-family: var(--font-body); font-size: 2.6rem; font-weight: 800;
   color: var(--text-primary); letter-spacing: -.03em;
 }
-.stat-num sup { font-size: .9rem; }
+.stat-num sup { font-size: 1.1rem; }
 .stat-label {
-  font-family: var(--font-mono); font-size: .72rem;
+  font-family: var(--font-mono); font-size: .82rem;
   color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em;
 }
-.stat-divider { width: 1px; height: 36px; background: var(--border); }
+.stat-divider { width: 1px; height: 52px; background: var(--border); }
 
 /* Dashboard mockup (legacy — no longer rendered in hero) */
 .hero-mockup {
@@ -1285,6 +1285,22 @@ body {
   width: 100%;
   display: block;
   border-radius: var(--radius-lg);
+}
+
+/* Scroll hint arrow */
+.hero-scroll-hint {
+  position: relative; z-index: 2;
+  display: flex; justify-content: center; align-items: center;
+  padding: 32px 0 48px;
+}
+.hero-scroll-arrow {
+  color: var(--text-muted);
+  opacity: 0.5;
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 0.9; }
 }
 
 /* Full-width banner strip (Option B) */
