@@ -210,13 +210,6 @@ export default function Home() {
 
       </section>
 
-      {/* ── Banner Strip ── */}
-      <section className="banner-strip-section" id="platform">
-        <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer">
-          <img src="/images/Spectrum Cheat Banner.png" alt="Spectrum Cheat interface" className="banner-strip-img" loading="lazy" />
-        </a>
-      </section>
-
       {/* ── Trust ── */}
       <section className="trust-section">
         <p className="trust-label">{t("trustLabel")}</p>
