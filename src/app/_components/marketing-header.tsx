@@ -33,7 +33,7 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
           <div className="navLeft">
             <Link href={homeBrandHref} className="logo-mark" aria-label="Back to top" onClick={closeMenu}>
               <Image
-                src="/images/Spectrum Cheat Logo.png"
+                src="/images/Spectrum Icon.png"
                 alt="Spectrum Cheat logo"
                 width={42}
                 height={42}

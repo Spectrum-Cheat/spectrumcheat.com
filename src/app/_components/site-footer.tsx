@@ -14,7 +14,7 @@ export function SiteFooter() {
           <div className="footer-brand">
             <div className="logo-mark">
               <Image
-                src="/images/Spectrum Cheat Logo.png"
+                src="/images/Spectrum Icon.png"
                 alt="Spectrum Cheat logo"
                 width={100}
                 height={100}
