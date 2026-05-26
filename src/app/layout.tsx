@@ -54,7 +54,7 @@ export const metadata: Metadata = {
       "Premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience.",
     images: [
       {
-        url: "/images/Spectrum Banner.png",
+        url: "/images/Spectrum Cheat Banner.png",
         width: 2000,
         height: 600,
         alt: "Spectrum Cheat banner",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: "Spectrum Cheat - Premium Roblox Cheat Suite",
     description:
       "Premium Roblox cheat suite built for smooth performance, reliable daily use, and a sharper overall experience.",
-    images: ["/images/Spectrum Banner.png"],
+    images: ["/images/Spectrum Cheat Banner.png"],
   },
 };
 

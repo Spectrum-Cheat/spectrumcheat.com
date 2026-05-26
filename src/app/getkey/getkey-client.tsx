@@ -12,7 +12,7 @@ const keyProviders: { labelKey: TranslationKey; title: string; descKey: Translat
     ctaKey: "getkeyClickHere",
     href: "https://ads.luarmor.net/get_key?for=Spectrum_x_Authentication-RRiWedvutwzg",
     active: true,
-    logo: "https://s3-eu-west-1.amazonaws.com/tpd/logos/5fada0839a033e00010810e6/0x0.png",
+    logo: "/images/linkvertise-logo.png",
   },
   {
     labelKey: "getkeyComingSoon",
@@ -21,7 +21,7 @@ const keyProviders: { labelKey: TranslationKey; title: string; descKey: Translat
     ctaKey: "getkeyComingSoon",
     href: "",
     active: false,
-    logo: "https://img2.pic.in.th/lootlabs-removebg-preview.png",
+    logo: "/images/lootlabs-logo.png",
   },
   {
     labelKey: "getkeyComingSoon",
@@ -30,7 +30,7 @@ const keyProviders: { labelKey: TranslationKey; title: string; descKey: Translat
     ctaKey: "getkeyComingSoon",
     href: "",
     active: false,
-    logo: "https://s3-eu-west-1.amazonaws.com/tpd/logos/60f32c3fa0f0500001ab7c87/0x0.png",
+    logo: "/images/workink-logo.png",
   },
 ];
 

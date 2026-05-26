@@ -208,17 +208,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-mockup" id="platform">
-          <div className="mockup-frame">
-            <div className="mockup-bar">
-              <span className="dot r" /><span className="dot y" /><span className="dot g" />
-              <span className="mockup-url">spectrumcheat.com/console</span>
-            </div>
-            <img src="/images/Spectrum Console Gameplay Pro.png" alt="Spectrum Cheat interface shown on a laptop over Roblox gameplay" className="mockup-img" loading="lazy" />
-            <div className="mockup-overlay-chip chip-1"><span className="chip-dot green" /> Spectrum Active</div>
-            <div className="mockup-overlay-chip chip-2"><span className="chip-dot amber" /> 44K+ Executions/Hr</div>
-          </div>
-        </div>
+      </section>
+
+      {/* ── Banner Strip ── */}
+      <section className="banner-strip-section" id="platform">
+        <img src="/images/Spectrum Cheat Banner.png" alt="Spectrum Cheat interface" className="banner-strip-img" loading="lazy" />
       </section>
 
       {/* ── Trust ── */}
