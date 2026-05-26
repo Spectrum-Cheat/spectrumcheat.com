@@ -212,7 +212,9 @@ export default function Home() {
 
       {/* ── Banner Strip ── */}
       <section className="banner-strip-section" id="platform">
-        <img src="/images/Spectrum Cheat Banner.png" alt="Spectrum Cheat interface" className="banner-strip-img" loading="lazy" />
+        <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer">
+          <img src="/images/Spectrum Cheat Banner.png" alt="Spectrum Cheat interface" className="banner-strip-img" loading="lazy" />
+        </a>
       </section>
 
       {/* ── Trust ── */}

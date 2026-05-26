@@ -1290,15 +1290,23 @@ body {
 /* Full-width banner strip (Option B) */
 .banner-strip-section {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px 80px;
   box-sizing: border-box;
+}
+.banner-strip-section a {
+  display: block;
+  cursor: pointer;
+}
+.banner-strip-section a:hover .banner-strip-img {
+  opacity: 0.88;
 }
 .banner-strip-img {
   width: 100%;
   display: block;
   border-radius: var(--radius-lg);
+  transition: opacity 0.2s ease;
   box-shadow:
     0 0 0 1px rgba(139, 92, 246, 0.18),
     0 8px 40px rgba(139, 92, 246, 0.22),
