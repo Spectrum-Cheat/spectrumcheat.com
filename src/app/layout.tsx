@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DM_Mono, Instrument_Serif, Syne } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { LanguagePopup } from "./_components/language-popup";
 import { LangProvider } from "./_i18n/context";
@@ -80,17 +79,20 @@ export default function RootLayout({
       lang="en"
       className={`${syne.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
+      <head>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6153597331765787"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <LangProvider>
           <div id="google_translate_element" style={{ display: "none" }} />
           <LanguagePopup />
           {children}
         </LangProvider>
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6153597331765787"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
       </body>
     </html>
   );
