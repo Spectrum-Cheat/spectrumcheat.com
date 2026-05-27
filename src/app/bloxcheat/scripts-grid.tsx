@@ -86,6 +86,7 @@ function applyFiltersAndSort(scripts: Script[], props: Omit<Props, "initialScrip
 export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) {
   const { t } = useLang();
   const [allScripts, setAllScripts] = useState<Script[]>(initialScripts);
+  const [displayed, setDisplayed] = useState<Script[]>(() => applyFiltersAndSort(initialScripts, rest));
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(initialHasMore);
   const [loading, setLoading] = useState(false);
@@ -93,8 +94,10 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
   // Sync state when search/filter changes (server re-fetches initialScripts)
   useEffect(() => {
     setAllScripts(initialScripts);
+    setDisplayed(applyFiltersAndSort(initialScripts, rest));
     setHasMore(initialHasMore);
     setPage(1);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialScripts, initialHasMore]);
 
   async function loadMore() {
@@ -106,15 +109,16 @@ export function ScriptsGrid({ initialScripts, initialHasMore, ...rest }: Props) 
       if (rest.strict) params.set("strict", "1");
       const res = await fetch(`/api/bloxcheat?${params}`);
       const data = await res.json();
-      setAllScripts(prev => [...prev, ...data.scripts]);
+      const newScripts: Script[] = data.scripts ?? [];
+      setAllScripts(prev => [...prev, ...newScripts]);
+      // Sort only the new batch and append — don't re-sort the whole list
+      setDisplayed(prev => [...prev, ...applyFiltersAndSort(newScripts, rest)]);
       setHasMore(data.hasMore);
       setPage(nextPage);
     } finally {
       setLoading(false);
     }
   }
-
-  const displayed = applyFiltersAndSort(allScripts, rest);
 
   if (displayed.length === 0) {
     return (

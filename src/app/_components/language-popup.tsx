@@ -157,7 +157,13 @@ export function LanguagePopup() {
     } else {
       document.documentElement.lang = saved;
       if (saved === "th") {
-        setLang("th"); // use custom translation
+        setLang("th");
+      } else if (saved === "zh") {
+        setLang("zh");
+      } else if (saved === "vi") {
+        setLang("vi");
+      } else if (saved === "pt") {
+        setLang("pt");
       } else if (saved !== "en") {
         setTimeout(() => triggerGoogleTranslate(saved), 1500); // other → Google Translate
       }
@@ -170,9 +176,19 @@ export function LanguagePopup() {
     setVisible(false);
 
     if (code === "th") {
-      // ใช้ custom translation — ไม่ต้องใช้ Google Translate
       setLang("th");
-      // ลบ Google Translate cookie เผื่อเคยใช้มาก่อน
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
+    } else if (code === "zh") {
+      setLang("zh");
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
+    } else if (code === "vi") {
+      setLang("vi");
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
+    } else if (code === "pt") {
+      setLang("pt");
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
     } else if (code === "en") {
@@ -210,9 +226,24 @@ export function LanguagePopup() {
                 <span className="lang-native">Thailand</span>
               </button>
               <button className="lang-option" onClick={() => select("en")}>
-                <FlagImg country="gb" />
+                <FlagImg country="us" />
                 <span className="lang-name">English</span>
-                <span className="lang-native">United Kingdom</span>
+                <span className="lang-native">United States</span>
+              </button>
+              <button className="lang-option" onClick={() => select("zh")}>
+                <FlagImg country="cn" />
+                <span className="lang-name">中文（简体）</span>
+                <span className="lang-native">China</span>
+              </button>
+              <button className="lang-option" onClick={() => select("vi")}>
+                <FlagImg country="vn" />
+                <span className="lang-name">Tiếng Việt</span>
+                <span className="lang-native">Vietnam</span>
+              </button>
+              <button className="lang-option" onClick={() => select("pt")}>
+                <FlagImg country="br" />
+                <span className="lang-name">Português</span>
+                <span className="lang-native">Brasil</span>
               </button>
               <button className="lang-option lang-option--other" onClick={() => setShowOther(true)}>
                 <GlobeIcon />
@@ -221,7 +252,7 @@ export function LanguagePopup() {
               </button>
             </div>
 
-            <p className="lang-hint">Auto-translated by Google Translate — accuracy may vary.</p>
+            <p className="lang-hint">Other languages are translated by Spectrum Assistant</p>
           </>
         ) : (
           <>

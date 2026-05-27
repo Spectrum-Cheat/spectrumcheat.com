@@ -472,6 +472,9 @@ body {
   transition: opacity .2s, transform .15s, box-shadow .2s;
   white-space: nowrap;
 }
+.btn-primary--active {
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5), 0 4px 20px rgba(139, 92, 246, 0.3);
+}
 .btn-primary:hover {
   opacity: .9;
   transform: translateY(-1px);
@@ -494,6 +497,26 @@ body {
   border-color: var(--accent);
   background: var(--accent-dim);
   transform: translateY(-1px);
+}
+
+.btn-recommend {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-size: .875rem; font-weight: 700;
+  color: #e4b84a;
+  background: rgba(228, 184, 74, 0.12);
+  border: 1px solid rgba(228, 184, 74, 0.45);
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background .2s, border-color .2s, color .2s, transform .15s, box-shadow .2s;
+  white-space: nowrap;
+}
+.btn-recommend:hover {
+  background: rgba(228, 184, 74, 0.2);
+  border-color: rgba(228, 184, 74, 0.7);
+  color: #f0ca6a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(228, 184, 74, 0.2);
 }
 
 .btn-large { padding: 13px 28px; font-size: 1rem; border-radius: 10px; }
@@ -3155,6 +3178,57 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   background: rgba(59, 130, 246, 0.15);
   color: #60a5fa;
   border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+/* Recommend: Spectrum Pick badge on thumbnail */
+.blox-recommend-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #facc15;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  backdrop-filter: blur(6px);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* Recommend: card wrapper (card + yt link) */
+.blox-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.blox-card-wrapper .blox-card {
+  border-radius: 12px 12px 0 0;
+}
+
+/* Recommend: YouTube link below card */
+.blox-recommend-yt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.blox-recommend-yt:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
 }
 
 /* Card body */

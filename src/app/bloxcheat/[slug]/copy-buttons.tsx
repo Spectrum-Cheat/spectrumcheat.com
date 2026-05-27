@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useLang } from "../../_i18n/context";
 
+const WARNING_COMMENT =
+  `--[[\n\tWARNING: Heads up! This script has not been verified by Blox-Cheat. Use at your own risk!\n]]\n`;
+
 export function CopyButtons({ script, title, hasKey, keySlug }: {
   script: string;
   title: string;
@@ -13,14 +16,14 @@ export function CopyButtons({ script, title, hasKey, keySlug }: {
   const [copied, setCopied] = useState(false);
 
   function copyScript() {
-    navigator.clipboard.writeText(script).then(() => {
+    navigator.clipboard.writeText(WARNING_COMMENT + script).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   }
 
   function downloadScript() {
-    const blob = new Blob([script], { type: "text/plain" });
+    const blob = new Blob([WARNING_COMMENT + script], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -81,14 +84,14 @@ export function RawHeader({ script, title, slug }: { script: string; title: stri
   const [copied, setCopied] = useState(false);
 
   function copyScript() {
-    navigator.clipboard.writeText(script).then(() => {
+    navigator.clipboard.writeText(WARNING_COMMENT + script).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   }
 
   function downloadScript() {
-    const blob = new Blob([script], { type: "text/plain" });
+    const blob = new Blob([WARNING_COMMENT + script], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;

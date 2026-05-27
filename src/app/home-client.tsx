@@ -251,6 +251,12 @@ export default function Home() {
             <h2 className="section-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
               {lang === "en" ? (
                 <>A <em>stability-first</em><br />Roblox cheat</>
+              ) : lang === "zh" ? (
+                <>稳定优先的<br /><em>罗布乐思辅助</em></>
+              ) : lang === "vi" ? (
+                <>Công cụ Roblox<br /><em>ưu tiên sự ổn định</em></>
+              ) : lang === "pt" ? (
+                <>Um Roblox cheat<br /><em>focado em estabilidade</em></>
               ) : (
                 <>โปรแกรมโกง Roblox<br /><em style={{ fontFamily: "var(--font-body)" }}>ที่เน้นความเสถียร</em></>
               )}
@@ -297,6 +303,12 @@ export default function Home() {
               <h2 className="section-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
                 {lang === "en" ? (
                   <>See how Spectrum<br />performs in<br /><em>real gameplay</em></>
+                ) : lang === "zh" ? (
+                  <>看看 Spectrum<br />如何在<br /><em>真实游戏中表现</em></>
+                ) : lang === "vi" ? (
+                  <>Xem Spectrum<br />hoạt động trong<br /><em>gameplay thực</em></>
+                ) : lang === "pt" ? (
+                  <>Veja como o Spectrum<br />performa em<br /><em>gameplay real</em></>
                 ) : (
                   <>ดูว่า Spectrum<br />ทำงานอย่างไรใน<br /><em style={{ fontFamily: "var(--font-body)" }}>เกมจริง</em></>
                 )}
@@ -325,8 +337,14 @@ export default function Home() {
           <h2 className="section-title" style={{ textAlign: "center", ...(lang === "th" ? { fontFamily: "var(--font-body)" } : {}) }}>
             {lang === "en" ? (
               <>Everything you need<br /><em>in one premium suite.</em></>
+            ) : lang === "zh" ? (
+              <>一切你所需要的<br /><em>尽在高端套件中</em></>
+            ) : lang === "vi" ? (
+              <>Tất cả những gì bạn cần<br /><em>trong một bộ premium.</em></>
+            ) : lang === "pt" ? (
+              <>Tudo que você precisa<br /><em>em uma suite premium.</em></>
             ) : (
-              <>ทุกอย่างที่คุณต้องการ<br /><em style={{ fontFamily: "var(--font-body)" }}>ในชุดพรีเมียมเดียว</em></>
+              <>ทุกอย่างที่คุณต้องการ<br /><em style={{ fontFamily: "var(--font-body)" }}>ในสคริปต์พรีเมียมเดียว</em></>
             )}
           </h2>
           <div className="services-grid">
@@ -350,6 +368,12 @@ export default function Home() {
           <h2 className="section-title" style={{ textAlign: "center", ...(lang === "th" ? { fontFamily: "var(--font-body)" } : {}) }}>
             {lang === "en" ? (
               <>Trusted by users<br /><em>who stay.</em></>
+            ) : lang === "zh" ? (
+              <>深受用户信赖<br /><em>长期坚持使用</em></>
+            ) : lang === "vi" ? (
+              <>Được tin dùng bởi<br /><em>người dùng trung thành.</em></>
+            ) : lang === "pt" ? (
+              <>Confiado por usuários<br /><em>que ficam.</em></>
             ) : (
               <>ไว้วางใจโดยผู้ใช้<br /><em style={{ fontFamily: "var(--font-body)" }}>ใช้งานมาโดยตลอด</em></>
             )}
@@ -391,6 +415,12 @@ export default function Home() {
           <h2 className="section-title" style={{ textAlign: "center", ...(lang === "th" ? { fontFamily: "var(--font-body)" } : {}) }}>
             {lang === "en" ? (
               <>Choose your<br /><em>Spectrum access.</em></>
+            ) : lang === "zh" ? (
+              <>选择你的<br /><em>Spectrum 访问方案</em></>
+            ) : lang === "vi" ? (
+              <>Chọn gói<br /><em>Spectrum của bạn.</em></>
+            ) : lang === "pt" ? (
+              <>Escolha seu<br /><em>acesso ao Spectrum.</em></>
             ) : (
               <>เลือกการเข้าถึง<br /><em style={{ fontFamily: "var(--font-body)" }}>Spectrum ของคุณ</em></>
             )}

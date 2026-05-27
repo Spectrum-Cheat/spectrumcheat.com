@@ -22,7 +22,7 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "th" || saved === "en") {
+    if (saved === "th" || saved === "en" || saved === "zh" || saved === "vi" || saved === "pt") {
       setLangState(saved);
     }
   }, []);
