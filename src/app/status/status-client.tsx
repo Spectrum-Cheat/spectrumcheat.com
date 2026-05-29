@@ -5,8 +5,8 @@ import { useLang } from "../_i18n/context";
 import type { TranslationKey } from "../_i18n/translations";
 
 const statusHighlights: { title: string; state: "Working" | "Waiting for Update"; noteKey: TranslationKey; image: string; href: string }[] = [
-  { title: "Driving Empire", state: "Working",            noteKey: "gameNote1", image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/3351674303/Driving-Empire-Car-Racing" },
-  { title: "Sailor Piece",   state: "Working",            noteKey: "gameNote2", image: "https://tr.rbxcdn.com/180DAY-af4eed326351cb513869c431e3d88787/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/77747658251236/Sailor-Piece" },
+  { title: "Driving Empire", state: "Waiting for Update", noteKey: "gameNote1", image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/3351674303/Driving-Empire-Car-Racing" },
+  { title: "Sailor Piece",   state: "Waiting for Update", noteKey: "gameNote2", image: "https://tr.rbxcdn.com/180DAY-af4eed326351cb513869c431e3d88787/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/77747658251236/Sailor-Piece" },
   { title: "Blox Fruits",    state: "Waiting for Update", noteKey: "gameNote3", image: "https://tr.rbxcdn.com/180DAY-90afa57850c8c8d1518b398b6c119ee9/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/2753915549/Blox-Fruits" },
   { title: "Fisch",          state: "Waiting for Update", noteKey: "gameNote4", image: "https://tr.rbxcdn.com/180DAY-911933467f0dc8e467cf3e305ea78882/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/16732694052/Fisch" },
   { title: "Rivals",         state: "Waiting for Update", noteKey: "gameNote5", image: "https://tr.rbxcdn.com/180DAY-3df3c12313ef02c6656f378f110d72cd/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/17625359962/RIVALS" },
