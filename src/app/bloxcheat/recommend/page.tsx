@@ -3,8 +3,8 @@ import { MarketingHeader } from "../../_components/marketing-header";
 import { SiteFooter } from "../../_components/site-footer";
 import { BloxStatsBar } from "../blox-stats-bar";
 import { RecommendGrid, type RecommendScript } from "./recommend-grid";
+import { RecommendHero } from "./recommend-hero";
 import { RECOMMEND_SCRIPTS } from "../_data/recommend";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Recommend — Blox Cheat",
@@ -49,27 +49,7 @@ export default async function RecommendPage() {
       <main className="subpage">
 
         {/* Mini hero */}
-        <section className="subpage-hero">
-          <div className="hero-grid-lines subpage-grid" />
-          <div className="subpage-inner">
-            <div className="hero-badge">
-              <span className="badge-dot" />
-              <span>Spectrum Pick</span>
-            </div>
-            <h1 className="subpage-title">Recommend</h1>
-            <p className="subpage-subtitle">
-              Scripts recommend by ZPU — watch the showcase features on Youtube{" "}
-              <a href="https://www.youtube.com/@xZPUHigh" target="_blank" rel="noreferrer"
-                style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
-                xZPUHigh
-              </a>
-            </p>
-            <div className="subpage-actions">
-              <Link href="/bloxcheat" className="btn-outline">Back to Blox Cheat</Link>
-              <Link href="/bloxcheat?sortBy=views&sortOrder=desc" className="btn-primary">Trending</Link>
-            </div>
-          </div>
-        </section>
+        <RecommendHero />
 
         <section className="subpage-content">
           <div className="subpage-inner">
