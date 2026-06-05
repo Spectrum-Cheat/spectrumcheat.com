@@ -150,19 +150,23 @@ export default function Home() {
     resize();
     window.addEventListener("resize", resize);
     const stars = Array.from({ length: 180 }, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.2 + 0.2, speed: Math.random() * 0.25 + 0.05, opacity: Math.random() * 0.6 + 0.2, twinkleSpeed: Math.random() * 0.008 + 0.003, twinkleDir: Math.random() > 0.5 ? 1 : -1 }));
-    const draw = () => {
+    let last = performance.now();
+    const draw = (now: number) => {
+      // delta normalized to a 60fps frame so speed is the same on any refresh rate
+      const dt = Math.min((now - last) / 16.667, 3);
+      last = now;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       stars.forEach((star) => {
-        star.opacity += star.twinkleSpeed * star.twinkleDir;
+        star.opacity += star.twinkleSpeed * star.twinkleDir * dt;
         if (star.opacity >= 0.85 || star.opacity <= 0.1) star.twinkleDir *= -1;
-        star.y += star.speed;
+        star.y += star.speed * dt;
         if (star.y > canvas.height) { star.y = 0; star.x = Math.random() * canvas.width; }
         ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,255,${star.opacity})`; ctx.fill();
       });
       animId = requestAnimationFrame(draw);
     };
-    draw();
+    animId = requestAnimationFrame(draw);
     return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
   }, []);
 

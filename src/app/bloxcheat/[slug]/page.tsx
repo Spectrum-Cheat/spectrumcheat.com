@@ -6,6 +6,8 @@ import { CopyButtons, RawHeader } from "./copy-buttons";
 import { LuaCode } from "./lua-code";
 import { SlugHero } from "./slug-hero";
 import { LikesCount, DescriptionHeading, BadgeLabel } from "./slug-labels";
+import { UnlockGate } from "./unlock-gate";
+import { getLatestVideo } from "../_data/youtube";
 
 interface ScriptDetail {
   _id: string;
@@ -74,7 +76,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ScriptDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const script = await fetchScript(slug);
+  const [script, latestVideo] = await Promise.all([
+    fetchScript(slug),
+    getLatestVideo(),
+  ]);
 
   if (!script) notFound();
 
@@ -93,6 +98,7 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
 
   return (
     <>
+      <UnlockGate video={latestVideo} />
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
       <main className="subpage">
@@ -148,9 +154,9 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
                 <div className="sdetail-meta">
                   {script.owner && (
                     <span className="sdetail-meta-item">
-                      {script.owner.profilePicture ? (
+                      {getImageUrl(script.owner.profilePicture) ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={script.owner.profilePicture} alt={script.owner.username}
+                        <img src={getImageUrl(script.owner.profilePicture)!} alt={script.owner.username}
                           style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
                       ) : (
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
