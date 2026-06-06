@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { MarketingHeader } from "./_components/marketing-header";
 import { SiteFooter } from "./_components/site-footer";
+import { AdResponsive } from "./_components/ad-banner";
 import { useLang } from "./_i18n/context";
 
 const supportedGames = [
@@ -464,6 +465,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
+        <AdResponsive className="ad-slot" />
+      </div>
 
       <SiteFooter />
     </>

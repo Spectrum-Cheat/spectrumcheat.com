@@ -8,6 +8,7 @@ import { SlugHero } from "./slug-hero";
 import { LikesCount, DescriptionHeading, BadgeLabel } from "./slug-labels";
 import { UnlockGate } from "./unlock-gate";
 import { getLatestVideo } from "../_data/youtube";
+import { AdBanner } from "../../_components/ad-banner";
 
 interface ScriptDetail {
   _id: string;
@@ -218,6 +219,11 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
                 </div>
               </div>
             )}
+
+            {/* Ad */}
+            <div className="sdetail-section ad-slot">
+              <AdBanner size="300x250" />
+            </div>
 
             {/* Script code */}
             <div className="sdetail-section">

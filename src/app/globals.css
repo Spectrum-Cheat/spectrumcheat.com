@@ -3674,6 +3674,36 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 }
 
 /* ═══════════════════════════════════════
+   ADS
+═══════════════════════════════════════ */
+.ad-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 22px 0;
+}
+.ad-slot::before {
+  content: "Advertisement";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin-bottom: 6px;
+}
+.ad-banner {
+  overflow: hidden;
+  border-radius: 8px;
+}
+.ad-native {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════
    UNLOCK GATE (script popup)
 ═══════════════════════════════════════ */
 .ulgate-overlay {

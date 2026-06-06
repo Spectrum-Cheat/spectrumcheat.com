@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MarketingHeader } from "./marketing-header";
 import { SiteFooter } from "./site-footer";
+import { AdResponsive } from "./ad-banner";
 import { useLang } from "../_i18n/context";
 
 type SubpageShellProps = {
@@ -44,7 +45,10 @@ export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHr
         </section>
 
         <section className="subpage-content">
-          <div className="subpage-inner">{children}</div>
+          <div className="subpage-inner">
+            {children}
+            <AdResponsive className="ad-slot" />
+          </div>
         </section>
         <SiteFooter />
       </main>

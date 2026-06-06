@@ -5,6 +5,7 @@ import { BloxStatsBar } from "../blox-stats-bar";
 import { RecommendGrid, type RecommendScript } from "./recommend-grid";
 import { RecommendHero } from "./recommend-hero";
 import { RECOMMEND_SCRIPTS } from "../_data/recommend";
+import { AdNative } from "../../_components/ad-native";
 
 export const metadata: Metadata = {
   title: "Recommend — Blox Cheat",
@@ -62,6 +63,8 @@ export default async function RecommendPage() {
             />
 
             <RecommendGrid scripts={scripts} />
+
+            <AdNative className="ad-slot" />
 
           </div>
         </section>

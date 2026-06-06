@@ -5,6 +5,8 @@ import { ScriptsGrid } from "./scripts-grid";
 import { SiteFooter } from "../_components/site-footer";
 import { BloxHeroSection } from "./blox-hero-section";
 import { BloxStatsBar } from "./blox-stats-bar";
+import { AdResponsive } from "../_components/ad-banner";
+import { AdNative } from "../_components/ad-native";
 
 export const dynamic = "force-dynamic";
 
@@ -108,6 +110,8 @@ export default async function BloxCheatPage({
               scriptCount={scripts.length}
             />
 
+            <AdResponsive className="ad-slot" />
+
             <ScriptsGrid
               initialScripts={scripts}
               initialHasMore={hasMore}
@@ -121,6 +125,8 @@ export default async function BloxCheatPage({
               sortBy={sortBy}
               sortOrder={sortOrder}
             />
+
+            <AdNative className="ad-slot" />
 
           </div>
         </section>

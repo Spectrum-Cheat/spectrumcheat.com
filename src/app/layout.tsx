@@ -3,6 +3,7 @@ import { DM_Mono, Instrument_Serif, Syne } from "next/font/google";
 import "./globals.css";
 import { LanguagePopup } from "./_components/language-popup";
 import { LangProvider } from "./_i18n/context";
+import { AdScripts } from "./_components/ad-scripts";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -92,6 +93,7 @@ export default function RootLayout({
           <div id="google_translate_element" style={{ display: "none" }} />
           <LanguagePopup />
           {children}
+          <AdScripts />
         </LangProvider>
       </body>
     </html>
