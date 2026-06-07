@@ -57,12 +57,49 @@ export interface CustomScript {
 
 export const CUSTOM_RECOMMEND: CustomScript[] = [
   {
+    id: "merqury-hub-driving-empire",
+    title: "Merqury Hub — Instant Auto Arrest, Auto Rob, Auto Drive & more!",
+    game: "[LAND ROVER] Driving Empire",
+    image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/768/432/Image/Webp/noFilter",
+    provider: "Merqury",
+    verified: true,
+    key: true,
+    views: 40363,
+    likeCount: 4,
+    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/3x3x3x3x3/rt/refs/heads/main/Merqury"))()`,
+    features: `Merqury Hub — Driving Empire (Auto Arrest, Auto Rob, Auto Drive & more)
+
+🚓 Auto Farm Tab:
+- Auto Arrest (instantly arrest anyone on the map)
+- Auto Rob
+- Auto Drive
+- Auto Helicopter Drive
+- Auto Delivery
+
+🧩 Misc Tab:
+- Join Team button
+- Anti AFK toggle
+- Buy 10 tuning crates button
+- Menu keybind change
+
+…and there's more stuff inside too!
+
+📌 How to Use:
+1. Copy the script above.
+2. Open your Roblox executor.
+3. Launch Driving Empire.
+4. Paste and execute the script.
+
+⚠️ Note: This script uses a key system — tap "Get Key" in the menu to unlock.`,
+  },
+  {
     id: "speed-keyboard-escape-axon-hub",
     title: "Keyboard Escape Auto Win & XP Farm Script - Axon Hub",
     game: "[⚡] +1 Speed Keyboard Escape | Candy & Chocolate",
     image: "https://scriptblox.com/images/script/95082159892680-1780644985188.png",
     provider: "AxonHub",
     verified: true,
+    key: true,
     views: 1532,
     likeCount: 0,
     script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/97c3f6db55a2cf72141537a85458e5a7.lua"))()`,
