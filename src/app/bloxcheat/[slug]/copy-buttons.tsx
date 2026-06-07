@@ -79,7 +79,7 @@ export function CopyButtons({ script, title, hasKey, keySlug }: {
   );
 }
 
-export function RawHeader({ script, title, slug }: { script: string; title: string; slug: string }) {
+export function RawHeader({ script, title, slug }: { script: string; title: string; slug?: string }) {
   const { t } = useLang();
   const [copied, setCopied] = useState(false);
 
@@ -102,15 +102,21 @@ export function RawHeader({ script, title, slug }: { script: string; title: stri
 
   return (
     <div className="sdetail-raw-header">
-      <a
-        href={`https://rawscripts.net/raw/${slug}`}
-        target="_blank"
-        rel="noreferrer"
-        className="sdetail-section-title sdetail-raw-title-link"
-        style={{ marginBottom: 0 }}
-      >
-        {t("viewRaw")}
-      </a>
+      {slug ? (
+        <a
+          href={`https://rawscripts.net/raw/${slug}`}
+          target="_blank"
+          rel="noreferrer"
+          className="sdetail-section-title sdetail-raw-title-link"
+          style={{ marginBottom: 0 }}
+        >
+          {t("viewRaw")}
+        </a>
+      ) : (
+        <span className="sdetail-section-title" style={{ marginBottom: 0 }}>
+          {t("viewRaw").replace(" ↗", "")}
+        </span>
+      )}
       <div className="sdetail-raw-actions">
         <button className="sdetail-raw-btn" onClick={copyScript}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"

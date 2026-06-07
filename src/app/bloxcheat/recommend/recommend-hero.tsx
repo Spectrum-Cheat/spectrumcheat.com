@@ -11,7 +11,7 @@ export function RecommendHero() {
       <div className="subpage-inner">
         <div className="hero-badge">
           <span className="badge-dot" />
-          <span>Spectrum Pick</span>
+          <span>ZPU Pick</span>
         </div>
         <h1 className="subpage-title">{t("recTitle")}</h1>
         <p className="subpage-subtitle">

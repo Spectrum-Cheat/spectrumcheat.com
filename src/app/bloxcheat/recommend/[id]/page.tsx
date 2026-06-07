@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MarketingHeader } from "../../../_components/marketing-header";
 import { SiteFooter } from "../../../_components/site-footer";
-import { CopyButtons } from "../../[slug]/copy-buttons";
+import { CopyButtons, RawHeader } from "../../[slug]/copy-buttons";
 import { LuaCode } from "../../[slug]/lua-code";
 import { SlugHero } from "../../[slug]/slug-hero";
 import { UnlockGate } from "../../[slug]/unlock-gate";
@@ -49,7 +49,7 @@ export default async function RecommendScriptPage({ params }: { params: Promise<
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={script.image} alt={script.title} className="sdetail-thumb-img" />
                 <div className="sdetail-thumb-badges">
-                  <span className="blox-badge blox-badge--verified">Spectrum Pick</span>
+                  <span className="blox-badge blox-badge--verified">ZPU Pick</span>
                   {script.key && <span className="blox-badge blox-badge--key">Key System</span>}
                   {script.universal && <span className="blox-badge blox-badge--universal">Universal</span>}
                 </div>
@@ -114,6 +114,7 @@ export default async function RecommendScriptPage({ params }: { params: Promise<
 
             {/* Script code */}
             <div className="sdetail-section">
+              <RawHeader script={script.script} title={script.title} />
               <LuaCode code={script.script} />
             </div>
 

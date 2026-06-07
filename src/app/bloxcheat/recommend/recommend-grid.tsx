@@ -101,7 +101,7 @@ export function RecommendGrid({ scripts }: { scripts: RecommendScript[] }) {
                     <path d="M12 2 9.6 4.4 6.3 4 5.5 7.3 2.6 9l1.5 3-1.5 3 2.9 1.7.8 3.3 3.3-.4L12 22l2.4-2.4 3.3.4.8-3.3 2.9-1.7-1.5-3 1.5-3-2.9-1.7-.8-3.3-3.3.4L12 2Z"/>
                     <path d="m9 12 2 2 4-4" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  Spectrum Pick
+                  ZPU Pick
                 </div>
               </div>
               <div className="blox-card-body">
