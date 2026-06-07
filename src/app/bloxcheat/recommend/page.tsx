@@ -4,7 +4,7 @@ import { SiteFooter } from "../../_components/site-footer";
 import { BloxStatsBar } from "../blox-stats-bar";
 import { RecommendGrid, type RecommendScript } from "./recommend-grid";
 import { RecommendHero } from "./recommend-hero";
-import { RECOMMEND_SCRIPTS } from "../_data/recommend";
+import { RECOMMEND_SCRIPTS, CUSTOM_RECOMMEND } from "../_data/recommend";
 import { AdNative } from "../../_components/ad-native";
 
 export const metadata: Metadata = {
@@ -41,7 +41,30 @@ export default async function RecommendPage() {
     })
   );
 
-  const scripts = results.filter(Boolean) as RecommendScript[];
+  const fetched = results.filter(Boolean) as RecommendScript[];
+
+  // Custom (non-ScriptBlox) scripts → map into the same card shape.
+  const custom: RecommendScript[] = CUSTOM_RECOMMEND.map((c) => ({
+    _id: `custom-${c.id}`,
+    title: c.title,
+    game: { name: c.game },
+    views: c.views ?? 0,
+    slug: c.id,
+    image: c.image,
+    isPatched: false,
+    isUniversal: c.universal ?? false,
+    key: c.key ?? false,
+    verified: c.verified ?? true,
+    scriptType: "free",
+    likeCount: c.likeCount ?? 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    youtubeUrl: c.youtubeUrl,
+    customHref: `/bloxcheat/recommend/${c.id}`,
+  }));
+
+  // Custom picks first, then ScriptBlox picks.
+  const scripts = [...custom, ...fetched];
 
   return (
     <>

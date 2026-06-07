@@ -25,6 +25,7 @@ export interface RecommendScript {
   createdAt: string;
   updatedAt: string;
   youtubeUrl?: string;
+  customHref?: string;
 }
 
 const TAG_CLS: Record<string, string> = {
@@ -64,7 +65,7 @@ export function RecommendGrid({ scripts }: { scripts: RecommendScript[] }) {
   return (
     <div className="blox-grid">
       {scripts.map((script) => {
-        const href = `/bloxcheat/${script.slug}`;
+        const href = script.customHref ?? `/bloxcheat/${script.slug}`;
         const tags: { key: string; label: string }[] = [
           script.key         && { key: "key",       label: t("badgeKeySystem") },
           script.isPatched   && { key: "patched",   label: t("badgePatched") },
