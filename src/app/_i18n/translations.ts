@@ -29,6 +29,7 @@ export const translations = {
     footerPrivacy:   "Privacy Policy",
     footerSecurity:  "Security",
     footerRefund:    "Refund Policy",
+    footerWhoIsZpu:  "Who is ZPU?",
 
     // ─── Common buttons ─────────────────────────
     btnBackHome:    "Back Home",
@@ -387,6 +388,7 @@ export const translations = {
     footerPrivacy:   "นโยบายความเป็นส่วนตัว",
     footerSecurity:  "ความปลอดภัย",
     footerRefund:    "นโยบายคืนเงิน",
+    footerWhoIsZpu:  "ZPU คือใคร?",
 
     // ─── Common buttons ─────────────────────────
     btnBackHome:    "กลับหน้าหลัก",
@@ -743,6 +745,7 @@ export const translations = {
     footerPrivacy:   "隐私政策",
     footerSecurity:  "安全",
     footerRefund:    "退款政策",
+    footerWhoIsZpu:  "ZPU 是谁？",
 
     // ─── Common buttons ─────────────────────────
     btnBackHome:    "返回首页",
@@ -1099,6 +1102,7 @@ export const translations = {
     footerPrivacy:   "Chính sách bảo mật",
     footerSecurity:  "Bảo mật",
     footerRefund:    "Chính sách hoàn tiền",
+    footerWhoIsZpu:  "ZPU là ai?",
 
     // ─── Common buttons ─────────────────────────
     btnBackHome:    "Về trang chủ",
@@ -1456,6 +1460,7 @@ export const translations = {
     footerPrivacy:   "Política de Privacidade",
     footerSecurity:  "Segurança",
     footerRefund:    "Política de Reembolso",
+    footerWhoIsZpu:  "Quem é ZPU?",
 
     // ─── Common buttons ─────────────────────────
     btnBackHome:    "Voltar ao Início",

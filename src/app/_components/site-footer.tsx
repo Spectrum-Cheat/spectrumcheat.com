@@ -43,6 +43,7 @@ export function SiteFooter() {
                 <li><Link href="/privacy">{t("footerPrivacy")}</Link></li>
                 <li><Link href="/security">{t("footerSecurity")}</Link></li>
                 <li><Link href="/refund-policy">{t("footerRefund")}</Link></li>
+                <li><Link href="/zpu">{t("footerWhoIsZpu")}</Link></li>
               </ul>
             </div>
           </div>
