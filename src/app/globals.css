@@ -2317,6 +2317,8 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 }
 @media (max-width: 768px) {
   .navCenter.desktop-menu { display: none; }
+  .navRight .btn-ghost:not(.nav-lang-btn) { display: none; }
+  .navRight .btn-primary { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
   .pricing-grid { grid-template-columns: 1fr; }

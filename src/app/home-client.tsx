@@ -162,7 +162,7 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
   const serviceBlocks = [
     { titleKey: "serv1Title" as const, descKey: "serv1Desc" as const, image: "/images/Script Library Preview.png",    alt: "Blox Fruits showcase art", wide: true },
     { titleKey: "serv2Title" as const, descKey: "serv2Desc" as const, image: "/images/Webhook Notify Preview.png",    alt: "Rivals artwork" },
-    { titleKey: "serv3Title" as const, descKey: "serv3Desc" as const, image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb", alt: "Sailor Piece key access preview" },
+    { titleKey: "serv3Title" as const, descKey: "serv3Desc" as const, image: "/images/Auth Systems Preview.png", alt: "Key access preview" },
   ];
 
   const pricingPlans = [
