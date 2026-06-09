@@ -429,6 +429,43 @@ function LiveTicker({ target, fallback }: { target: number | null; fallback: str
   return <>{display.toLocaleString("en-US")}</>;
 }
 
+const YT_CHANNEL = "UCgMktyw9e816q0GzhBL2dnQ";
+
+// Fetch YouTube subs straight from the browser — both sources allow CORS (*),
+// and the browser's network reaches them reliably even when the host can't.
+async function fetchYouTubeSubsClient(): Promise<number | null> {
+  // socialcounts — finer "estimation" value.
+  try {
+    const r = await fetch(
+      `https://api.socialcounts.org/youtube-live-subscriber-count/${YT_CHANNEL}`,
+      { cache: "no-store" }
+    );
+    if (r.ok) {
+      const d = await r.json();
+      const v = d?.counters?.estimation?.subscriberCount ?? d?.counters?.api?.subscriberCount;
+      if (typeof v === "number") return v;
+    }
+  } catch {
+    /* try next */
+  }
+  // mixerno — fallback.
+  try {
+    const r = await fetch(
+      `https://mixerno.space/api/youtube-channel-counter/user/${YT_CHANNEL}`,
+      { cache: "no-store" }
+    );
+    if (r.ok) {
+      const d = await r.json();
+      const raw = d?.counts?.find((x: { value: string; count: number | string }) => x.value === "subscribers")?.count;
+      const n = typeof raw === "string" ? parseInt(raw, 10) : raw;
+      if (typeof n === "number" && !Number.isNaN(n)) return n;
+    }
+  } catch {
+    /* give up */
+  }
+  return null;
+}
+
 // Live stat cards — seeded by the server, then polled every 30s for realtime updates.
 function LiveStats({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
   const { t } = useLang();
@@ -438,16 +475,22 @@ function LiveStats({ ytSubs, discordMembers }: { ytSubs?: number | null; discord
   useEffect(() => {
     let alive = true;
     const poll = async () => {
+      // Discord (and a YT seed) via our server route.
       try {
         const r = await fetch("/api/zpu-stats", { cache: "no-store" });
-        if (!r.ok) return;
-        const d = await r.json();
-        if (!alive) return;
-        if (typeof d.ytSubs === "number") setYt(d.ytSubs);
-        if (typeof d.discordMembers === "number") setDc(d.discordMembers);
+        if (r.ok) {
+          const d = await r.json();
+          if (alive) {
+            if (typeof d.ytSubs === "number") setYt(d.ytSubs);
+            if (typeof d.discordMembers === "number") setDc(d.discordMembers);
+          }
+        }
       } catch {
         /* keep last known value */
       }
+      // YouTube straight from the browser (most reliable).
+      const ytClient = await fetchYouTubeSubsClient();
+      if (alive && ytClient != null) setYt(ytClient);
     };
     poll();
     const id = setInterval(poll, 30000);
