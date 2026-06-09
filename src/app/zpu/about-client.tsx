@@ -373,10 +373,18 @@ function fmtTime(s: number): string {
 //   but never runs more than LEAD ahead of the real value (self-correcting).
 function LiveTicker({ target, fallback }: { target: number | null; fallback: string }) {
   const [display, setDisplay] = useState<number | null>(null);
+  const [stalled, setStalled] = useState(false);
   const displayRef = useRef(0);
   const targetRef = useRef<number | null>(target);
   const rafRef = useRef<number | null>(null);
   const LEAD = 30;
+
+  // If no real value has arrived after a while, show the text fallback
+  // instead of leaving the loading shimmer forever.
+  useEffect(() => {
+    const id = setTimeout(() => setStalled(true), 8000);
+    return () => clearTimeout(id);
+  }, []);
 
   const animateTo = (to: number) => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -425,7 +433,9 @@ function LiveTicker({ target, fallback }: { target: number | null; fallback: str
     };
   }, []);
 
-  if (display == null) return <>{fallback}</>;
+  if (display == null) {
+    return stalled ? <>{fallback}</> : <span className="zpu-stat-skeleton" aria-label="loading" />;
+  }
   return <>{display.toLocaleString("en-US")}</>;
 }
 
@@ -726,10 +736,10 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
 
   const facts = [
     { labelKey: "zpuFactsPassions" as const, value: t("zpuFactsPassionsV"), size: "" },
-    { labelKey: "zpuFactsChasing" as const, value: t("zpuFactsChasingV"), size: "" },
-    { labelKey: "zpuFactsLiving" as const, value: t("zpuFactsLivingV"), size: "big" },
+    { labelKey: "zpuFactsChasing" as const, value: (<><span className="zpu-only-desktop">{t("zpuFactsChasingV")}</span><span className="zpu-only-mobile">{t("zpuFactsChasingV").replace(/\n/g, "\n\n")}</span></>), size: "" },
+    { labelKey: "zpuFactsLiving" as const, value: t("zpuFactsLivingV"), size: "country" },
     { labelKey: "zpuFactsStyle" as const, value: t("zpuFactsStyleV"), size: "" },
-    { labelKey: "zpuFactsKnown" as const, value: (<>ZPU / xZPUHigh<br />Non / Chanon</>), size: "mid" },
+    { labelKey: "zpuFactsKnown" as const, value: (<><span className="zpu-only-desktop">ZPU / xZPUHigh<br />Non / Chanon</span><span className="zpu-only-mobile">ZPU<br />xZPUHigh<br />&<br />Non<br />Chanon</span></>), size: "mid" },
     { labelKey: "zpuFactsAge" as const, value: t("zpuFactsAgeV"), size: "big" },
   ];
 
@@ -840,6 +850,10 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
               <div key={f.labelKey} className="zpu-fact">
                 <span className="zpu-fact-label">{t(f.labelKey)}</span>
                 <span className={`zpu-fact-value${f.size ? ` zpu-fact-value--${f.size}` : ""}`}>{f.value}</span>
+                {f.labelKey === "zpuFactsLiving" && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="zpu-fact-flag" src="https://flagcdn.com/w320/th.png" alt="Thailand flag" loading="lazy" />
+                )}
                 {f.labelKey === "zpuFactsAge" && <AgeCountdown target={BIRTHDAY_18} />}
               </div>
             ))}
