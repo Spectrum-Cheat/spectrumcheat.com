@@ -491,7 +491,6 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
               <>ไว้วางใจโดยผู้ใช้<br /><em style={{ fontFamily: "var(--font-body)" }}>ใช้งานมาโดยตลอด</em></>
             )}
           </h2>
-          <p className="section-sub" style={{ textAlign: "center" }}>{t("testiSub")}</p>
           <div className="testimonials-stage">
             {testimonials.filter((item) => item.featured).map((item) => (
               <div key={item.author} className="testi-featured reveal">
@@ -538,7 +537,6 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
               <>เลือกการเข้าถึง<br /><em style={{ fontFamily: "var(--font-body)" }}>Spectrum ของคุณ</em></>
             )}
           </h2>
-          <p className="section-sub" style={{ textAlign: "center" }}>{t("pricingSub")}</p>
           <div className="pricing-grid">
             {pricingPlans.map((plan) => (
               <div key={plan.tierKey} className={plan.popular ? "price-card popular" : "price-card"}>
