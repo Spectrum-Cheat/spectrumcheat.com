@@ -26,6 +26,14 @@ const supportedGames = [
 
 const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
 
+// Spectrum team — shown in the hero social-proof badge (hover = name + role).
+const team = [
+  { name: "xZPUHigh", role: "Owner / Founder / Developer (CEO)", avatar: "/images/ZPU.jpg" },
+  { name: "Sentity", role: "Co-Founder", avatar: "/images/sentity.jpg" },
+  { name: "Mods HD", role: "Manager", avatar: "/images/modshd.png" },
+  { name: "zWraith", role: "Moderator", avatar: "/images/zwraith.png" },
+];
+
 const executors = [
   { name: "Codex", image: "/executors/codex.png" },
   { name: "Delta", image: "/executors/delta.webp" },
@@ -215,11 +223,6 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
     const heroStats = document.querySelector(".hero-stats");
     if (heroStats) statsObserver.observe(heroStats);
 
-    const cursorGlow = document.createElement("div");
-    cursorGlow.style.cssText = `position:fixed;pointer-events:none;z-index:9998;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,0.08) 0%,rgba(139,92,246,0.04) 38%,transparent 72%);transform:translate(-50%,-50%);transition:transform 0.15s ease;top:0;left:0;`;
-    document.body.appendChild(cursorGlow);
-    const onMouseMove = (e: MouseEvent) => { cursorGlow.style.left = `${e.clientX}px`; cursorGlow.style.top = `${e.clientY}px`; };
-
     const tiltTargets = document.querySelectorAll<HTMLElement>(".feature-card,.price-card,.testi-card");
     const handleTiltMove = (e: Event) => {
       const el = e.currentTarget as HTMLElement; const me = e as MouseEvent;
@@ -232,15 +235,12 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
     tiltTargets.forEach((el) => { el.addEventListener("mousemove", handleTiltMove); el.addEventListener("mouseleave", handleTiltLeave); });
 
     window.addEventListener("scroll", updateScroll, { passive: true });
-    document.addEventListener("mousemove", onMouseMove, { passive: true });
     updateScroll();
 
     return () => {
       window.removeEventListener("scroll", updateScroll);
-      document.removeEventListener("mousemove", onMouseMove);
       revealObserver.disconnect(); statsObserver.disconnect();
       tiltTargets.forEach((el) => { el.removeEventListener("mousemove", handleTiltMove); el.removeEventListener("mouseleave", handleTiltLeave); });
-      cursorGlow.remove();
     };
   }, []);
 
@@ -317,20 +317,21 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
           </div>
         </div>
 
-        <button
-          type="button"
-          className="hero-scroll-hint"
-          aria-label="Scroll down"
-          onClick={() => {
-            const target = document.querySelector(".trust-section");
-            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-            else window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
-          }}
-        >
-          <svg className="hero-scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+        <div className="hero-proof">
+          <div className="hero-proof-avatars">
+            {team.map((m) => (
+              <span key={m.name} className="hero-proof-av-wrap">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={m.avatar} alt={m.name} className="hero-proof-av" loading="lazy" />
+                <span className="hero-proof-tip">
+                  <strong>{m.name}</strong>
+                  <span className="hero-proof-tip-role">{m.role}</span>
+                </span>
+              </span>
+            ))}
+          </div>
+          <span className="hero-proof-text">{t("heroSocialProof")}</span>
+        </div>
 
       </section>
 

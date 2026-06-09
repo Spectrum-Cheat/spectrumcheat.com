@@ -127,6 +127,7 @@ export const translations = {
     notFoundTitle: "Page not found",
     notFoundDesc: "The page you're looking for doesn't exist or may have been moved.",
     notFoundHome: "Back to home",
+    heroSocialProof: "Spectrum Teams",
     andMore:    "And more",
 
     // ─── Home: Features ─────────────────────────
@@ -511,6 +512,7 @@ export const translations = {
     notFoundTitle: "ไม่พบหน้านี้",
     notFoundDesc: "หน้าที่คุณกำลังหาไม่มีอยู่ หรืออาจถูกย้ายไปแล้ว",
     notFoundHome: "กลับหน้าแรก",
+    heroSocialProof: "Spectrum Teams",
     andMore:    "และอื่นๆ",
 
     // ─── Home: Features ─────────────────────────
@@ -894,6 +896,7 @@ export const translations = {
     notFoundTitle: "找不到页面",
     notFoundDesc: "你要找的页面不存在，或可能已被移动。",
     notFoundHome: "返回首页",
+    heroSocialProof: "Spectrum Teams",
     andMore:    "更多",
 
     // ─── Home: Features ─────────────────────────
@@ -1277,6 +1280,7 @@ export const translations = {
     notFoundTitle: "Không tìm thấy trang",
     notFoundDesc: "Trang bạn đang tìm không tồn tại hoặc có thể đã bị di chuyển.",
     notFoundHome: "Về trang chủ",
+    heroSocialProof: "Spectrum Teams",
     andMore:    "Và nhiều hơn",
 
     // ─── Home: Features ─────────────────────────
@@ -1661,6 +1665,7 @@ export const translations = {
     notFoundTitle: "Página não encontrada",
     notFoundDesc: "A página que você procura não existe ou pode ter sido movida.",
     notFoundHome: "Voltar ao início",
+    heroSocialProof: "Spectrum Teams",
     andMore:    "E mais",
 
     // ─── Home: Features ─────────────────────────

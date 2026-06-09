@@ -1265,10 +1265,73 @@ body {
 
 /* Stats */
 .hero-stats {
-  display: flex; align-items: center; gap: 40px;
-  flex-wrap: wrap; justify-content: center;
+  display: flex; align-items: center; gap: 32px;
+  flex-wrap: nowrap; justify-content: center;
   margin-top: 16px;
 }
+.hero-proof {
+  position: absolute;
+  bottom: 34px;
+  right: 34px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 18px 9px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: hero-fade-up 0.8s ease 0.5s both;
+}
+.hero-proof-avatars { display: flex; }
+.hero-proof-av-wrap {
+  position: relative;
+  display: inline-flex;
+  margin-left: -12px;
+  transition: transform 0.2s ease;
+}
+.hero-proof-av-wrap:first-child { margin-left: 0; }
+.hero-proof-av-wrap:hover { z-index: 6; transform: translateY(-3px); }
+.hero-proof-av {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0b0e1a;
+  display: block;
+}
+.hero-proof-tip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 7px 13px;
+  border-radius: 11px;
+  background: #0b0e1a;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 10;
+}
+.hero-proof-tip strong { font-family: var(--font-body); font-size: 0.84rem; font-weight: 700; color: var(--text-primary); }
+.hero-proof-tip-role { font-family: var(--font-body); font-size: 0.68rem; font-weight: 600; color: var(--accent); }
+.hero-proof-av-wrap:hover .hero-proof-tip { opacity: 1; transform: translateX(-50%) translateY(0); }
+.hero-proof-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+@media (max-width: 980px) { .hero-proof { display: none; } }
 .stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .stat-num {
   font-family: var(--font-body); font-size: 2.6rem; font-weight: 800;
@@ -2260,7 +2323,7 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   .subpage-grid-cards,
   .status-grid { grid-template-columns: 1fr; }
   .supported-games { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .hero-stats { gap: 16px; }
+  .hero-stats { gap: 16px; flex-wrap: wrap; }
   .stat-divider { display: none; }
   .photo-row { height: 220px; }
   .footer-top { flex-direction: column; gap: 32px; }
