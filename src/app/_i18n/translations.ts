@@ -44,7 +44,7 @@ export const translations = {
 
     // ─── ZPU profile page ───────────────────────
     zpuHello:        "Hello, my name is",
-    zpuBio:          "I'm a 17 year old who's been building my own path in life since I was 10. I started from zero and taught myself everything - coding, content creation, marketing, and running businesses both at home and overseas. The whole way I've walked alone, learning through constant trial and error, but every experience became a lesson that made me grow. Today I'm still chasing my dreams, working hard every day, and building the future I want - on my way to 100,000 subscribers on YouTube. // Nice to meet you 🙂",
+    zpuBio:          "I'm a <b class='zpu-bio-hl'>17</b> year old who's been running a YouTube channel since I was <b class='zpu-bio-hl'>10</b>. I started from zero and taught myself everything - coding, content creation, marketing, and running businesses both at home and overseas. All this time I've done everything on my own, always looking for new ventures, and every experience has made me grow. Today I'm still chasing my dreams, working hard every day, and building the future I want - on my way to 100,000 subscribers!<span class='zpu-bio-greet'>Nice to meet you 🙂</span>",
     zpuCurrent:      "I'm currently",
     zpuRoleFounder:  "Owner/Founder of",
     zpuRoleCreator:  "Content creator",
@@ -100,7 +100,7 @@ export const translations = {
     zpuStackScripting:"Scripting",
     zpuStackContent: "Content & Design",
     zpuStackTools:   "Design & Editing",
-    zpuWorksTitle:   "My Projects 📂",
+    zpuWorksTitle:   "My Latest Projects 📂",
     zpuWorksSub:     "A look at the things I've designed, built and coded - scripts, programs, websites and all kinds of code, from back then until now.",
     zpuConnectTitle: "Let's connect! ☎️",
     zpuConnectSub:   "Got a question, want to hang out, get to know me, or just say hi? Whatever it is - here's how to reach me.",
@@ -403,7 +403,7 @@ export const translations = {
 
     // ─── ZPU profile page ───────────────────────
     zpuHello:        "สวัสดี ผมชื่อ",
-    zpuBio:          "ผมเป็นเด็กอายุ 17 ที่เลือกเส้นทางชีวิตของตัวเองมาตั้งแต่อายุ 10 ขวบ เริ่มต้นจากศูนย์และเรียนรู้ทุกอย่างด้วยตัวเอง ไม่ว่าจะเป็นการเขียนโค้ด การสร้างคอนเทนต์ การตลาด และรวมถึงการทำธุรกิจทั้งในและนอกประเทศ, จริงๆตลอดเส้นทางที่ผ่านมา ผมต้องเดินคนเดียวและลองผิดลองถูกอยู่เสมอ แต่ทุกประสบการณ์ล้วนเป็นบทเรียนที่ทำให้ผมเติบโตขึ้น ทุกวันนี้ผมยังคงมุ่งมั่นทำตามความฝัน ทำงานหนักอย่างต่อเนื่อง และสร้างอนาคตในแบบที่ต้องการ พร้อมเดินหน้าสู่เป้าหมายหนึ่งแสนผู้ติดตามบน YouTube // และยินดีที่ได้รู้จักนะ 🙂",
+    zpuBio:          "ผมเป็นเด็กอายุ <b class='zpu-bio-hl'>17</b> คนหนึ่ง ที่เริ่มทำช่องยูทูปมาตั้งแต่ <b class='zpu-bio-hl'>10</b> ขวบ เริ่มต้นจากศูนย์และเรียนรู้ทุกอย่างด้วยตัวเอง ไม่ว่าจะเป็นการเขียนโค้ด การสร้างคอนเทนต์ การตลาด และรวมถึงการทำธุรกิจทั้งในและนอกประเทศ, ตลอดเวลาที่ผ่านมา ผมทำทุกอย่างคนเดียวและค้นหาธุรกิจใหม่ๆอยู่เสมอ แต่ทุกประสบการณ์ทำให้ผมเติบโตขึ้น ทุกวันนี้ผมยังคงทำงานหนัก เพื่อทำตามความฝันและสร้างอนาคตที่ต้องการ พร้อมเดินหน้าสู่เป้าหมายหนึ่งแสนผู้ติดตาม!<span class='zpu-bio-greet'>และยินดีที่ได้รู้จักนะ 🙂</span>",
     zpuCurrent:      "ตอนนี้ผมเป็น",
     zpuRoleFounder:  "เจ้าของ/ผู้ก่อตั้ง",
     zpuRoleCreator:  "คอนเทนต์ครีเอเตอร์",
@@ -459,7 +459,7 @@ export const translations = {
     zpuStackScripting:"สคริปต์",
     zpuStackContent: "คอนเทนต์ & ดีไซน์",
     zpuStackTools:   "ดีไซน์ & ตัดต่อ",
-    zpuWorksTitle:   "โปรเจกต์ของผม 📂",
+    zpuWorksTitle:   "โปรเจกต์ล่าสุดของผม 📂",
     zpuWorksSub:     "ส่องผลงานที่ผมออกแบบ สร้าง และเขียนขึ้นมาไม่ว่าจะเป็น สคริปต์ โปรแกรม หรือเว็บไซต์ หรือโค้ดต่างๆตั้งแต่อดีตจนถึงปัจจุบัน",
     zpuConnectTitle: "มารู้จักกันเถอะ! ☎️",
     zpuConnectSub:   "มีคำถาม อยากชวนออกไปเที่ยว อยากรู้จัก หรือแค่อยากจะทักทาย? อะไรก็แล้วแต่ และนี่คือช่องทางการติดต่อของผม",
@@ -759,7 +759,7 @@ export const translations = {
 
     // ─── ZPU profile page ───────────────────────
     zpuHello:        "你好，我叫",
-    zpuBio:          "我是一名 17 岁的少年，从 10 岁起就开始打造属于自己的人生道路。我从零开始，自学了一切 -- 编程、内容创作、营销，以及在国内外做生意。一路上我都独自前行，不断试错，但每一次经历都成为让我成长的课程。如今我依然在追逐梦想，每天努力工作，打造我想要的未来 -- 朝着 YouTube 十万订阅迈进。// 很高兴认识你 🙂",
+    zpuBio:          "我是一名 <b class='zpu-bio-hl'>17</b> 岁的少年，从 <b class='zpu-bio-hl'>10</b> 岁起就开始经营自己的 YouTube 频道。我从零开始，自学了一切 -- 编程、内容创作、营销，以及在国内外做生意。这一路我都独自完成，并且不断寻找新的商机，而每一次经历都让我不断成长。如今我依然在追逐梦想，每天努力工作，打造我想要的未来 -- 朝着 YouTube 十万订阅迈进。<span class='zpu-bio-greet'>很高兴认识你 🙂</span>",
     zpuCurrent:      "我目前是",
     zpuRoleFounder:  "拥有者/创办人",
     zpuRoleCreator:  "内容创作者",
@@ -815,7 +815,7 @@ export const translations = {
     zpuStackScripting:"脚本",
     zpuStackContent: "内容与设计",
     zpuStackTools:   "设计与剪辑",
-    zpuWorksTitle:   "我的项目 📂",
+    zpuWorksTitle:   "我的最新项目 📂",
     zpuWorksSub:     "看看我从过去到现在设计、打造并编写的作品 -- 脚本、程序、网站以及各种代码。",
     zpuConnectTitle: "一起联系吧！☎️",
     zpuConnectSub:   "有问题、想约出去玩、想认识我，或只是想打个招呼？无论是什么 -- 这些就是联系我的方式。",
@@ -1116,7 +1116,7 @@ export const translations = {
 
     // ─── ZPU profile page ───────────────────────
     zpuHello:        "Xin chào, tôi tên là",
-    zpuBio:          "Tôi là một thiếu niên 17 tuổi, đã tự xây dựng con đường đời của mình từ năm 10 tuổi. Tôi bắt đầu từ con số 0 và tự học mọi thứ - lập trình, sáng tạo nội dung, marketing và kinh doanh cả trong nước lẫn quốc tế. Suốt chặng đường tôi đều đi một mình, học qua vô số lần thử và sai, nhưng mỗi trải nghiệm đều là bài học giúp tôi trưởng thành. Đến nay tôi vẫn theo đuổi ước mơ, làm việc chăm chỉ mỗi ngày và xây dựng tương lai mình muốn - tiến tới 100.000 người đăng ký trên YouTube. // Rất vui được làm quen 🙂",
+    zpuBio:          "Tôi là một thiếu niên <b class='zpu-bio-hl'>17</b> tuổi, đã làm kênh YouTube từ năm <b class='zpu-bio-hl'>10</b> tuổi. Tôi bắt đầu từ con số 0 và tự học mọi thứ - lập trình, sáng tạo nội dung, marketing và kinh doanh cả trong nước lẫn quốc tế. Suốt thời gian qua tôi đều tự mình làm tất cả, luôn tìm kiếm những cơ hội kinh doanh mới, và mỗi trải nghiệm đều giúp tôi trưởng thành. Đến nay tôi vẫn theo đuổi ước mơ, làm việc chăm chỉ mỗi ngày và xây dựng tương lai mình muốn - tiến tới 100.000 người đăng ký trên YouTube.<span class='zpu-bio-greet'>Rất vui được làm quen 🙂</span>",
     zpuCurrent:      "Hiện tại tôi là",
     zpuRoleFounder:  "Chủ sở hữu/Người sáng lập",
     zpuRoleCreator:  "Nhà sáng tạo nội dung",
@@ -1172,7 +1172,7 @@ export const translations = {
     zpuStackScripting:"Scripting",
     zpuStackContent: "Nội dung & Thiết kế",
     zpuStackTools:   "Thiết kế & Dựng phim",
-    zpuWorksTitle:   "Dự án của tôi 📂",
+    zpuWorksTitle:   "Dự án mới nhất của tôi 📂",
     zpuWorksSub:     "Nhìn vào những thứ tôi đã thiết kế, xây dựng và viết - script, chương trình, website và đủ loại code, từ trước đến nay.",
     zpuConnectTitle: "Cùng kết nối nhé! ☎️",
     zpuConnectSub:   "Có câu hỏi, muốn rủ đi chơi, muốn làm quen, hay chỉ muốn chào hỏi? Bất kể là gì - đây là cách liên hệ với tôi.",
@@ -1474,7 +1474,7 @@ export const translations = {
 
     // ─── ZPU profile page ───────────────────────
     zpuHello:        "Olá, meu nome é",
-    zpuBio:          "Sou um adolescente de 17 anos que vem construindo o próprio caminho na vida desde os 10. Comecei do zero e aprendi tudo sozinho - programação, criação de conteúdo, marketing e negócios dentro e fora do país. O caminho todo eu trilhei sozinho, aprendendo por tentativa e erro, mas cada experiência virou uma lição que me fez crescer. Hoje ainda corro atrás dos meus sonhos, trabalhando duro todos os dias e construindo o futuro que quero - rumo a 100.000 inscritos no YouTube. // Prazer em te conhecer 🙂",
+    zpuBio:          "Sou um adolescente de <b class='zpu-bio-hl'>17</b> anos que mantém um canal no YouTube desde os <b class='zpu-bio-hl'>10</b>. Comecei do zero e aprendi tudo sozinho - programação, criação de conteúdo, marketing e negócios dentro e fora do país. Esse tempo todo fiz tudo por conta própria, sempre buscando novos negócios, e cada experiência me fez crescer. Hoje ainda corro atrás dos meus sonhos, trabalhando duro todos os dias e construindo o futuro que quero - rumo a 100.000 inscritos no YouTube.<span class='zpu-bio-greet'>Prazer em te conhecer 🙂</span>",
     zpuCurrent:      "Atualmente eu sou",
     zpuRoleFounder:  "Dono/Fundador da",
     zpuRoleCreator:  "Criador de conteúdo",
@@ -1530,7 +1530,7 @@ export const translations = {
     zpuStackScripting:"Scripting",
     zpuStackContent: "Conteúdo & Design",
     zpuStackTools:   "Design & Edição",
-    zpuWorksTitle:   "Meus Projetos 📂",
+    zpuWorksTitle:   "Meus Últimos Projetos 📂",
     zpuWorksSub:     "Um olhar sobre o que projetei, construí e programei - scripts, programas, sites e todo tipo de código, do passado até agora.",
     zpuConnectTitle: "Vamos nos conectar! ☎️",
     zpuConnectSub:   "Tem uma pergunta, quer sair, me conhecer ou só dar um oi? Seja o que for - é assim que você me encontra.",

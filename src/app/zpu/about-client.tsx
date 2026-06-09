@@ -45,9 +45,10 @@ const ZPU = {
 
   works: [
     { year: "2025", name: "Spectrum Cheat", tag: "Website", href: "/", image: "/project%20images/Website%20Spectrum%20Cheat%202026.png" },
-    { year: "2024", name: "Spectrum Cheat Store", tag: "Website", href: "https://spectrumcheat.rexzy.xyz", image: "/project%20images/Website%20Spectrum%20Cheat%20Store%202026.png" },
+    { year: "2024", name: "Spectrum Store", tag: "Website", href: "https://spectrumcheat.rexzy.xyz", image: "/project%20images/Website%20Spectrum%20Cheat%20Store%202026.png" },
     { year: "2026", name: "Blox Cheat", tag: "Website", href: "/bloxcheat", image: "/project%20images/Blox%20Cheat.png" },
-    { year: "2023", name: "CPU FARM", tag: "Website", href: "https://www.facebook.com/cpufarmyaimakmak", image: "/project%20images/CPU%20FARM%202023.png" },
+    { year: "2024", name: "Script Bloxy", tag: "Website", href: "https://scriptbloxy.com", image: "/project%20images/Script%20Bloxy%20Website2%202024.png" },
+    { year: "2023", name: "CPU FARM", tag: "Website & Store", href: "https://www.facebook.com/cpufarmyaimakmak", image: "/project%20images/CPU%20FARM%202023.png" },
     { year: "2022", name: "Authentication Systems", tag: "Key System", href: "https://spectrumcheat.com/getkey", image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb" },
     { year: "2021", name: "Script Library", tag: "Platform", href: "https://spectrumcheat.com/scripts", image: "/project%20images/Script%20Library%20Preview.png" },
   ],
@@ -169,15 +170,14 @@ const ZPU = {
 /* ═══════════════════════════════════════════════════════════════ */
 
 function LiveClock({ timezone }: { timezone: string }) {
-  const [time, setTime] = useState("--:--:--");
+  const [time, setTime] = useState("--:--");
   useEffect(() => {
     const tick = () => {
-      const t = new Intl.DateTimeFormat("en-GB", {
+      const t = new Intl.DateTimeFormat("en-US", {
         timeZone: timezone,
-        hour: "2-digit",
+        hour: "numeric",
         minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
+        hour12: true,
       }).format(new Date());
       setTime(t);
     };
@@ -296,7 +296,7 @@ function AgeCountdown({ target }: { target: string }) {
   const s = Math.floor(diff / 1000) % 60;
   return (
     <span className="zpu-age-badge">
-      {d}{t("zpuCdDay")} {h}{t("zpuCdHour")} {m}{t("zpuCdMin")} {s}{t("zpuCdSec")} {t("zpuCdTo18")}
+      {d} {t("zpuCdDay")} {h} {t("zpuCdHour")} {m} {t("zpuCdMin")} {s} {t("zpuCdSec")} {t("zpuCdTo18")}
     </span>
   );
 }
@@ -333,10 +333,112 @@ function fmtTime(s: number): string {
   return `${m}:${sec.toString().padStart(2, "0")}`;
 }
 
-function fmtCount(n: number): string {
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
-  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  return String(n);
+// Animated, self-ticking live number (livecounts.io style).
+// - Counts up smoothly to `target` whenever it increases (e.g. after a poll).
+// - Between polls, drifts up by +1 every 5–17s so it always feels alive,
+//   but never runs more than LEAD ahead of the real value (self-correcting).
+function LiveTicker({ target, fallback }: { target: number | null; fallback: string }) {
+  const [display, setDisplay] = useState<number | null>(null);
+  const displayRef = useRef(0);
+  const targetRef = useRef<number | null>(target);
+  const rafRef = useRef<number | null>(null);
+  const LEAD = 30;
+
+  const animateTo = (to: number) => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    const from = displayRef.current;
+    if (from === to) {
+      displayRef.current = to;
+      setDisplay(to);
+      return;
+    }
+    const dur = 1000;
+    const start = performance.now();
+    const step = (now: number) => {
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = Math.round(from + (to - from) * eased);
+      displayRef.current = v;
+      setDisplay(v);
+      if (p < 1) rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+  };
+
+  // React to new real values from polling.
+  useEffect(() => {
+    targetRef.current = target;
+    if (target != null && target > displayRef.current) animateTo(target);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target]);
+
+  // Gentle upward drift so the number feels live between polls.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      const t = targetRef.current;
+      if (t != null && displayRef.current < t + LEAD) {
+        const v = displayRef.current + 1;
+        displayRef.current = v;
+        setDisplay(v);
+      }
+      timer = setTimeout(tick, 5000 + Math.random() * 12000);
+    };
+    timer = setTimeout(tick, 5000 + Math.random() * 12000);
+    return () => {
+      clearTimeout(timer);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  if (display == null) return <>{fallback}</>;
+  return <>{display.toLocaleString("en-US")}</>;
+}
+
+// Live stat cards — seeded by the server, then polled every 30s for realtime updates.
+function LiveStats({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
+  const { t } = useLang();
+  const [yt, setYt] = useState<number | null>(ytSubs ?? null);
+  const [dc, setDc] = useState<number | null>(discordMembers ?? null);
+
+  useEffect(() => {
+    let alive = true;
+    const poll = async () => {
+      try {
+        const r = await fetch("/api/zpu-stats", { cache: "no-store" });
+        if (!r.ok) return;
+        const d = await r.json();
+        if (!alive) return;
+        if (typeof d.ytSubs === "number") setYt(d.ytSubs);
+        if (typeof d.discordMembers === "number") setDc(d.discordMembers);
+      } catch {
+        /* keep last known value */
+      }
+    };
+    poll();
+    const id = setInterval(poll, 30000);
+    return () => {
+      alive = false;
+      clearInterval(id);
+    };
+  }, []);
+
+  return (
+    <section className="zpu-stats">
+      <div className="zpu-stat">
+        <strong><LiveTicker target={yt} fallback="75K+" /></strong>
+        <span>{t("zpuStatSubs")}</span>
+      </div>
+      <div className="zpu-stat">
+        <strong><LiveTicker target={dc} fallback="110K+" /></strong>
+        <span>{t("zpuStatCommunity")}</span>
+      </div>
+      <div className="zpu-stat">
+        <strong>9+</strong>
+        <span>{t("zpuStatYears")}</span>
+      </div>
+    </section>
+  );
 }
 
 function MusicPlayer() {
@@ -536,13 +638,7 @@ function MusicPlayer() {
 }
 
 export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
-  const { t } = useLang();
-
-  const stats = [
-    { v: ytSubs ? fmtCount(ytSubs) : "75K+", k: "zpuStatSubs" as const },
-    { v: discordMembers ? fmtCount(discordMembers) : "110K+", k: "zpuStatCommunity" as const },
-    { v: "9+", k: "zpuStatYears" as const },
-  ];
+  const { t, lang } = useLang();
 
   const currently = [
     { labelKey: "zpuRoleFounder" as const, strong: "Spectrum Cheat", href: "https://spectrumcheat.com", sinceKey: "zpuSinceFounder" as const, platform: "spectrum" as const },
@@ -600,7 +696,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <h2 className="zpu-hello">
               {t("zpuHello")} <span className="zpu-grad">{ZPU.brand}</span>
             </h2>
-            <p className="zpu-bio">{t("zpuBio")}</p>
+            <p className="zpu-bio" lang={lang} dangerouslySetInnerHTML={{ __html: t("zpuBio") }} />
 
             <p className="zpu-current-label">{t("zpuCurrent")}</p>
             <div className="zpu-current-list">
@@ -647,14 +743,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         </section>
 
         {/* Stats */}
-        <section className="zpu-stats">
-          {stats.map((s) => (
-            <div key={s.k} className="zpu-stat">
-              <strong>{s.v}</strong>
-              <span>{t(s.k)}</span>
-            </div>
-          ))}
-        </section>
+        <LiveStats ytSubs={ytSubs} discordMembers={discordMembers} />
 
         {/* Facts About Me */}
         <section className="zpu-facts-sec">

@@ -21,7 +21,7 @@ async function getYouTubeSubs(): Promise<number | null> {
     );
     if (!res.ok) return null;
     const d = await res.json();
-    return d?.counters?.api?.subscriberCount ?? d?.counters?.estimation?.subscriberCount ?? null;
+    return d?.counters?.estimation?.subscriberCount ?? d?.counters?.api?.subscriberCount ?? null;
   } catch {
     return null;
   }

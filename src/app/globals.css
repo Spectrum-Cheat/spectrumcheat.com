@@ -3926,6 +3926,23 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   line-height: 1.75;
   color: var(--text-secondary);
   margin-bottom: 26px;
+  text-align: left;
+  text-wrap: pretty;
+}
+/* Justify only for space-separated languages; Thai/Chinese stay left-aligned
+   (justify stretches their sparse spaces into ugly gaps). */
+.zpu-bio:lang(en),
+.zpu-bio:lang(vi),
+.zpu-bio:lang(pt) {
+  text-align: justify;
+}
+.zpu-bio-hl {
+  color: #fff;
+  font-weight: 800;
+}
+.zpu-bio-greet {
+  display: block;
+  margin-top: 1em;
 }
 .zpu-current-label {
   font-size: 0.85rem;
@@ -4082,7 +4099,7 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   gap: 4px;
   padding: 8px 16px;
   border-radius: 99px;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.86rem;
   font-weight: 700;
   color: #c4b5fd;
