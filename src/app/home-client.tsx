@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MarketingHeader } from "./_components/marketing-header";
 import { SiteFooter } from "./_components/site-footer";
 import { AdResponsive } from "./_components/ad-banner";
@@ -26,6 +26,87 @@ const supportedGames = [
 
 const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
 
+const executors = [
+  { name: "Codex", image: "/executors/codex.png" },
+  { name: "Delta", image: "/executors/delta.webp" },
+  { name: "Wave", image: "/executors/wave.webp" },
+  { name: "Synapse Z", image: "/executors/synapse%20z.webp" },
+  { name: "Velocity", image: "/executors/velocity.webp" },
+  { name: "Volt", image: "/executors/volt.webp" },
+  { name: "Seliware", image: "/executors/seliware.webp" },
+  { name: "Potassium", image: "/executors/potassium.webp" },
+  { name: "SirHurt", image: "/executors/sirhurt.webp" },
+  { name: "Arceus X", image: "/executors/arceus%20x.png" },
+];
+
+function ExecutorMarquee() {
+  const { t } = useLang();
+  return (
+    <section className="exec-section">
+      <p className="exec-title">{t("supportExecutorsTitle")}</p>
+      <div className="exec-marquee">
+        <div className="exec-track">
+          {[...executors, ...executors].map((e, i) => (
+            <Link key={i} href="/executors" className="exec-item">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={e.image} alt={e.name} className="exec-logo" loading="lazy" />
+              <span className="exec-name">{e.name}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const FAQ_ITEMS = [
+  { q: "faqQ1", a: "faqA1" },
+  { q: "faqQ2", a: "faqA2" },
+  { q: "faqQ3", a: "faqA3" },
+  { q: "faqQ4", a: "faqA4" },
+  { q: "faqQ5", a: "faqA5" },
+  { q: "faqQ6", a: "faqA6" },
+  { q: "faqQ7", a: "faqA7" },
+  { q: "faqQ8", a: "faqA8" },
+] as const;
+
+function FaqAccordion() {
+  const { t, lang } = useLang();
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="faq-section">
+      <div className="faq-inner">
+        <h2 className="faq-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
+          {t("faqTitle")}
+        </h2>
+        <div className="faq-list">
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={item.q} className={`faq-item${isOpen ? " open" : ""}`}>
+                <button
+                  className="faq-q"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                >
+                  <span>{t(item.q)}</span>
+                  <svg className="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <div className="faq-a-wrap">
+                  <div className="faq-a">{t(item.a)}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const testimonials = [
   { quote: "Used Spectrum Hub for years now. Smooth execution, clean updates, and the support team actually replies fast when something breaks (which is rare in this space). Highly recommend for anyone looking for a reliable Roblox cheat.", quoteTH: "ใช้ Spectrum Hub มาหลายปีแล้วตั้งแต่ชื่อว่า ZPU Hub และโฟกัสในแมพ Mad City เป็นหลัก สคริปต์รันได้ลื่น อัปเดตตลอด และทีมซัพพอร์ตตอบเร็วมากเวลาเกิดปัญหา ซึ่งหาได้ยากในวงการนี้ แนะนำอย่างยิ่งสำหรับใครที่มองหาโปรแกรมโกง Roblox ที่เชื่อถือได้", author: "nebulathedragon", role: "Shop owner", avatar: "https://i.pinimg.com/736x/46/aa/72/46aa72f43fff5e080125e9822d0d4699.jpg", tag: "Long-time user", featured: true },
   { quote: "this script is the best fisch script i've used till now. just add a new feature in which we can teleport to megaladon when it spawns and catch it. and also add a feature to catch the megaladon without teleporting to it. rest all are good.", quoteTH: "สคริปต์ Fisch ที่ดีที่สุดที่เคยใช้มา อยากให้เพิ่มฟีเจอร์เทเลพอร์ตไปหา Megaladon ตอนที่มันสปอว์น และจับมันได้โดยไม่ต้องเทเลพอร์ตด้วย นอกนั้นดีมากทุกอย่าง", author: "exoticastral", role: "Community member", avatar: "https://i.pinimg.com/736x/c3/23/f1/c323f1e89ba607b7ee60e4bb5aedd180.jpg", tag: "Daily user" },
@@ -34,7 +115,30 @@ const testimonials = [
   { quote: "The best sailor piece script ever. It has a lot of features and it is very stable. The support team is also very responsive and helpful. I highly recommend this script to anyone who wants to play sailor piece.", quoteTH: "สคริปต์ Sailor Piece ที่ดีที่สุดเท่าที่มี มีฟีเจอร์เยอะและเสถียรมาก ทีมซัพพอร์ตก็รับฟังและช่วยเหลือดีเยี่ยม แนะนำสำหรับทุกคนที่อยากเล่น Sailor Piece", author: "solakemi", role: "Premium member", avatar: "https://i.pinimg.com/736x/e2/5f/a3/e25fa3d34c8d9e67b61e0c450acd7af4.jpg", tag: "Cross-platform" },
 ];
 
-export default function Home() {
+function DiscordLive({ online, members }: { online: number | null; members: number | null }) {
+  const { t } = useLang();
+  return (
+    <section className="discord-live-section">
+      <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer" className="discord-live-card">
+        <svg className="discord-live-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M20.3 4.4A16.7 16.7 0 0 0 16.2 3l-.2.5c1.5.4 2.2 1 2.2 1a13.4 13.4 0 0 0-8.4 0s.8-.7 2.5-1.1L12 3a16.6 16.6 0 0 0-4.1 1.4C5.3 8.2 4.7 11.9 5 15.6a16.9 16.9 0 0 0 5 2.5l1.2-1.9c-.7-.3-1.3-.6-1.9-1 .2.2 1.6 1.4 5.4 1.4s5.2-1.2 5.4-1.4c-.6.4-1.2.7-1.9 1l1.2 1.9a16.9 16.9 0 0 0 5-2.5c.4-4.3-.7-8-2.1-11.2ZM9.8 13.4c-.8 0-1.5-.8-1.5-1.8s.6-1.8 1.5-1.8c.8 0 1.5.8 1.5 1.8s-.7 1.8-1.5 1.8Zm4.4 0c-.8 0-1.5-.8-1.5-1.8s.6-1.8 1.5-1.8c.8 0 1.5.8 1.5 1.8s-.7 1.8-1.5 1.8Z" />
+        </svg>
+        <div className="discord-live-text">
+          <span className="discord-live-name">ZPU Community</span>
+          <span className="discord-live-stats">
+            <span className="discord-dot" />
+            {online != null ? online.toLocaleString("en-US") : "—"} {t("discordOnline")}
+            <span className="discord-sep">·</span>
+            {members != null ? members.toLocaleString("en-US") : "—"} {t("discordMembers")}
+          </span>
+        </div>
+        <span className="discord-live-btn">{t("discordJoin")}</span>
+      </a>
+    </section>
+  );
+}
+
+export default function Home({ discordOnline, discordMembers }: { discordOnline?: number | null; discordMembers?: number | null }) {
   const { t, lang } = useLang();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -366,6 +470,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Supported executors ── */}
+      <ExecutorMarquee />
+
       {/* ── Testimonials ── */}
       <section className="testimonials-section">
         <div className="section-inner">
@@ -452,6 +559,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── FAQ ── */}
+      <FaqAccordion />
+
+      {/* ── Discord live ── */}
+      <DiscordLive online={discordOnline ?? null} members={discordMembers ?? null} />
 
       {/* ── CTA ── */}
       <section className="cta-section">

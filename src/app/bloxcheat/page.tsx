@@ -65,8 +65,26 @@ async function fetchInitial(query: string, strict: boolean): Promise<{ scripts: 
 }
 
 export const metadata: Metadata = {
-  title: "Blox Cheat",
-  description: "Search and discover Roblox scripts. Auto farms, ESP, aimbots and more.",
+  title: "Blox Cheat — Free Roblox Scripts Library",
+  description:
+    "Search and discover free Roblox scripts — auto farms, ESP, aimbots, dupes and more. Find working scripts for your favorite Roblox games, all in one hub.",
+  keywords: [
+    "Roblox scripts",
+    "Blox Cheat",
+    "free Roblox scripts",
+    "auto farm script",
+    "Roblox ESP",
+    "Roblox aimbot",
+    "Roblox script hub",
+    "Spectrum Cheat scripts",
+  ],
+  alternates: { canonical: "https://spectrumcheat.com/bloxcheat" },
+  openGraph: {
+    title: "Blox Cheat — Free Roblox Scripts Library",
+    description:
+      "Search and discover free Roblox scripts — auto farms, ESP, aimbots, dupes and more, all in one hub.",
+    url: "https://spectrumcheat.com/bloxcheat",
+  },
 };
 
 export default async function BloxCheatPage({

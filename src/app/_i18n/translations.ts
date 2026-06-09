@@ -120,6 +120,13 @@ export const translations = {
     // ─── Home: Trust ────────────────────────────
     trustLabel: "Supported games",
     trustNote:  "67+ supported games across the full Spectrum catalog.",
+    supportExecutorsTitle: "Supported Executors",
+    discordOnline: "online",
+    discordMembers: "members",
+    discordJoin: "Join Server",
+    notFoundTitle: "Page not found",
+    notFoundDesc: "The page you're looking for doesn't exist or may have been moved.",
+    notFoundHome: "Back to home",
     andMore:    "And more",
 
     // ─── Home: Features ─────────────────────────
@@ -200,6 +207,23 @@ export const translations = {
     // ─── Home: CTA ──────────────────────────────
     ctaTitle: "Ready to use Spectrum?",
     ctaSub:   "Get instant access, explore supported games, and join the community behind Spectrum Cheat.",
+    faqTitle: "Frequently Asked Questions",
+    faqQ1: "Why should you choose us?",
+    faqA1: "We focus on quality, stability, and continuous updates, with a team ready to help whenever you run into problems - so you get the best possible experience.",
+    faqQ2: "Do you support mobile and tablet?",
+    faqA2: "Yes. We support both Android and iOS through a compatible executor, with full tutorial guides and how-to videos on the xZPUHigh YouTube channel.",
+    faqQ3: "How safe is it - will I get banned?",
+    faqA3: "No script can guarantee 100% safety. That said, we focus on making everything as stable and safe as possible, with constant updates.",
+    faqQ4: "How and where can I contact the team?",
+    faqA4: "You can reach our team anytime through a Discord ticket or the contact channels listed on the website.",
+    faqQ5: "What do I get after buying?",
+    faqA5: "You get instant access, along with usage guides, future updates, and support from our team.",
+    faqQ6: "Can I get a refund after purchase?",
+    faqA6: "No. Once you've purchased, we have no refund policy, and reselling is not allowed under any circumstances - if detected, your key will be deleted immediately.",
+    faqQ7: "Which devices are supported?",
+    faqA7: "Windows, Android, and iOS are supported (depending on whether your executor supports it).",
+    faqQ8: "What should I do if I run into a problem?",
+    faqA8: "Our team is ready to help and troubleshoot through the ticket system so you can get back up and running as fast as possible.",
 
     // ─── Blox Cheat ─────────────────────────────
     bloxBadge:       "Spectrum Cheat // Blox Cheat",
@@ -480,6 +504,13 @@ export const translations = {
     // ─── Home: Trust ────────────────────────────
     trustLabel: "เกมที่รองรับ",
     trustNote:  "รองรับ 67+ เกมในแคตตาล็อก Spectrum ทั้งหมด",
+    supportExecutorsTitle: "ตัวรันสคริปต์ที่รองรับ",
+    discordOnline: "ออนไลน์",
+    discordMembers: "สมาชิก",
+    discordJoin: "เข้าร่วมเซิร์ฟเวอร์",
+    notFoundTitle: "ไม่พบหน้านี้",
+    notFoundDesc: "หน้าที่คุณกำลังหาไม่มีอยู่ หรืออาจถูกย้ายไปแล้ว",
+    notFoundHome: "กลับหน้าแรก",
     andMore:    "และอื่นๆ",
 
     // ─── Home: Features ─────────────────────────
@@ -560,6 +591,23 @@ export const translations = {
     // ─── Home: CTA ──────────────────────────────
     ctaTitle: "พร้อมใช้ Spectrum แล้วหรือยัง?",
     ctaSub:   "เข้าถึงได้ทันที สำรวจเกมที่รองรับ และเข้าร่วมชุมชน Spectrum Cheat",
+    faqTitle: "คำถามที่พบบ่อย",
+    faqQ1: "ทำไมคุณต้องเลือกใช้ค่ายเรา?",
+    faqA1: "เราให้ความสำคัญกับคุณภาพ ความเสถียร และการอัปเดตอย่างต่อเนื่อง พร้อมทีมงานที่คอยช่วยเหลือเมื่อพบปัญหา เพื่อให้คุณได้รับประสบการณ์ที่ดีที่สุดในการใช้งาน",
+    faqQ2: "รองรับมือถือและแท็บเล็ตหรือไม่?",
+    faqA2: "ได้ รองรับทั้ง Android และ iOS ผ่าน Executor ที่รองรับ โดยมีคลิปสอนคู่มือและวิธีใช้งานให้ครบถ้วนในช่องยูทูป xZPUHigh",
+    faqQ3: "การใช้งานมีความปลอดภัยแค่ไหน จะโดนแบนไหม?",
+    faqA3: "ไม่มีสคริปต์ใดที่สามารถรับประกันความปลอดภัยได้ 100% อย่างไรก็ตาม เรามุ่งเน้นการพัฒนาให้มีความเสถียรและปลอดภัยที่สุด พร้อมอัปเดตอยู่เสมอ",
+    faqQ4: "หากต้องการจะติดต่อทีมงานได้อย่างไร ต้องติดต่อที่ไหน?",
+    faqA4: "สามารถติดต่อทีมงานผ่าน Discord Ticket หรือช่องทางติดต่อที่ระบุไว้บนเว็บไซต์ได้ตลอดเวลา",
+    faqQ5: "หลังซื้อสินค้าของเราจะได้รับอะไรบ้าง?",
+    faqA5: "คุณจะได้รับสิทธิ์เข้าใช้งานทันที พร้อมคู่มือการใช้งาน การอัปเดตในอนาคต และการช่วยเหลือจากทีมงาน",
+    faqQ6: "หากซื้อสินค้าแล้ว สามารถขอคืนเงินได้ไหม?",
+    faqA6: "ไม่ได้ หากคุณซื้อสินค้าแล้วทางเราไม่มีนโยบายในการคืนเงิน และเราไม่อนุญาตให้คุณขายต่อทุกกรณี หากตรวจพบเราจะทำการลบคีย์ทิ้งทันที",
+    faqQ7: "รองรับอุปกรณ์ใดบ้าง?",
+    faqA7: "รองรับ Windows, Android และ iOS (ขึ้นอยู่กับ Executor ที่ใช้งานว่ารองรับไหม)",
+    faqQ8: "หากพบปัญหาการใช้งานต้องทำอย่างไร?",
+    faqA8: "ได้ ทีมงานพร้อมช่วยเหลือและตรวจสอบปัญหาให้ผ่านระบบ Ticket เพื่อให้คุณสามารถกลับมาใช้งานได้เร็วที่สุด",
 
     // ─── Blox Cheat ─────────────────────────────
     bloxBadge:       "Spectrum Cheat // Blox Cheat",
@@ -839,6 +887,13 @@ export const translations = {
     // ─── Home: Trust ────────────────────────────
     trustLabel: "支持的游戏",
     trustNote:  "Spectrum 目录中支持 67+ 款游戏。",
+    supportExecutorsTitle: "支持的执行器",
+    discordOnline: "在线",
+    discordMembers: "成员",
+    discordJoin: "加入服务器",
+    notFoundTitle: "找不到页面",
+    notFoundDesc: "你要找的页面不存在，或可能已被移动。",
+    notFoundHome: "返回首页",
     andMore:    "更多",
 
     // ─── Home: Features ─────────────────────────
@@ -919,6 +974,23 @@ export const translations = {
     // ─── Home: CTA ──────────────────────────────
     ctaTitle: "准备好使用 Spectrum 了吗？",
     ctaSub:   "即时访问，探索支持的游戏，加入 Spectrum Cheat 背后的社区。",
+    faqTitle: "常见问题",
+    faqQ1: "为什么要选择我们？",
+    faqA1: "我们注重品质、稳定性和持续更新，并有团队随时为你解决问题，让你获得最佳的使用体验。",
+    faqQ2: "支持手机和平板吗？",
+    faqA2: "支持。通过兼容的执行器，Android 和 iOS 都能使用，并在 xZPUHigh YouTube 频道提供完整的教程指南和使用视频。",
+    faqQ3: "使用安全吗？会被封号吗？",
+    faqA3: "没有任何脚本能保证 100% 安全。不过，我们专注于让一切尽可能稳定、安全，并持续更新。",
+    faqQ4: "如何以及在哪里联系团队？",
+    faqA4: "你可以随时通过 Discord 工单或网站上列出的联系渠道联系我们的团队。",
+    faqQ5: "购买后能得到什么？",
+    faqA5: "你将立即获得使用权限，以及使用指南、未来更新和团队支持。",
+    faqQ6: "购买后可以退款吗？",
+    faqA6: "不可以。购买后我们没有退款政策，并且任何情况下都不允许转售——一经发现，我们会立即删除你的密钥。",
+    faqQ7: "支持哪些设备？",
+    faqA7: "支持 Windows、Android 和 iOS（取决于你的执行器是否支持）。",
+    faqQ8: "遇到问题该怎么办？",
+    faqA8: "我们的团队会通过工单系统帮助你排查问题，让你尽快恢复使用。",
 
     // ─── Blox Cheat ─────────────────────────────
     bloxBadge:       "Spectrum Cheat // Blox Cheat",
@@ -1198,6 +1270,13 @@ export const translations = {
     // ─── Home: Trust ────────────────────────────
     trustLabel: "Trò chơi được hỗ trợ",
     trustNote:  "Hỗ trợ 67+ trò chơi trong toàn bộ danh mục Spectrum.",
+    supportExecutorsTitle: "Các executor được hỗ trợ",
+    discordOnline: "đang online",
+    discordMembers: "thành viên",
+    discordJoin: "Tham gia server",
+    notFoundTitle: "Không tìm thấy trang",
+    notFoundDesc: "Trang bạn đang tìm không tồn tại hoặc có thể đã bị di chuyển.",
+    notFoundHome: "Về trang chủ",
     andMore:    "Và nhiều hơn",
 
     // ─── Home: Features ─────────────────────────
@@ -1278,6 +1357,23 @@ export const translations = {
     // ─── Home: CTA ──────────────────────────────
     ctaTitle: "Sẵn sàng sử dụng Spectrum?",
     ctaSub:   "Truy cập ngay, khám phá các trò chơi được hỗ trợ và tham gia cộng đồng đằng sau Spectrum Cheat.",
+    faqTitle: "Câu hỏi thường gặp",
+    faqQ1: "Tại sao nên chọn chúng tôi?",
+    faqA1: "Chúng tôi chú trọng chất lượng, sự ổn định và cập nhật liên tục, cùng đội ngũ luôn sẵn sàng hỗ trợ khi bạn gặp sự cố - để bạn có trải nghiệm tốt nhất.",
+    faqQ2: "Có hỗ trợ điện thoại và máy tính bảng không?",
+    faqA2: "Có. Hỗ trợ cả Android và iOS qua executor tương thích, kèm hướng dẫn đầy đủ và video cách dùng trên kênh YouTube xZPUHigh.",
+    faqQ3: "Sử dụng có an toàn không, có bị khóa tài khoản không?",
+    faqA3: "Không script nào đảm bảo an toàn 100%. Tuy nhiên, chúng tôi tập trung làm cho mọi thứ ổn định và an toàn nhất có thể, luôn cập nhật thường xuyên.",
+    faqQ4: "Làm sao và liên hệ đội ngũ ở đâu?",
+    faqA4: "Bạn có thể liên hệ đội ngũ bất cứ lúc nào qua ticket Discord hoặc các kênh liên hệ ghi trên website.",
+    faqQ5: "Sau khi mua tôi nhận được gì?",
+    faqA5: "Bạn nhận quyền truy cập ngay lập tức, cùng hướng dẫn sử dụng, các bản cập nhật tương lai và hỗ trợ từ đội ngũ.",
+    faqQ6: "Mua rồi có được hoàn tiền không?",
+    faqA6: "Không. Sau khi đã mua, chúng tôi không có chính sách hoàn tiền, và không cho phép bán lại trong mọi trường hợp - nếu phát hiện, key của bạn sẽ bị xóa ngay lập tức.",
+    faqQ7: "Hỗ trợ những thiết bị nào?",
+    faqA7: "Hỗ trợ Windows, Android và iOS (tùy thuộc executor của bạn có hỗ trợ hay không).",
+    faqQ8: "Nếu gặp sự cố thì phải làm gì?",
+    faqA8: "Đội ngũ sẵn sàng hỗ trợ và kiểm tra sự cố qua hệ thống ticket để bạn quay lại sử dụng nhanh nhất.",
 
     // ─── Blox Cheat ─────────────────────────────
     bloxBadge:       "Spectrum Cheat // Blox Cheat",
@@ -1558,6 +1654,13 @@ export const translations = {
     // ─── Home: Trust ────────────────────────────
     trustLabel: "Jogos suportados",
     trustNote:  "67+ jogos suportados em todo o catálogo Spectrum.",
+    supportExecutorsTitle: "Executores compatíveis",
+    discordOnline: "online",
+    discordMembers: "membros",
+    discordJoin: "Entrar no servidor",
+    notFoundTitle: "Página não encontrada",
+    notFoundDesc: "A página que você procura não existe ou pode ter sido movida.",
+    notFoundHome: "Voltar ao início",
     andMore:    "E mais",
 
     // ─── Home: Features ─────────────────────────
@@ -1638,6 +1741,23 @@ export const translations = {
     // ─── Home: CTA ──────────────────────────────
     ctaTitle: "Pronto para usar o Spectrum?",
     ctaSub:   "Obtenha acesso imediato, explore os jogos suportados e junte-se à comunidade por trás do Spectrum Cheat.",
+    faqTitle: "Perguntas frequentes",
+    faqQ1: "Por que escolher a gente?",
+    faqA1: "Focamos em qualidade, estabilidade e atualizações contínuas, com uma equipe pronta para ajudar sempre que você tiver problemas - para você ter a melhor experiência possível.",
+    faqQ2: "Há suporte para celular e tablet?",
+    faqA2: "Sim. Funciona em Android e iOS através de um executor compatível, com guias completos e vídeos de uso no canal do YouTube xZPUHigh.",
+    faqQ3: "É seguro usar? Vou ser banido?",
+    faqA3: "Nenhum script pode garantir 100% de segurança. Ainda assim, focamos em deixar tudo o mais estável e seguro possível, com atualizações constantes.",
+    faqQ4: "Como e onde posso falar com a equipe?",
+    faqA4: "Você pode falar com a equipe a qualquer momento por ticket no Discord ou pelos canais de contato indicados no site.",
+    faqQ5: "O que recebo após comprar?",
+    faqA5: "Você recebe acesso imediato, além de guias de uso, atualizações futuras e suporte da equipe.",
+    faqQ6: "Posso pedir reembolso após a compra?",
+    faqA6: "Não. Após a compra, não temos política de reembolso, e a revenda não é permitida em nenhuma circunstância - se detectada, sua key será excluída imediatamente.",
+    faqQ7: "Quais dispositivos são suportados?",
+    faqA7: "Windows, Android e iOS são suportados (depende se o seu executor é compatível).",
+    faqQ8: "O que devo fazer se tiver um problema?",
+    faqA8: "Nossa equipe está pronta para ajudar e investigar problemas pelo sistema de tickets para você voltar a usar o quanto antes.",
 
     // ─── Blox Cheat ─────────────────────────────
     bloxBadge:       "Spectrum Cheat // Blox Cheat",

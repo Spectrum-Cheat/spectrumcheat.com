@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Security",
   description:
     "Read the Spectrum Cheat Security page for platform safety notes, access-flow protections, payment handling guidance, and other security-related details relevant to Spectrum users and account holders.",
+  alternates: { canonical: "https://spectrumcheat.com/security" },
 };
 
 const sections = [
