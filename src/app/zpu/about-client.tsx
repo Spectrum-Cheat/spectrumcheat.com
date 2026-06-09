@@ -89,6 +89,21 @@ const ZPU = {
   // Favorite food / movies / artists — same style as games.
   // Send name + image (or just name → initials tile fallback).
   favFood: [] as { name: string; image?: string }[],
+  // Favorite sport & players.
+  favSports: [
+    { sport: "Basketball", player: "LeBron James", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/LeBron_James_%2851959977144%29_%28cropped2%29.jpg/500px-LeBron_James_%2851959977144%29_%28cropped2%29.jpg" },
+    { sport: "Formula 1", player: "Max Verstappen", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3973_by_Stepro_%28medium_crop%29.jpg/500px-2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3973_by_Stepro_%28medium_crop%29.jpg" },
+    { sport: "Golf", player: "Rory McIlroy", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Rory_McIlroy_Ryder_Cup_2025-195_%28cropped%29.jpg/500px-Rory_McIlroy_Ryder_Cup_2025-195_%28cropped%29.jpg" },
+    { sport: "Tennis", player: "Jannik Sinner", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Jannik_Sinner_2025_US_Open.jpg/500px-Jannik_Sinner_2025_US_Open.jpg" },
+    { sport: "Football", player: "Cristiano Ronaldo", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/500px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg" },
+    { sport: "MotoGP", player: "Marc Márquez", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Marc_Marquez_at_the_2026_Spanish_Grand_Prix_%28cropped%29.jpg/500px-Marc_Marquez_at_the_2026_Spanish_Grand_Prix_%28cropped%29.jpg" },
+    { sport: "Hockey", player: "Cale Makar", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Cale_Makar_playing_with_the_Avalanche_in_2020_%28Quintin_Soloviev%29_%28cropped%29.jpg/500px-Cale_Makar_playing_with_the_Avalanche_in_2020_%28Quintin_Soloviev%29_%28cropped%29.jpg" },
+    { sport: "Baseball", player: "Mookie Betts", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Dodgers_at_Nationals_%2853676957188%29_%28cropped%29.jpg/500px-Dodgers_at_Nationals_%2853676957188%29_%28cropped%29.jpg" },
+    { sport: "MMA (UFC)", player: "Alex Pereira", image: "https://platform.mmamania.com/wp-content/uploads/sites/110/chorus/uploads/chorus_asset/file/24961012/1579885817.jpg?quality=90&strip=all&crop=16.663393558523,0,66.673212882954,100" },
+    { sport: "Cycling", player: "Tadej Pogačar", image: "https://sportklub.n1info.si/wp-content/uploads/2025/06/14/1749911610-profimedia-1010947434-750x500.jpg" },
+    { sport: "Rally", player: "Sébastien Ogier", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/2023_Central_European_Rally_-_Ogier_01_%28cropped%29.jpg/500px-2023_Central_European_Rally_-_Ogier_01_%28cropped%29.jpg" },
+    { sport: "Mountain Biking", player: "Nino Schurter", image: "https://asset.scott-sports.com/fit-in/1200x630/sco/sco-bike-nino-schurter-athlete-profile-1000x1000_2073192.jpg?signature=e0143303fb6dafe37c41572e4641143a99f3e370e58fdf1e18d1614371ee1e6f" },
+  ] as { sport: string; player: string; image?: string }[],
   favMovies: [
     { name: "The Shawshank Redemption", image: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg" },
     { name: "Catch Me If You Can", image: "https://upload.wikimedia.org/wikipedia/en/4/4d/Catch_Me_If_You_Can_2002_movie.jpg" },
@@ -261,6 +276,25 @@ function GameTile({ name, image }: { name: string; image?: string }) {
         )}
       </div>
       <span className="zpu-game-name">{name}</span>
+    </div>
+  );
+}
+
+function SportCard({ sport, player, image }: { sport: string; player: string; image?: string }) {
+  const [failed, setFailed] = useState(false);
+  const showImg = image && !failed;
+  return (
+    <div className="zpu-sport" title={`${sport} — ${player}`}>
+      <div className="zpu-sport-photo">
+        {showImg ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={image} alt={player} loading="lazy" onError={() => setFailed(true)} />
+        ) : (
+          <span className="zpu-game-initial">{gameInitials(player)}</span>
+        )}
+        <span className="zpu-sport-tag">{sport}</span>
+      </div>
+      <span className="zpu-sport-name">{player}</span>
     </div>
   );
 }
@@ -707,7 +741,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                     {t(c.labelKey)}{" "}
                     <a href={c.href} target="_blank" rel="noreferrer" className="zpu-current-link">{c.strong}</a>
                   </span>
-                  <span className="zpu-current-since">— {t(c.sinceKey)}</span>
+                  <span className="zpu-current-since">{t(c.sinceKey)}</span>
                 </div>
               ))}
             </div>
@@ -801,6 +835,19 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <div className="zpu-games-grid zpu-poster-grid">
               {ZPU.favMovies.map((g) => (
                 <GameTile key={g.name} name={g.name} image={g.image} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Favorite sport & players */}
+        {ZPU.favSports.length > 0 && (
+          <section className="zpu-games-sec">
+            <h2 className="zpu-works-title">{t("zpuSportsTitle")}</h2>
+            <p className="zpu-works-sub">{t("zpuSportsSub")}</p>
+            <div className="zpu-sports-grid">
+              {ZPU.favSports.map((s) => (
+                <SportCard key={s.player} sport={s.sport} player={s.player} image={s.image} />
               ))}
             </div>
           </section>

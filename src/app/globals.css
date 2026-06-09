@@ -4195,6 +4195,59 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 /* Movie posters — portrait */
 .zpu-poster-grid .zpu-game-icon { aspect-ratio: 2 / 3; border-radius: 12px; }
 
+/* Favorite sport & players */
+.zpu-sports-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 16px;
+}
+.zpu-sport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  width: 152px;
+  text-align: center;
+}
+.zpu-sport-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.18), transparent 70%),
+    rgba(255, 255, 255, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.zpu-sport:hover .zpu-sport-photo { transform: translateY(-3px); border-color: rgba(168, 85, 247, 0.5); }
+.zpu-sport-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.zpu-sport-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.zpu-sport-name {
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-secondary);
+}
+
 /* Artists */
 .zpu-artists-grid {
   display: grid;
