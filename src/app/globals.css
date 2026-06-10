@@ -331,7 +331,7 @@ body { top: 0 !important; }
   --nav-h: 68px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background: var(--bg);
@@ -2306,7 +2306,10 @@ blockquote::after  { content: close-quote; color: var(--accent); }
     margin: 0 0 24px;
   }
   .services-grid { grid-template-columns: 1fr; }
-  .service-block.wide { flex-direction: column; min-height: 0; }
+  .service-block.wide { flex-direction: column; min-height: 0; grid-column: auto; }
+  .service-block { min-height: 0; }
+  .service-text { flex: 0 0 auto; }
+  .service-img { height: 200px; }
   .service-block.wide .service-text { flex: 1 1 auto; max-width: 100%; }
   .service-block.wide .service-img { width: 100%; min-height: 240px; }
   .code-block-card .service-text { max-width: 100%; }
@@ -2326,6 +2329,8 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   .status-grid { grid-template-columns: 1fr; }
   .supported-games { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .hero-stats { gap: 16px; flex-wrap: wrap; }
+  .hero-title { font-size: clamp(1.9rem, 9vw, 2.7rem); overflow-wrap: anywhere; }
+  .hero-badge { white-space: normal; max-width: calc(100vw - 36px); }
   .stat-divider { display: none; }
   .photo-row { height: 220px; }
   .footer-top { flex-direction: column; gap: 32px; }

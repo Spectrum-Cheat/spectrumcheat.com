@@ -149,14 +149,14 @@ export const metadata: Metadata = {
     url: "https://spectrumcheat.com/zpu",
     type: "profile",
     images: [
-      { url: "https://spectrumcheat.com/images/benner_2.png", width: 6144, height: 1015, alt: "ZPU — Founder & Developer" },
+      { url: "https://spectrumcheat.com/images/benner_1.png", width: 6144, height: 1015, alt: "ZPU — Founder & Developer" },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "About ZPU | Owner & Founder of Spectrum Cheat",
     description: "Who is ZPU (xZPUHigh)? Founder, developer, and entrepreneur.",
-    images: ["https://spectrumcheat.com/images/benner_2.png"],
+    images: ["https://spectrumcheat.com/images/benner_1.png"],
   },
 };
 
