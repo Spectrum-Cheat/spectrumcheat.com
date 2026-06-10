@@ -4734,6 +4734,28 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+.zpu-works-more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 26px auto 0;
+  padding: 12px 26px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.zpu-works-more:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(139, 92, 246, 0.14);
+  color: var(--accent);
+}
 .zpu-work-card {
   display: block;
   text-decoration: none;

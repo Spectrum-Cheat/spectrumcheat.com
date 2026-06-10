@@ -44,13 +44,14 @@ const ZPU = {
   ],
 
   works: [
-    { year: "2025", name: "Spectrum Cheat", tag: "Website", href: "/", image: "/project%20images/Website%20Spectrum%20Cheat%202026.png" },
-    { year: "2024", name: "Spectrum Store", tag: "Website", href: "https://spectrumcheat.rexzy.xyz", image: "/project%20images/Website%20Spectrum%20Cheat%20Store%202026.png" },
-    { year: "2026", name: "Blox Cheat", tag: "Website", href: "/bloxcheat", image: "/project%20images/Blox%20Cheat.png" },
-    { year: "2024", name: "Script Bloxy", tag: "Website", href: "https://scriptbloxy.com", image: "/project%20images/Script%20Bloxy%20Website2%202024.png" },
-    { year: "2023", name: "CPU FARM", tag: "Website & Store", href: "https://www.facebook.com/cpufarmyaimakmak", image: "/project%20images/CPU%20FARM%202023.png" },
-    { year: "2022", name: "Authentication Systems", tag: "Key System", href: "https://spectrumcheat.com/getkey", image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb" },
-    { year: "2021", name: "Script Library", tag: "Platform", href: "https://spectrumcheat.com/scripts", image: "/project%20images/Script%20Library%20Preview.png" },
+    { year: "2025-2026", name: "Spectrum Cheat", tag: "Website Official", href: "/", image: "/project%20images/Website%20Spectrum%20Cheat%202026.png" },
+    { year: "2024-2026", name: "Spectrum Store", tag: "Website / Store", href: "https://spectrumcheat.rexzy.xyz", image: "/project%20images/Website%20Spectrum%20Cheat%20Store%202026.png" },
+    { year: "2025-2026", name: "Blox Cheat", tag: "Website / Blog", href: "/bloxcheat", image: "/project%20images/Blox%20Cheat.png" },
+    { year: "2025-2026", name: "Blaze Top-up", tag: "Website / Store", href: "https://blazetopup.net", image: "/project%20images/blazetopup2025.png" },
+    { year: "2022-2026", name: "Authentication Systems", tag: "Key & Security Systems", href: "https://spectrumcheat.com/getkey", image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb" },
+    { year: "2021-2026", name: "Spectrum Hub // [ZPU HUB]", tag: "Platform", href: "https://spectrumcheat.com/scripts", image: "/project%20images/Script%20Library%20Preview.png" },
+    { year: "2024-2025", name: "Script Bloxy", tag: "Website / Blog", href: "https://scriptbloxy.com", image: "/project%20images/Script%20Bloxy%20Website2%202024.png" },
+    { year: "2022-2024", name: "CPU FARM", tag: "Website / Store", href: "https://cpufarm.net", image: "/project%20images/CPU%20FARM%202023.png" }, 
   ],
 
   // Favorite games — Steam titles auto-load art from Steam CDN.
@@ -735,6 +736,7 @@ function MusicPlayer() {
 
 export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
   const { t, lang } = useLang();
+  const [showAllWorks, setShowAllWorks] = useState(false);
 
   const currently = [
     { labelKey: "zpuRoleFounder" as const, strong: "Spectrum Cheat", href: "https://spectrumcheat.com", sinceKey: "zpuSinceFounder" as const, platform: "spectrum" as const },
@@ -967,7 +969,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
           <h2 className="zpu-works-title">{t("zpuWorksTitle")}</h2>
           <p className="zpu-works-sub">{t("zpuWorksSub")}</p>
           <div className="zpu-works-grid">
-            {ZPU.works.map((w) => (
+            {(showAllWorks ? ZPU.works : ZPU.works.slice(0, 6)).map((w) => (
               <a key={w.image} href={w.href} className="zpu-work-card">
                 <div className="zpu-work-media">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -987,6 +989,15 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
               </a>
             ))}
           </div>
+          {ZPU.works.length > 6 && !showAllWorks && (
+            <button className="zpu-works-more" onClick={() => setShowAllWorks(true)}>
+              {t("zpuExploreAll")}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+          )}
         </section>
 
         {/* Connect */}
