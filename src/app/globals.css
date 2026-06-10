@@ -3997,6 +3997,9 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   transform: translateY(-1px);
 }
 .zpu-home-btn { left: 20px; right: auto; }
+.zpu-music-wrap { display: contents; }
+.zpu-music-backdrop { display: none; }
+.zpu-music-note { display: none; }
 .zpu-name {
   font-family: var(--font-body), system-ui, sans-serif;
   font-size: clamp(4rem, 16vw, 9rem);
@@ -4814,19 +4817,52 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   .zpu-only-mobile { display: inline; }
   .zpu-tiny { grid-template-columns: 1fr; }
   .zpu-stack-row { grid-template-columns: 1fr; gap: 8px; }
-  .zpu-player { display: none; }
-  .zpu-mini {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
+  .zpu-music-wrap { display: block; }
+  .zpu-music-wrap > .zpu-player { display: none; }
+  .zpu-music-wrap.open {
     position: fixed;
-    right: 16px;
-    bottom: 16px;
-    z-index: 50;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
   }
+  .zpu-music-wrap.open .zpu-music-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.66);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  .zpu-music-wrap.open > .zpu-player {
+    display: flex;
+    position: relative;
+    z-index: 2;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0;
+    padding: 22px 20px;
+    background: rgba(13, 17, 32, 0.98);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  }
+  .zpu-player-cover { width: 124px; height: 124px; border-radius: 14px; }
+  .zpu-player-main { width: 100%; gap: 10px; }
+  .zpu-player-info { align-items: center; }
+  .zpu-player-title { font-size: 1.05rem; }
+  .zpu-player-artist { font-size: 0.8rem; }
+  .zpu-player-controls { justify-content: center; gap: 10px; }
+  .zpu-player-volume { margin-left: 0; }
+  .zpu-player-vol-slider { display: none; }
+  .zpu-music-note { display: inline-flex; right: 70px; left: auto; }
   .zpu-hero { border: none; background: none; overflow: visible; }
-  .zpu-home-btn { right: 70px; left: auto; }
 }
 
 /* ═══════════════════════════════════════
