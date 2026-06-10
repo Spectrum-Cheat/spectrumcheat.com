@@ -536,6 +536,7 @@ function MusicPlayer() {
   const [coverFailed, setCoverFailed] = useState(false);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.3);
+  const [miniOpen, setMiniOpen] = useState(false);
 
   // Restore saved preferences + autoplay (unless the user paused last time).
   useEffect(() => {
@@ -623,8 +624,20 @@ function MusicPlayer() {
     save("spectrum-zpu-volume", String(v));
     save("spectrum-zpu-muted", v === 0 ? "1" : "0");
   }
+  function applyVolume(v: number) {
+    const a = audioRef.current;
+    if (!a) return;
+    const nv = Math.min(1, Math.max(0, Math.round(v * 100) / 100));
+    a.volume = nv;
+    a.muted = nv === 0;
+    setVolume(nv);
+    setMuted(nv === 0);
+    save("spectrum-zpu-volume", String(nv));
+    save("spectrum-zpu-muted", nv === 0 ? "1" : "0");
+  }
 
   return (
+    <>
     <div className="zpu-player">
       <audio
         ref={audioRef}
@@ -721,6 +734,66 @@ function MusicPlayer() {
         </div>
       </div>
     </div>
+
+      <div className={`zpu-mini${miniOpen ? " open" : ""}${playing ? " playing" : ""}`}>
+        <div className="zpu-mini-panel">
+          <div className="zpu-mini-head">
+            <div className="zpu-mini-cover">
+              {MUSIC.cover && !coverFailed ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={MUSIC.cover} alt={MUSIC.title} onError={() => setCoverFailed(true)} />
+              ) : (
+                <span className="zpu-player-cover-ph">♪</span>
+              )}
+            </div>
+            <div className="zpu-mini-info">
+              <span className="zpu-mini-title">{MUSIC.title}</span>
+              <span className="zpu-mini-artist">{MUSIC.artist}</span>
+            </div>
+          </div>
+          <div className="zpu-mini-bar" onClick={seek}>
+            <div className="zpu-player-fill" style={{ width: dur ? `${(cur / dur) * 100}%` : "0%" }} />
+          </div>
+          <div className="zpu-mini-times">
+            <span>{fmtTime(cur)}</span>
+            <span>{fmtTime(dur)}</span>
+          </div>
+          <div className="zpu-mini-controls">
+            <button className="zpu-mini-btn" onClick={() => applyVolume(volume - 0.1)} aria-label="Volume down">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z" /></svg>
+              <span className="zpu-mini-vsign">−</span>
+            </button>
+            <button className="zpu-mini-play" onClick={toggle} aria-label={playing ? "Pause" : "Play"}>
+              {playing ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              )}
+            </button>
+            <button className="zpu-mini-btn" onClick={() => applyVolume(volume + 0.1)} aria-label="Volume up">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z" /></svg>
+              <span className="zpu-mini-vsign">+</span>
+            </button>
+          </div>
+        </div>
+        <button className="zpu-mini-disc" onClick={() => setMiniOpen((o) => !o)} aria-label="Music player">
+          {MUSIC.cover && !coverFailed ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={MUSIC.cover} alt={MUSIC.title} onError={() => setCoverFailed(true)} />
+          ) : (
+            <span className="zpu-player-cover-ph">♪</span>
+          )}
+          <svg className="zpu-mini-disc-shine" viewBox="0 0 24 24" fill="none" stroke="#fff"
+            strokeWidth="0.7" strokeLinecap="round" aria-hidden="true">
+            <path d="M4.2 7a9.5 9.5 0 0 1 3-3" />
+            <path d="M5 7.8a8.3 8.3 0 0 1 2.6-2.6" />
+            <path d="M19.8 17a9.5 9.5 0 0 1-3 3" />
+            <path d="M19 16.2a8.3 8.3 0 0 1-2.6 2.6" />
+          </svg>
+          <span className="zpu-mini-disc-center" />
+        </button>
+      </div>
+    </>
   );
 }
 

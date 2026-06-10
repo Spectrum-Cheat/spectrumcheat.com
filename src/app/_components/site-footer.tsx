@@ -4,6 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "../_i18n/context";
 
+const team = [
+  { name: "xZPUHigh", role: "Owner / Founder / Developer (CEO)", avatar: "/images/ZPU.jpg" },
+  { name: "Sentity", role: "Co-Founder", avatar: "/images/sentity.jpg" },
+  { name: "Mods HD", role: "Manager", avatar: "/images/modshd.png" },
+  { name: "zWraith", role: "Moderator", avatar: "/images/zwraith.png" },
+];
+
 export function SiteFooter() {
   const { t } = useLang();
 
@@ -23,6 +30,21 @@ export function SiteFooter() {
             </div>
             <span className="brand-name">Spectrum Cheat</span>
             <p className="footer-tagline">{t("footerTagline")}</p>
+            <div className="team-badge">
+              <div className="team-badge-avatars">
+                {team.map((m) => (
+                  <span key={m.name} className="team-av-wrap">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={m.avatar} alt={m.name} className="team-av" loading="lazy" />
+                    <span className="team-tip">
+                      <strong>{m.name}</strong>
+                      <span className="team-tip-role">{m.role}</span>
+                    </span>
+                  </span>
+                ))}
+              </div>
+              <span className="team-label">{t("heroSocialProof")}</span>
+            </div>
           </div>
 
           <div className="footer-links">

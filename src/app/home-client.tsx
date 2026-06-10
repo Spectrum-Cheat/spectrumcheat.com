@@ -26,14 +26,6 @@ const supportedGames = [
 
 const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
 
-// Spectrum team — shown in the hero social-proof badge (hover = name + role).
-const team = [
-  { name: "xZPUHigh", role: "Owner / Founder / Developer (CEO)", avatar: "/images/ZPU.jpg" },
-  { name: "Sentity", role: "Co-Founder", avatar: "/images/sentity.jpg" },
-  { name: "Mods HD", role: "Manager", avatar: "/images/modshd.png" },
-  { name: "zWraith", role: "Moderator", avatar: "/images/zwraith.png" },
-];
-
 const executors = [
   { name: "Codex", image: "/executors/codex.png" },
   { name: "Delta", image: "/executors/delta.webp" },
@@ -317,21 +309,20 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
           </div>
         </div>
 
-        <div className="hero-proof">
-          <div className="hero-proof-avatars">
-            {team.map((m) => (
-              <span key={m.name} className="hero-proof-av-wrap">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={m.avatar} alt={m.name} className="hero-proof-av" loading="lazy" />
-                <span className="hero-proof-tip">
-                  <strong>{m.name}</strong>
-                  <span className="hero-proof-tip-role">{m.role}</span>
-                </span>
-              </span>
-            ))}
-          </div>
-          <span className="hero-proof-text">{t("heroSocialProof")}</span>
-        </div>
+        <button
+          type="button"
+          className="hero-scroll-hint"
+          aria-label="Scroll down"
+          onClick={() => {
+            const target = document.querySelector(".trust-section");
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            else window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+          }}
+        >
+          <svg className="hero-scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
 
       </section>
 

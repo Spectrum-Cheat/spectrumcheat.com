@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { DM_Mono, Instrument_Serif, Syne } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { LanguagePopup } from "./_components/language-popup";
 import { LangProvider } from "./_i18n/context";
 import { AdScripts } from "./_components/ad-scripts";
+import type { Lang } from "./_i18n/translations";
+
+const LANGS = ["en", "th", "zh", "vi", "pt"];
 
 const syne = Syne({
   subsets: ["latin"],
@@ -70,14 +74,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const saved = cookieStore.get("spectrum-lang")?.value;
+  const lang: Lang = (LANGS.includes(saved ?? "") ? saved : "en") as Lang;
+
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${syne.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
       <head>
@@ -89,7 +97,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <LangProvider>
+        <LangProvider initialLang={lang}>
           <div id="google_translate_element" style={{ display: "none" }} />
           <LanguagePopup />
           {children}
