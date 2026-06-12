@@ -57,6 +57,57 @@ export interface CustomScript {
 
 export const CUSTOM_RECOMMEND: CustomScript[] = [
   {
+    id: "vertex-hub-mm2",
+    title: "Vertex Hub - Murder Mystery 2",
+    game: "Murder Mystery 2",
+    image: "https://rscripts.net/_next/image?url=%2Fassets%2Fscripts%2F68667ed994a9fb8c81caaab2_1751547610017_AQTDF069mJ.webp&w=640&q=75",
+    provider: "Vertex",
+    verified: true,
+    key: false,
+    script: `loadstring(game:HttpGet('https://raw.smokingscripts.org/vertex.lua'))()`,
+    features: `🔥 Vertex Hub - Ultimate MM2 Script (Enhanced) 🔥
+The most powerful, optimized, and feature-packed script for Murder Mystery 2! Dominate the game with autofarming, combat hacks, ESP, and premium exploits—all in one smooth, reliable hub.
+
+🚀 Enhanced Features
+
+⚔️ Combat & Gameplay
+✅ AutoFarm – Fast coin grinding (configurable routes)
+✅ Kill Aura – Auto-kill nearby players (adjustable range)
+✅ Silent Aim – Always hit your shots (bypass detection)
+✅ Auto Shoot Murderer – Instantly fire when murderer is near
+✅ Fling & Anti-Fling – Toss players or stay unflingable
+✅ Kill All – Eliminate everyone in the server (OP mode)
+✅ Invisible (PREMIUM) – True invisibility (undetectable)
+✅ Kill Murder (PREMIUM)
+
+👀 ESP & Visuals
+🔍 Player Chams – See players through walls
+🔍 Gun ESP – Locate weapons easily
+🔍 Name ESP – Display player names & roles
+💰 Coin Tracker – Shows coin spawns & counts
+
+⚡ Movement & Utility
+🏃 Walk Speed – Adjustable speed (no lagback)
+🦘 Jump Power – Super jumps or low gravity
+🔄 Auto Re-Execute – Script reloads if it breaks
+💾 Auto Save Settings – Your config stays after rejoin
+
+🛡️ Safety & Optimization
+⚡ CPU Usage – No lag, smooth performance
+🔄 Auto-Updates – Always the latest version
+
+📌 Why Choose Vertex Hub?
+✔ Most reliable script for MM2
+✔ Undetected
+✔ Simple UI, easy controls
+
+🎯 How to Use?
+1. Inject your executor
+2. Execute the script
+3. Customize settings in the GUI
+4. DOMINATE the server!`,
+  },
+  {
     id: "merqury-hub-driving-empire",
     title: "Merqury Hub — Instant Auto Arrest, Auto Rob, Auto Drive & more!",
     game: "[LAND ROVER] Driving Empire",
