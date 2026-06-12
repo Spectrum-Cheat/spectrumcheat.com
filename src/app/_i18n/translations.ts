@@ -502,7 +502,7 @@ export const translations = {
     statGames:       "เกมที่รองรับ",
     statStability:   "ความเสถียร",
     statPerformance: "ประสิทธิภาพ",
-    statExecutions:  "รอบรันที่ผ่านมา",
+    statExecutions:  "จำนวนรันทั้งหมด",
 
     // ─── Home: Trust ────────────────────────────
     trustLabel: "เกมที่รองรับ",
