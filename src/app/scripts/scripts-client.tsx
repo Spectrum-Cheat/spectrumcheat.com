@@ -60,8 +60,8 @@ export default function ScriptsPage() {
             <span className="subpage-chip">{t("scriptsGamesCount")}</span>
           </div>
           <div className="scripts-mini-stats">
-            <div><strong>2</strong><span>{t("scriptsWorking")}</span></div>
-            <div><strong>4</strong><span>{t("scriptsWaiting")}</span></div>
+            <div><strong>0</strong><span>{t("scriptsWorking")}</span></div>
+            <div><strong>6</strong><span>{t("scriptsWaiting")}</span></div>
             <div><strong>62</strong><span>{t("scriptsRetired")}</span></div>
           </div>
           <p>{t("scriptsOvrDesc")}</p>
