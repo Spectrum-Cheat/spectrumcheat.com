@@ -5377,6 +5377,29 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   height: 17px;
 }
 
+.ulgate-discord-hint {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 14px; padding: 11px 14px;
+  background: rgba(88, 101, 242, 0.08);
+  border: 1px solid rgba(88, 101, 242, 0.25);
+  border-radius: 10px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.ulgate-discord-hint-text { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.ulgate-discord-hint-title { font-weight: 600; color: var(--fg); font-size: 0.82rem; }
+.ulgate-discord-hint-sub { font-size: 0.77rem; color: var(--muted); }
+.ulgate-discord-btn {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  background: #5865F2; color: #fff;
+  border: none; border-radius: 7px;
+  font-family: var(--font-body);
+  font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
+  transition: background .15s;
+}
+.ulgate-discord-btn:hover { background: #4752c4; }
+
 .ulgate-hint {
   font-size: 0.74rem;
   color: var(--text-muted);
