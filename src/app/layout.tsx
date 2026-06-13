@@ -5,6 +5,7 @@ import "./globals.css";
 import { LanguagePopup } from "./_components/language-popup";
 import { LangProvider } from "./_i18n/context";
 import { AdScripts } from "./_components/ad-scripts";
+import { SessionProvider } from "next-auth/react";
 import type { Lang } from "./_i18n/translations";
 
 const LANGS = ["en", "th", "zh", "vi", "pt"];
@@ -97,12 +98,14 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <LangProvider initialLang={lang}>
-          <div id="google_translate_element" style={{ display: "none" }} />
-          <LanguagePopup />
-          {children}
-          <AdScripts />
-        </LangProvider>
+        <SessionProvider>
+          <LangProvider initialLang={lang}>
+            <div id="google_translate_element" style={{ display: "none" }} />
+            <LanguagePopup />
+            {children}
+            <AdScripts />
+          </LangProvider>
+        </SessionProvider>
       </body>
     </html>
   );

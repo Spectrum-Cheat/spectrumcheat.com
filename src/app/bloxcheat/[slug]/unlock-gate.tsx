@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useLang } from "../../_i18n/context";
 import { YOUTUBE_CONFIG, type LatestVideo } from "../_data/youtube";
 
@@ -40,6 +41,7 @@ export function UnlockGate({
   video3?: LatestVideo | null;
 }) {
   const { t } = useLang();
+  const { data: session, status } = useSession();
   const [mounted, setMounted] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const [done, setDone] = useState<Record<StepId, boolean>>({
@@ -74,10 +76,10 @@ export function UnlockGate({
 
   useEffect(() => {
     setMounted(true);
-    if (isUnlocked()) {
+    if (isUnlocked() || status === "authenticated") {
       setUnlocked(true);
       document.body.style.overflow = "";
-    } else {
+    } else if (status !== "loading") {
       document.body.style.overflow = "hidden";
     }
     return () => {
@@ -188,7 +190,7 @@ export function UnlockGate({
     }, 2100);
   }
 
-  if (!mounted || unlocked) return null;
+  if (!mounted || unlocked || status === "authenticated") return null;
 
   const firstPending = steps.findIndex((s) => !done[s.id]);
   const watchIndex = steps.findIndex((s) => s.id === "watch");

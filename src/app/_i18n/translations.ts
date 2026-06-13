@@ -29,6 +29,8 @@ export const translations = {
     footerPrivacy:   "Privacy Policy",
     footerSecurity:  "Security",
     footerRefund:    "Refund Policy",
+    footerFaq:       "FAQ",
+    footerFaqPage:   "Frequently Asked Questions",
     footerWhoIsZpu:  "Who is ZPU?",
 
     // ─── Common buttons ─────────────────────────
@@ -300,6 +302,11 @@ export const translations = {
     unlockProgress:  "done",
     unlockUnlocking: "Unlocking…",
     unlockDoneFinal: "Done!",
+    navLogin:        "Login",
+    navLoggedIn:     "All Scripts Unlocked!",
+    navLogout:       "Logout",
+    navToastWelcome: "Welcome",
+    navToastLogout:  "Logged out successfully",
 
     // ─── Badges ──────────────────────────────────
     badgeKeySystem:  "Key System",
@@ -418,6 +425,8 @@ export const translations = {
     footerPrivacy:   "นโยบายความเป็นส่วนตัว",
     footerSecurity:  "ความปลอดภัย",
     footerRefund:    "นโยบายคืนเงิน",
+    footerFaq:       "คำถาม",
+    footerFaqPage:   "คำถามที่พบบ่อย",
     footerWhoIsZpu:  "ZPU คือใคร?",
 
     // ─── Common buttons ─────────────────────────
@@ -688,6 +697,11 @@ export const translations = {
     unlockProgress:  "สำเร็จ",
     unlockUnlocking: "กำลังปลดล็อก…",
     unlockDoneFinal: "เสร็จสิ้น!",
+    navLogin:        "เข้าสู่ระบบ",
+    navLoggedIn:     "ปลดล็อกสคริปต์ทั้งหมดแล้ว!",
+    navLogout:       "ออกจากระบบ",
+    navToastWelcome: "ยินดีต้อนรับ",
+    navToastLogout:  "ออกจากระบบแล้ว",
 
     // ─── Badges ──────────────────────────────────
     badgeKeySystem:  "ระบบคีย์",
@@ -805,6 +819,8 @@ export const translations = {
     footerPrivacy:   "隐私政策",
     footerSecurity:  "安全",
     footerRefund:    "退款政策",
+    footerFaq:       "常见问题",
+    footerFaqPage:   "常见问题解答",
     footerWhoIsZpu:  "ZPU 是谁？",
 
     // ─── Common buttons ─────────────────────────
@@ -1075,6 +1091,11 @@ export const translations = {
     unlockProgress:  "已完成",
     unlockUnlocking: "正在解锁…",
     unlockDoneFinal: "完成！",
+    navLogin:        "登录",
+    navLoggedIn:     "全部脚本已解锁！",
+    navLogout:       "退出登录",
+    navToastWelcome: "欢迎",
+    navToastLogout:  "已退出登录",
 
     // ─── Badges ──────────────────────────────────
     badgeKeySystem:  "密钥系统",
@@ -1192,6 +1213,8 @@ export const translations = {
     footerPrivacy:   "Chính sách bảo mật",
     footerSecurity:  "Bảo mật",
     footerRefund:    "Chính sách hoàn tiền",
+    footerFaq:       "Câu hỏi",
+    footerFaqPage:   "Câu hỏi thường gặp",
     footerWhoIsZpu:  "ZPU là ai?",
 
     // ─── Common buttons ─────────────────────────
@@ -1462,6 +1485,11 @@ export const translations = {
     unlockProgress:  "hoàn thành",
     unlockUnlocking: "Đang mở khóa…",
     unlockDoneFinal: "Hoàn tất!",
+    navLogin:        "Đăng nhập",
+    navLoggedIn:     "Tất cả Script đã mở khóa!",
+    navLogout:       "Đăng xuất",
+    navToastWelcome: "Chào mừng",
+    navToastLogout:  "Đã đăng xuất",
 
     // ─── Badges ──────────────────────────────────
     badgeKeySystem:  "Hệ thống Key",
@@ -1580,6 +1608,8 @@ export const translations = {
     footerPrivacy:   "Política de Privacidade",
     footerSecurity:  "Segurança",
     footerRefund:    "Política de Reembolso",
+    footerFaq:       "Perguntas",
+    footerFaqPage:   "Perguntas Frequentes",
     footerWhoIsZpu:  "Quem é ZPU?",
 
     // ─── Common buttons ─────────────────────────
@@ -1850,6 +1880,11 @@ export const translations = {
     unlockProgress:  "concluído",
     unlockUnlocking: "Desbloqueando…",
     unlockDoneFinal: "Concluído!",
+    navLogin:        "Entrar",
+    navLoggedIn:     "Todos os Scripts Desbloqueados!",
+    navLogout:       "Sair",
+    navToastWelcome: "Bem-vindo",
+    navToastLogout:  "Sessão encerrada",
 
     // ─── Badges ──────────────────────────────────
     badgeKeySystem:  "Sistema de Key",

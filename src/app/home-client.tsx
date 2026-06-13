@@ -74,7 +74,7 @@ function FaqAccordion() {
   const { t, lang } = useLang();
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section className="faq-section">
+    <section className="faq-section" id="faq">
       <div className="faq-inner">
         <h2 className="faq-title" style={lang === "th" ? { fontFamily: "var(--font-body)" } : undefined}>
           {t("faqTitle")}

@@ -460,6 +460,106 @@ body {
   background: var(--accent-dim);
 }
 
+/* ── Discord Login Button ───────────────────────────────────── */
+.btn-discord-login {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 8px; border: 1px solid #5865f2;
+  background: #5865f220; color: #7289da;
+  font-family: var(--font-body); font-size: .82rem; font-weight: 600;
+  cursor: pointer; transition: background .18s, color .18s;
+}
+.btn-discord-login:hover { background: #5865f2; color: #fff; }
+
+/* ── Nav user chip (logged-in state) ───────────────────────── */
+.nav-user-wrap { position: relative; }
+.nav-user-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 10px 5px 5px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--text); font-family: var(--font-body); font-size: .82rem; font-weight: 500;
+  cursor: pointer; transition: border-color .18s;
+}
+.nav-user-btn:hover { border-color: var(--accent); }
+.nav-user-avatar {
+  width: 26px; height: 26px; border-radius: 50%; object-fit: cover;
+}
+.nav-user-name { max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── User dropdown ─────────────────────────────────────────── */
+.nav-user-backdrop {
+  position: fixed; inset: 0; z-index: 998;
+}
+.nav-user-drop {
+  position: absolute; top: calc(100% + 10px); right: 0;
+  min-width: 220px; z-index: 999;
+  background: #13111a; border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.7);
+  animation: fadeInDown .15s ease;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav-user-drop-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+}
+.nav-user-drop-avatar {
+  width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+}
+.nav-user-drop-name {
+  font-family: var(--font-body); font-size: .88rem; font-weight: 600; color: var(--text);
+}
+.nav-user-drop-username {
+  font-weight: 400; font-size: .8rem; color: var(--muted);
+}
+.nav-user-drop-email {
+  font-family: var(--font-body); font-size: .75rem; color: var(--muted); margin-top: 1px;
+  background: none; border: none; padding: 0; cursor: pointer;
+  text-align: left; transition: color .15s;
+}
+.nav-user-drop-email:hover { color: var(--accent-2); }
+.nav-user-drop-divider {
+  height: 1px; background: var(--border); margin: 0;
+}
+.nav-user-drop-status {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; font-family: var(--font-body); font-size: .8rem;
+  color: #4ade80;
+}
+.nav-user-drop-logout {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 11px 16px; background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: .84rem; color: var(--muted);
+  transition: background .15s, color .15s; text-align: left;
+}
+.nav-user-drop-logout:hover { background: rgba(239,68,68,.1); color: #f87171; }
+
+/* ── Toast notification ─────────────────────────────── */
+.toast-notification {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: #1e1c2a;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 13px 20px;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .4s ease, transform .4s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,.45);
+}
+.toast-notification.hiding {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
 .btn-ghost {
   font-family: var(--font-body); font-size: .875rem; font-weight: 500;
   color: var(--text-secondary); background: none;
@@ -563,8 +663,12 @@ body {
   border-radius: 8px; transition: color .2s, background .2s;
 }
 .mobile-menu ul li a:hover { color: var(--text-primary); background: var(--surface); }
-.mobile-cta { display: flex; gap: 10px; margin-top: 16px; }
+.mobile-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .mobile-cta .btn-primary { flex: 1; justify-content: center; text-align: center; }
+.mobile-user-section { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 4px; }
+.mobile-user-info { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(255,255,255,.05); border-radius: 10px; font-size: .88rem; color: var(--fg); }
+.mobile-user-info img { width: 28px; height: 28px; border-radius: 50%; }
+.mobile-logout-btn { width: 100%; justify-content: center; }
 
 /* ═══════════════════════════════════════
    HERO
