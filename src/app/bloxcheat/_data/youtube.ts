@@ -49,12 +49,13 @@ function videoFromEntry(entry: string): LatestVideo | null {
   };
 }
 
-// ── Fetch the two latest videos from the channel's public RSS feed ──
+// ── Fetch the latest videos from the channel's public RSS feed ──
 // No API key / quota needed. Cached on the server (revalidate: 1h).
-// [0] = latest upload, [1] = the upload right before it (may be null).
+// latest = newest upload, previous = the one before it, third = the one before that.
 export async function getLatestVideos(): Promise<{
   latest: LatestVideo;
   previous: LatestVideo | null;
+  third: LatestVideo | null;
 }> {
   const fallback: LatestVideo = {
     url: YOUTUBE_CONFIG.fallbackVideoUrl,
@@ -70,14 +71,15 @@ export async function getLatestVideos(): Promise<{
         headers: { "User-Agent": "Mozilla/5.0" },
       }
     );
-    if (!res.ok) return { latest: fallback, previous: null };
+    if (!res.ok) return { latest: fallback, previous: null, third: null };
     const xml = await res.text();
     const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map((m) => m[1]);
     const latest = entries[0] ? videoFromEntry(entries[0]) : null;
     const previous = entries[1] ? videoFromEntry(entries[1]) : null;
-    return { latest: latest ?? fallback, previous };
+    const third = entries[2] ? videoFromEntry(entries[2]) : null;
+    return { latest: latest ?? fallback, previous, third };
   } catch {
-    return { latest: fallback, previous: null };
+    return { latest: fallback, previous: null, third: null };
   }
 }
 

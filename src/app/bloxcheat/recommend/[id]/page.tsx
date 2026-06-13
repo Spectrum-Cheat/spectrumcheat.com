@@ -34,7 +34,7 @@ export default async function RecommendScriptPage({ params }: { params: Promise<
 
   return (
     <>
-      <UnlockGate video={videos.latest} video2={videos.previous} />
+      <UnlockGate video={videos.latest} video2={videos.previous} video3={videos.third} />
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
       <main className="subpage">

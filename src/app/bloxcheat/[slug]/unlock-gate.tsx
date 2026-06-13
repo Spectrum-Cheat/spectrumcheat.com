@@ -8,7 +8,7 @@ const STORAGE_KEY = "spectrum-script-unlock";
 // How lenient the "did you actually stay" check is (ms subtracted from required).
 const REVEAL_TOLERANCE_MS = 1500;
 
-type StepId = "watch" | "watch2" | "sub" | "like" | "like2";
+type StepId = "watch" | "watch2" | "watch3" | "sub" | "like" | "like2";
 type StepState = "locked" | "ready" | "verifying" | "done";
 
 function isUnlocked(): boolean {
@@ -30,13 +30,22 @@ const YTIcon = (
   </svg>
 );
 
-export function UnlockGate({ video, video2 }: { video: LatestVideo; video2?: LatestVideo | null }) {
+export function UnlockGate({
+  video,
+  video2,
+  video3,
+}: {
+  video: LatestVideo;
+  video2?: LatestVideo | null;
+  video3?: LatestVideo | null;
+}) {
   const { t } = useLang();
   const [mounted, setMounted] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const [done, setDone] = useState<Record<StepId, boolean>>({
     watch: false,
     watch2: false,
+    watch3: false,
     sub: false,
     like: false,
     like2: false,
@@ -55,6 +64,7 @@ export function UnlockGate({ video, video2 }: { video: LatestVideo; video2?: Lat
   const seconds: Record<StepId, number> = {
     watch: YOUTUBE_CONFIG.watchSeconds,
     watch2: YOUTUBE_CONFIG.watchSeconds,
+    watch3: YOUTUBE_CONFIG.watchSeconds,
     sub: YOUTUBE_CONFIG.subscribeSeconds,
     like: YOUTUBE_CONFIG.likeSeconds,
     like2: YOUTUBE_CONFIG.likeSeconds,
@@ -106,9 +116,8 @@ export function UnlockGate({ video, video2 }: { video: LatestVideo; video2?: Lat
     ...(video2?.url
       ? [{ id: "watch2" as StepId, label: t("unlockStepWatch2"), url: video2.url }]
       : []),
-    { id: "like", label: t("unlockStepLike"), url: video.url },
-    ...(video2?.url
-      ? [{ id: "like2" as StepId, label: t("unlockStepLike2"), url: video2.url }]
+    ...(video3?.url
+      ? [{ id: "watch3" as StepId, label: t("unlockStepWatch3"), url: video3.url }]
       : []),
   ];
 
