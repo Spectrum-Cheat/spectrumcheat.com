@@ -62,7 +62,7 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
       <nav className="topbar" id="topbar">
         <div className="nav-inner">
           <div className="navLeft">
-            <Link href={homeBrandHref} className="logo-mark" aria-label="Back to top" onClick={closeMenu}>
+            <Link href={homeBrandHref} className="nav-brand-wrap" aria-label="Back to top" onClick={closeMenu}>
               <Image
                 src="/images/Spectrum Icon.png"
                 alt="Spectrum Cheat logo"
@@ -71,10 +71,10 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
                 className="logo-image"
                 priority
               />
-            </Link>
-            <Link href={homeBrandHref} className="nav-brand-text nav-brand-stack" onClick={closeMenu}>
-              <span>Spectrum</span>
-              <span>Cheat</span>
+              <span className="nav-brand-text nav-brand-stack">
+                <span>Spectrum</span>
+                <span>Cheat</span>
+              </span>
             </Link>
           </div>
 

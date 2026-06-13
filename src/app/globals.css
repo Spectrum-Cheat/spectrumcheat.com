@@ -382,6 +382,12 @@ body {
 
 /* Logo */
 .navLeft { display: flex; align-items: center; gap: 10px; }
+.nav-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
 .logo-mark {
   display: flex;
   align-items: center;
