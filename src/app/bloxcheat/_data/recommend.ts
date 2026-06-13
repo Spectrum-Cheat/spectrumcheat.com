@@ -64,6 +64,8 @@ export const CUSTOM_RECOMMEND: CustomScript[] = [
     provider: "AxonHub",
     verified: true,
     key: true,
+    views: 31874,
+    likeCount: 198,
     script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/97c3f6db55a2cf72141537a85458e5a7.lua"))()`,
     features: `⚡ Axon Hub — Grow A Garden 2 Script (Smart Auto Plant, Auto Harvest, Auto Sell, Pet & Egg Opener, Auto Steal & Garden Expansion)
 
@@ -106,6 +108,8 @@ Server & Info Tools: Live stats readout (Sheckles, Tokens, Inventory) plus serve
     provider: "AirFlow",
     verified: true,
     key: false,
+    views: 24560,
+    likeCount: 141,
     script: `loadstring(game:HttpGet("https://airflowscript.com/loader"))()`,
     features: `🌬️ AirFlow Hub — Grow a Garden 2 (Keyless · Fast Autofarm · Webhook System · 60+ Features)
 
@@ -141,6 +145,8 @@ Quick Teleports: Jump straight to shops, sell points, and key garden zones.
     provider: "Vertex",
     verified: true,
     key: false,
+    views: 58213,
+    likeCount: 312,
     script: `loadstring(game:HttpGet('https://raw.smokingscripts.org/vertex.lua'))()`,
     features: `🔥 Vertex Hub - Ultimate MM2 Script (Enhanced) 🔥
 The most powerful, optimized, and feature-packed script for Murder Mystery 2! Dominate the game with autofarming, combat hacks, ESP, and premium exploits—all in one smooth, reliable hub.

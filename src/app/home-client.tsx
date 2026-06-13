@@ -21,7 +21,7 @@ const supportedGames = [
   { name: "Dead Rails",               image: "https://tr.rbxcdn.com/180DAY-f305cb56061e478b368dca1d03dad855/256/256/Image/Webp/noFilter", badge: "DR",  href: "https://www.roblox.com/games/116495829188952/Dead-Rails" },
   { name: "Fish It!",                 image: "https://tr.rbxcdn.com/180DAY-a56d534bcf394a40e11dc1aba795253b/256/256/Image/Webp/noFilter", badge: "F!",  href: "https://www.roblox.com/games/121864768012064/Fish-It" },
   { name: "Anime Rangers X",          image: "https://tr.rbxcdn.com/180DAY-ae109a4f98423482b900aadfa48e32db/256/256/Image/Webp/noFilter", badge: "ARX", href: "https://www.roblox.com/games/111446873000464/Re-Rangers-X" },
-  { name: "Bite By Night",            image: "https://tr.rbxcdn.com/180DAY-2b392211182b7171397e09caa3be62de/256/256/Image/Webp/noFilter", badge: "BBN", href: "https://www.roblox.com/games/70845479499574/Bite-By-Night" },
+  { name: "Grow a Garden 2",          image: "https://tr.rbxcdn.com/180DAY-e87bf2524ceeb4909aa2f15f555f38cf/256/256/Image/Webp/noFilter", badge: "GAG", href: "https://www.roblox.com/games/97598239454123/Grow-a-Garden-2" },
 ];
 
 const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
