@@ -28,7 +28,10 @@ export function AdScripts() {
   useEffect(() => {
     if (NO_AD_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"))) return;
     injectScript(SOCIAL_BAR, "adsterra-socialbar");
-    injectScript(POPUNDER, "adsterra-popunder");
+    const timer = setTimeout(() => {
+      injectScript(POPUNDER, "adsterra-popunder");
+    }, 25000); // delay 25 วิก่อนโหลด popunder
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   return null;
