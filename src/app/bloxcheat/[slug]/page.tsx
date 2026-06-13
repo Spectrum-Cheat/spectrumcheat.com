@@ -7,7 +7,7 @@ import { LuaCode } from "./lua-code";
 import { SlugHero } from "./slug-hero";
 import { LikesCount, DescriptionHeading, BadgeLabel } from "./slug-labels";
 import { UnlockGate } from "./unlock-gate";
-import { getLatestVideo } from "../_data/youtube";
+import { getLatestVideos } from "../_data/youtube";
 import { AdBanner } from "../../_components/ad-banner";
 
 interface ScriptDetail {
@@ -77,9 +77,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ScriptDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [script, latestVideo] = await Promise.all([
+  const [script, videos] = await Promise.all([
     fetchScript(slug),
-    getLatestVideo(),
+    getLatestVideos(),
   ]);
 
   if (!script) notFound();
@@ -99,7 +99,7 @@ export default async function ScriptDetailPage({ params }: { params: Promise<{ s
 
   return (
     <>
-      <UnlockGate video={latestVideo} />
+      <UnlockGate video={videos.latest} video2={videos.previous} />
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
       <main className="subpage">

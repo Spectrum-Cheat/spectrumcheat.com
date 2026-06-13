@@ -8,7 +8,7 @@ const STORAGE_KEY = "spectrum-script-unlock";
 // How lenient the "did you actually stay" check is (ms subtracted from required).
 const REVEAL_TOLERANCE_MS = 1500;
 
-type StepId = "watch" | "sub" | "like";
+type StepId = "watch" | "watch2" | "sub" | "like" | "like2";
 type StepState = "locked" | "ready" | "verifying" | "done";
 
 function isUnlocked(): boolean {
@@ -30,14 +30,16 @@ const YTIcon = (
   </svg>
 );
 
-export function UnlockGate({ video }: { video: LatestVideo }) {
+export function UnlockGate({ video, video2 }: { video: LatestVideo; video2?: LatestVideo | null }) {
   const { t } = useLang();
   const [mounted, setMounted] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const [done, setDone] = useState<Record<StepId, boolean>>({
     watch: false,
+    watch2: false,
     sub: false,
     like: false,
+    like2: false,
   });
   const [verifying, setVerifying] = useState<StepId | null>(null);
   const [errorStep, setErrorStep] = useState<StepId | null>(null);
@@ -52,8 +54,10 @@ export function UnlockGate({ video }: { video: LatestVideo }) {
 
   const seconds: Record<StepId, number> = {
     watch: YOUTUBE_CONFIG.watchSeconds,
+    watch2: YOUTUBE_CONFIG.watchSeconds,
     sub: YOUTUBE_CONFIG.subscribeSeconds,
     like: YOUTUBE_CONFIG.likeSeconds,
+    like2: YOUTUBE_CONFIG.likeSeconds,
   };
   const secondsRef = useRef(seconds);
   secondsRef.current = seconds;
@@ -97,9 +101,15 @@ export function UnlockGate({ video }: { video: LatestVideo }) {
   }, []);
 
   const steps: { id: StepId; label: string; url: string }[] = [
-    { id: "watch", label: t("unlockStepWatch"), url: video.url },
     { id: "sub", label: t("unlockStepSub"), url: YOUTUBE_CONFIG.channelUrl },
+    { id: "watch", label: t("unlockStepWatch"), url: video.url },
+    ...(video2?.url
+      ? [{ id: "watch2" as StepId, label: t("unlockStepWatch2"), url: video2.url }]
+      : []),
     { id: "like", label: t("unlockStepLike"), url: video.url },
+    ...(video2?.url
+      ? [{ id: "like2" as StepId, label: t("unlockStepLike2"), url: video2.url }]
+      : []),
   ];
 
   function stepState(index: number): StepState {
@@ -172,6 +182,9 @@ export function UnlockGate({ video }: { video: LatestVideo }) {
   if (!mounted || unlocked) return null;
 
   const firstPending = steps.findIndex((s) => !done[s.id]);
+  const watchIndex = steps.findIndex((s) => s.id === "watch");
+  // Thumbnail is the "watch" step — only clickable when watch is the next pending step.
+  const watchThumbDisabled = !done.watch && firstPending !== watchIndex;
 
   return (
     <div className="ulgate-overlay">
@@ -184,7 +197,7 @@ export function UnlockGate({ video }: { video: LatestVideo }) {
           <button
             className="ulgate-video"
             onClick={() => startStep("watch", video.url)}
-            disabled={firstPending !== 0 && !done.watch}
+            disabled={watchThumbDisabled}
             aria-label={video.title ?? "Watch video"}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -225,7 +238,7 @@ export function UnlockGate({ video }: { video: LatestVideo }) {
                   )}
                   {isError && (
                     <span className="ulgate-step-note ulgate-step-note--err">
-                      {t("unlockRetryA")}{seconds[step.id]}{t("unlockRetryB")}
+                      {t("unlockRetry")}
                     </span>
                   )}
                 </span>

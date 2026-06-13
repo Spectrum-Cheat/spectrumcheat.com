@@ -37,9 +37,25 @@ export interface LatestVideo {
   thumbnail: string | null;
 }
 
-// ── Fetch the latest video from the channel's public RSS feed ──
+function videoFromEntry(entry: string): LatestVideo | null {
+  const id = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1] ?? null;
+  const title = entry.match(/<title>([^<]+)<\/title>/)?.[1] ?? null;
+  if (!id) return null;
+  return {
+    url: `https://www.youtube.com/watch?v=${id}`,
+    id,
+    title,
+    thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+  };
+}
+
+// ── Fetch the two latest videos from the channel's public RSS feed ──
 // No API key / quota needed. Cached on the server (revalidate: 1h).
-export async function getLatestVideo(): Promise<LatestVideo> {
+// [0] = latest upload, [1] = the upload right before it (may be null).
+export async function getLatestVideos(): Promise<{
+  latest: LatestVideo;
+  previous: LatestVideo | null;
+}> {
   const fallback: LatestVideo = {
     url: YOUTUBE_CONFIG.fallbackVideoUrl,
     id: null,
@@ -54,19 +70,18 @@ export async function getLatestVideo(): Promise<LatestVideo> {
         headers: { "User-Agent": "Mozilla/5.0" },
       }
     );
-    if (!res.ok) return fallback;
+    if (!res.ok) return { latest: fallback, previous: null };
     const xml = await res.text();
-    const entry = xml.match(/<entry>([\s\S]*?)<\/entry>/)?.[1] ?? "";
-    const id = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1] ?? null;
-    const title = entry.match(/<title>([^<]+)<\/title>/)?.[1] ?? null;
-    if (!id) return fallback;
-    return {
-      url: `https://www.youtube.com/watch?v=${id}`,
-      id,
-      title,
-      thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
-    };
+    const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map((m) => m[1]);
+    const latest = entries[0] ? videoFromEntry(entries[0]) : null;
+    const previous = entries[1] ? videoFromEntry(entries[1]) : null;
+    return { latest: latest ?? fallback, previous };
   } catch {
-    return fallback;
+    return { latest: fallback, previous: null };
   }
+}
+
+// Back-compat single-video helper.
+export async function getLatestVideo(): Promise<LatestVideo> {
+  return (await getLatestVideos()).latest;
 }

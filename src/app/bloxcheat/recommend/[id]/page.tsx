@@ -8,7 +8,7 @@ import { SlugHero } from "../../[slug]/slug-hero";
 import { UnlockGate } from "../../[slug]/unlock-gate";
 import { DescriptionHeading } from "../../[slug]/slug-labels";
 import { AdBanner } from "../../../_components/ad-banner";
-import { getLatestVideo } from "../../_data/youtube";
+import { getLatestVideos } from "../../_data/youtube";
 import { CUSTOM_RECOMMEND } from "../../_data/recommend";
 
 export async function generateStaticParams() {
@@ -30,11 +30,11 @@ export default async function RecommendScriptPage({ params }: { params: Promise<
   const script = CUSTOM_RECOMMEND.find((c) => c.id === id);
   if (!script) notFound();
 
-  const latestVideo = await getLatestVideo();
+  const videos = await getLatestVideos();
 
   return (
     <>
-      <UnlockGate video={latestVideo} />
+      <UnlockGate video={videos.latest} video2={videos.previous} />
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
       <main className="subpage">
