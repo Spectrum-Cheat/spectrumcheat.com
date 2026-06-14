@@ -13,7 +13,9 @@ export const translations = {
     heroSubH2:      "trusted for over 5 years!",
 
     // ─── Nav ────────────────────────────────────
-    navHome:      "Home",
+    navHome:         "Home",
+    navSearchPlaceholder: "Search...",
+    navSearchPopular:     "POPULAR SEARCHES",
     navScripts:   "Scripts",
     navStatus:    "Status",
     navGetKey:    "Get Key",
@@ -497,7 +499,9 @@ export const translations = {
     heroSubH2:      "ไว้วางใจกว่า 5 ปี",
 
     // ─── Nav ────────────────────────────────────
-    navHome:      "หน้าแรก",
+    navHome:         "หน้าแรก",
+    navSearchPlaceholder: "ค้นหา...",
+    navSearchPopular:     "ค้นหายอดนิยม",
     navScripts:   "สคริปต์",
     navStatus:    "สถานะ",
     navGetKey:    "หาคีย์",
@@ -979,7 +983,9 @@ export const translations = {
     heroSubH2:      "获得超过5年的信任！",
 
     // ─── Nav ────────────────────────────────────
-    navHome:      "首页",
+    navHome:         "首页",
+    navSearchPlaceholder: "搜索...",
+    navSearchPopular:     "热门搜索",
     navScripts:   "脚本",
     navStatus:    "状态",
     navGetKey:    "获取密钥",
@@ -1461,7 +1467,9 @@ export const translations = {
     heroSubH2:      "được tin dùng hơn 5 năm!",
 
     // ─── Nav ────────────────────────────────────
-    navHome:      "Trang chủ",
+    navHome:         "Trang chủ",
+    navSearchPlaceholder: "Tìm kiếm...",
+    navSearchPopular:     "TÌM KIẾM PHỔ BIẾN",
     navScripts:   "Script",
     navStatus:    "Trạng thái",
     navGetKey:    "Lấy Key",
@@ -1944,7 +1952,9 @@ export const translations = {
     heroSubH2:      "confiada há mais de 5 anos!",
 
     // ─── Nav ────────────────────────────────────
-    navHome:      "Início",
+    navHome:         "Início",
+    navSearchPlaceholder: "Pesquisar...",
+    navSearchPopular:     "BUSCAS POPULARES",
     navScripts:   "Scripts",
     navStatus:    "Status",
     navGetKey:    "Pegar Key",

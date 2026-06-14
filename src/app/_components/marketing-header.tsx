@@ -143,13 +143,13 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
                     ref={searchRef}
                     type="text"
                     className="search-input"
-                    placeholder="Search..."
+                    placeholder={t("navSearchPlaceholder")}
                   />
                   <kbd className="search-esc">Esc</kbd>
                 </div>
                 {!searchClosing && (
                   <div className="search-dropdown">
-                    <div className="search-dropdown-label">POPULAR SEARCHES</div>
+                    <div className="search-dropdown-label">{t("navSearchPopular")}</div>
                     {[
                       { label: "Executors", href: "/executors" },
                       { label: "Blox Cheat", href: "/bloxcheat" },
