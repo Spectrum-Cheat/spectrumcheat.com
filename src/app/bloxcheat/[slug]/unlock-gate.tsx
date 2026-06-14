@@ -287,7 +287,7 @@ export function UnlockGate({
             <span className="ulgate-discord-hint-sub">{t("unlockDiscordHint2")}</span>
             <span className="ulgate-discord-hint-sub">{t("unlockDiscordHint3")}</span>
           </div>
-          <button className="ulgate-discord-btn" onClick={() => signIn("discord")}>
+          <button className="ulgate-discord-btn" onClick={() => { sessionStorage.setItem("justLoggedIn", "1"); signIn("discord"); }}>
             {t("navLogin")}
           </button>
         </div>

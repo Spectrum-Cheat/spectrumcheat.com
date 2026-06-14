@@ -37,9 +37,15 @@ export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHr
               <Link href="/" className="btn-outline">
                 {t("btnBackHome")}
               </Link>
-              <a href={ctaHref} target="_blank" rel="noreferrer" className="btn-primary">
-                {resolvedCtaLabel}
-              </a>
+              {ctaHref.startsWith("/") ? (
+                <Link href={ctaHref} className="btn-primary">
+                  {resolvedCtaLabel}
+                </Link>
+              ) : (
+                <a href={ctaHref} target="_blank" rel="noreferrer" className="btn-primary">
+                  {resolvedCtaLabel}
+                </a>
+              )}
             </div>
           </div>
         </section>
