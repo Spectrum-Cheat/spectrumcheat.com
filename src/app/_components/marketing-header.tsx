@@ -84,13 +84,14 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
 
   const closeMenu = () => setMenuOpen(false);
 
-  const navItems = [
+  type NavItem = { href: string; label: string; badge?: string; dot?: boolean; divider?: boolean };
+  const navItems: NavItem[] = [
     { href: "/",          label: t("navHome") },
     { href: "/scripts",   label: t("navScripts") },
     { href: "/status",    label: t("navStatus") },
     { href: "/getkey",    label: t("navGetKey") },
     { href: "/executors", label: t("navExecutors") },
-{ href: "/bloxcheat", label: t("navBloxCheat"), badge: "NEW" },
+    { href: "/bloxcheat", label: t("navBloxCheat"), badge: "NEW" },
   ];
 
   return (
