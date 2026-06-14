@@ -102,7 +102,7 @@ export default async function RootLayout({
           <LangProvider initialLang={lang}>
             <div id="google_translate_element" style={{ display: "none" }} />
             <LanguagePopup />
-            {children}
+{children}
             <AdScripts />
           </LangProvider>
         </SessionProvider>

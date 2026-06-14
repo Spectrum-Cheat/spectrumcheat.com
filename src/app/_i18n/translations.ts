@@ -6,12 +6,14 @@ export const translations = {
     heroTitle1:   "The next generation",
     heroTitleOf:  "of",
     heroTitle2:   "Roblox Cheats",
-    heroBadge:      "Spectrum Cheat // Premium Roblox Suite",
+    heroBadge:      "Join our community today, Let's chat now!",
+    heroBadgeJoin:  "Join Discord",
     heroSubH1:      "A premium Roblox cheat",
     heroSubMid:     " built for smooth performance and reliable daily use. Supports multiple games & working on mobile and PC, and ",
     heroSubH2:      "trusted for over 5 years!",
 
     // ─── Nav ────────────────────────────────────
+    navHome:      "Home",
     navScripts:   "Scripts",
     navStatus:    "Status",
     navGetKey:    "Get Key",
@@ -489,11 +491,13 @@ export const translations = {
     heroTitleOf:  "ของ",
     heroTitle2:   "โปรแกรมโกง Roblox",
     heroBadge:      "Spectrum Cheat // โปรแกรมโกง Roblox",
+    heroBadgeJoin:  "เข้าร่วม Discord",
     heroSubH1:      "โปรแกรมช่วยเล่น Roblox ระดับพรีเมียม",
     heroSubMid:     " ที่ออกแบบมาเพื่อการใช้งานลื่นไหล เสถียร และใช้งานได้จริงในทุกวัน รองรับหลายเกม ทั้งมือถือและ PC ที่ผู้ใช้",
     heroSubH2:      "ไว้วางใจกว่า 5 ปี",
 
     // ─── Nav ────────────────────────────────────
+    navHome:      "หน้าแรก",
     navScripts:   "สคริปต์",
     navStatus:    "สถานะ",
     navGetKey:    "หาคีย์",
@@ -969,11 +973,13 @@ export const translations = {
     heroTitleOf:  "的",
     heroTitle2:   "罗布乐思 辅助工具",
     heroBadge:      "Spectrum Cheat // 高端 罗布乐思 套件",
+    heroBadgeJoin:  "加入 Discord",
     heroSubH1:      "高端 罗布乐思 辅助工具",
     heroSubMid:     " 专为流畅性能和可靠的日常使用而打造，支持多款游戏，适用于手机和PC，已",
     heroSubH2:      "获得超过5年的信任！",
 
     // ─── Nav ────────────────────────────────────
+    navHome:      "首页",
     navScripts:   "脚本",
     navStatus:    "状态",
     navGetKey:    "获取密钥",
@@ -1449,11 +1455,13 @@ export const translations = {
     heroTitleOf:  "của",
     heroTitle2:   "Roblox Cheat",
     heroBadge:      "Spectrum Cheat // Bộ công cụ Roblox cao cấp",
+    heroBadgeJoin:  "Tham gia Discord",
     heroSubH1:      "Công cụ hỗ trợ Roblox cao cấp",
     heroSubMid:     " được xây dựng để hiệu suất mượt mà và sử dụng hàng ngày đáng tin cậy. Hỗ trợ nhiều trò chơi, hoạt động trên mobile và PC, và đã",
     heroSubH2:      "được tin dùng hơn 5 năm!",
 
     // ─── Nav ────────────────────────────────────
+    navHome:      "Trang chủ",
     navScripts:   "Script",
     navStatus:    "Trạng thái",
     navGetKey:    "Lấy Key",
@@ -1930,11 +1938,13 @@ export const translations = {
     heroTitleOf:  "de",
     heroTitle2:   "Roblox Cheat",
     heroBadge:      "Spectrum Cheat // Suite Premium de Roblox",
+    heroBadgeJoin:  "Entrar no Discord",
     heroSubH1:      "Uma ferramenta premium para Roblox",
     heroSubMid:     " criada para desempenho suave e uso diário confiável. Suporta vários jogos, funciona em mobile e PC, e é",
     heroSubH2:      "confiada há mais de 5 anos!",
 
     // ─── Nav ────────────────────────────────────
+    navHome:      "Início",
     navScripts:   "Scripts",
     navStatus:    "Status",
     navGetKey:    "Pegar Key",

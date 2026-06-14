@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useLang } from "../_i18n/context";
@@ -16,9 +17,19 @@ type MarketingHeaderProps = {
 export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderProps) {
   const { t } = useLang();
   const { data: session, status } = useSession();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [userDropOpen, setUserDropOpen] = useState(false);
   const [emailRevealed, setEmailRevealed] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchClosing, setSearchClosing] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const searchWrapRef = useRef<HTMLDivElement>(null);
+
+  const closeSearch = () => {
+    setSearchClosing(true);
+    setTimeout(() => { setSearchOpen(false); setSearchClosing(false); }, 180);
+  };
   const [toast, setToast] = useState<{ title: string; subtitle: string; hiding: boolean } | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prevStatus = useRef<string>("");
@@ -55,14 +66,31 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
     await signOut({ redirect: false });
   };
 
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchRef.current?.focus(), 50);
+    }
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeSearch(); };
+    const onClickOutside = (e: MouseEvent) => {
+      if (searchWrapRef.current && !searchWrapRef.current.contains(e.target as Node)) closeSearch();
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClickOutside);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClickOutside);
+    };
+  }, [searchOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
   const navItems = [
+    { href: "/",          label: t("navHome") },
     { href: "/scripts",   label: t("navScripts") },
     { href: "/status",    label: t("navStatus") },
     { href: "/getkey",    label: t("navGetKey") },
     { href: "/executors", label: t("navExecutors") },
-    { href: "/bloxcheat", label: t("navBloxCheat") },
+{ href: "/bloxcheat", label: t("navBloxCheat"), badge: "NEW" },
   ];
 
   return (
@@ -88,17 +116,67 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
 
           <div className="navCenter desktop-menu">
             <ul>
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
+              {navItems.map((item, i) => (
+                item.divider
+                  ? <li key={`div-${i}`} className="nav-divider" aria-hidden="true" />
+                  : <li key={item.href}>
+                      <Link href={item.href} className={pathname === item.href ? "nav-active" : ""}>
+                        {item.dot && <span className="nav-status-dot" />}
+                        {item.label}
+                      </Link>
+                      {item.badge && <span className="nav-badge">{item.badge}</span>}
+                    </li>
               ))}
             </ul>
           </div>
 
           <div className="navRight">
-            <a href={buyNowUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-              {t("navBuyNow")}
+            {searchOpen ? (
+              <div className="nav-search-wrap" ref={searchWrapRef}>
+                <div className={`nav-search-inline${searchClosing ? " closing" : ""}`}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  <input
+                    ref={searchRef}
+                    type="text"
+                    className="search-input"
+                    placeholder="Search..."
+                  />
+                  <kbd className="search-esc">Esc</kbd>
+                </div>
+                {!searchClosing && (
+                  <div className="search-dropdown">
+                    <div className="search-dropdown-label">POPULAR SEARCHES</div>
+                    {[
+                      { label: "Executors", href: "/executors" },
+                      { label: "Blox Cheat", href: "/bloxcheat" },
+                      { label: "FAQ", href: "/#faq" },
+                    ].map((item) => (
+                      <Link key={item.href} href={item.href} className="search-dropdown-item" onClick={() => closeSearch()}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        {item.label}
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="search-dropdown-arrow" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button className="btn-ghost nav-icon-btn" aria-label="Search" onClick={() => setSearchOpen(true)}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </button>
+            )}
+            <a href={buyNowUrl} target="_blank" rel="noreferrer" className="btn-ghost nav-icon-btn" aria-label="Buy Now">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
             </a>
             {status === "authenticated" && session?.user ? (
               <div className="nav-user-wrap">
@@ -234,7 +312,7 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
         </div>
       )}
 
-      <div className={menuOpen ? "mobile-menu open" : "mobile-menu"} id="mobileMenu">
+<div className={menuOpen ? "mobile-menu open" : "mobile-menu"} id="mobileMenu">
         <ul>
           {navItems.map((item) => (
             <li key={item.href}>
