@@ -13,9 +13,10 @@ type SubpageShellProps = {
   children: React.ReactNode;
   ctaLabel?: string;
   ctaHref?: string;
+  pageClass?: string;
 };
 
-export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHref = "https://discord.gg/hackerclub" }: SubpageShellProps) {
+export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHref = "https://discord.gg/hackerclub", pageClass }: SubpageShellProps) {
   const { t, lang } = useLang();
   const resolvedCtaLabel = ctaLabel ?? t("btnJoinDiscord");
 
@@ -23,7 +24,7 @@ export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHr
     <>
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
-      <main className="subpage">
+      <main className={`subpage${pageClass ? ` ${pageClass}` : ""}`}>
         <section className="subpage-hero">
           <div className="hero-grid-lines subpage-grid" />
           <div className="subpage-inner">

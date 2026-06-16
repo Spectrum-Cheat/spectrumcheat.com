@@ -113,7 +113,7 @@ export default async function BloxCheatPage({
     <>
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
-      <main className="subpage">
+      <main className="subpage subpage-bloxcheat">
         <BloxHeroSection />
 
         <section className="subpage-content">

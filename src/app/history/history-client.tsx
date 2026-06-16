@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { SubpageShell } from "../_components/subpage-shell";
+import { FallingBeams } from "../_components/falling-beams";
 import { useLang } from "../_i18n/context";
 
 type Tab = "orders" | "topup";
@@ -13,6 +14,11 @@ function HistoryContent() {
   const initialTab = (searchParams.get("tab") as Tab) ?? "orders";
   const [tab, setTab] = useState<Tab>(initialTab);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    document.documentElement.classList.add("page-history");
+    return () => document.documentElement.classList.remove("page-history");
+  }, []);
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "orders", label: t("historyTabOrders") },
@@ -32,7 +38,10 @@ function HistoryContent() {
       subtitle={t("historySub")}
       ctaLabel={t("navTopup")}
       ctaHref="/topup"
+      pageClass="subpage-bloxcheat"
     >
+      <FallingBeams />
+
       {/* Tabs */}
       <div className="history-tabs">
         {tabs.map(({ key, label }) => (

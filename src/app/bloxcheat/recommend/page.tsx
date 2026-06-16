@@ -70,7 +70,7 @@ export default async function RecommendPage() {
     <>
       <div className="noise-overlay" />
       <MarketingHeader homeBrandHref="/" />
-      <main className="subpage">
+      <main className="subpage subpage-bloxcheat">
 
         {/* Mini hero */}
         <RecommendHero />

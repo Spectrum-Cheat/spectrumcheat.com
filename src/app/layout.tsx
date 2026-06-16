@@ -3,6 +3,7 @@ import { DM_Mono, Instrument_Serif, Syne } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { LanguagePopup } from "./_components/language-popup";
+import { AdBlockDetector } from "./_components/adblock-detector";
 import { LangProvider } from "./_i18n/context";
 import { AdScripts } from "./_components/ad-scripts";
 import { SessionProvider } from "next-auth/react";
@@ -102,6 +103,7 @@ export default async function RootLayout({
           <LangProvider initialLang={lang}>
             <div id="google_translate_element" style={{ display: "none" }} />
             <LanguagePopup />
+            <AdBlockDetector />
 {children}
             <AdScripts />
           </LangProvider>

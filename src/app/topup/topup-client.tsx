@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { SubpageShell } from "../_components/subpage-shell";
+import { FallingBeams } from "../_components/falling-beams";
 import { useLang } from "../_i18n/context";
 
 type Method = "envelope" | "slip" | "promptpay" | "crypto" | "voucher" | null;
@@ -25,6 +26,11 @@ export default function TopupClient() {
   const [cryptoAmount, setCryptoAmount] = useState("1");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const ppFileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    document.documentElement.classList.add("page-topup");
+    return () => document.documentElement.classList.remove("page-topup");
+  }, []);
 
   const CRYPTO_CURRENCY: Record<CryptoNet, string> = { binance: "BNB", usdt: "USDT", litecoin: "LTC", bitcoin: "BTC" };
   const [thbPrices, setThbPrices] = useState<Record<CryptoNet, number>>({ binance: 0, usdt: 32.73, litecoin: 0, bitcoin: 0 });
@@ -76,7 +82,10 @@ export default function TopupClient() {
       subtitle={t("topupSub")}
       ctaLabel={t("navOrderHistory")}
       ctaHref="/history"
+      pageClass="subpage-bloxcheat"
     >
+      <FallingBeams />
+
       {/* ── Step 1: choose method ── */}
       {method === null && (
         <div className="topup-section">

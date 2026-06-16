@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SubpageShell } from "../_components/subpage-shell";
+import { FallingBeams } from "../_components/falling-beams";
 import { useLang } from "../_i18n/context";
 import type { TranslationKey } from "../_i18n/translations";
 
@@ -32,6 +33,14 @@ function formatDate(dateStr: string): string {
   return dateStr.replace(" UTC", "").trim();
 }
 
+const COST_TERMS: { re: RegExp; key: TranslationKey }[] = [
+  { re: /lifetime/gi, key: "execLifetime" },
+  { re: /weekly/gi,   key: "execWeekly" },
+  { re: /monthly/gi,  key: "execMonthly" },
+  { re: /daily/gi,    key: "execDaily" },
+  { re: /yearly/gi,   key: "execYearly" },
+];
+
 interface Props {
   exploits: Exploit[];
   versions: VersionsData | null;
@@ -40,6 +49,14 @@ interface Props {
 export default function ExecutorsClient({ exploits, versions }: Props) {
   const { t } = useLang();
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.documentElement.classList.add("page-executors");
+    return () => document.documentElement.classList.remove("page-executors");
+  }, []);
+
+  const localizeCost = (cost: string) =>
+    COST_TERMS.reduce((acc, { re, key }) => acc.replace(re, t(key)), cost);
 
   const updatedCount    = exploits.filter((e) => e.updateStatus).length;
   const notUpdatedCount = exploits.filter((e) => !e.updateStatus).length;
@@ -55,7 +72,25 @@ export default function ExecutorsClient({ exploits, versions }: Props) {
       subtitle={t("executorsPageSub")}
       ctaLabel={t("executorsBuyKey")}
       ctaHref="https://spectrumcheat.rexzy.xyz/shop/category/Mg=="
+      pageClass="subpage-executors"
     >
+      <FallingBeams />
+
+      <div className="scr-stats-row exec-stats-row">
+        <div className="scr-stat scr-stat--ok">
+          <strong>{updatedCount}</strong>
+          <span>{t("executorsUpdCard")}</span>
+        </div>
+        <div className="scr-stat scr-stat--warn">
+          <strong>{notUpdatedCount}</strong>
+          <span>{t("executorsNotUpd")}</span>
+        </div>
+        <div className="scr-stat scr-stat--muted">
+          <strong>{exploits.length}</strong>
+          <span>{t("executorsTotal")}</span>
+        </div>
+      </div>
+
       {versions && (winVersion || macVersion) && (
         <div className="subpage-card exec-version-card">
           <div className="exec-version-header">
@@ -94,21 +129,6 @@ export default function ExecutorsClient({ exploits, versions }: Props) {
         </div>
       )}
 
-      <div className="subpage-grid-cards status-summary-grid exec-stats-grid">
-        <div className="subpage-card status-summary-card working">
-          <div className="subpage-card-header"><h2>{t("executorsUpdCard")}</h2><span className="subpage-chip">{updatedCount}</span></div>
-          <p>{t("executorsUpdDesc")}</p>
-        </div>
-        <div className="subpage-card status-summary-card exec-outdated-card">
-          <div className="subpage-card-header"><h2>{t("executorsNotUpd")}</h2><span className="subpage-chip">{notUpdatedCount}</span></div>
-          <p>{t("executorsNotUpdDesc")}</p>
-        </div>
-        <div className="subpage-card status-summary-card offline">
-          <div className="subpage-card-header"><h2>{t("executorsTotal")}</h2><span className="subpage-chip">{exploits.length}</span></div>
-          <p>{t("executorsTotalDesc")}</p>
-        </div>
-      </div>
-
       {exploits.length === 0 ? (
         <div className="subpage-card" style={{ textAlign: "center", padding: "48px 28px" }}>
           <p>{t("executorsNoData")}</p>
@@ -145,8 +165,8 @@ export default function ExecutorsClient({ exploits, versions }: Props) {
                           style={{ cursor: hasExpand ? "pointer" : "default" }}
                         >
                           <div className="exec-row-left">
-                            <div className="exec-row-name">
-                              <span className="exec-title">{exploit.title}</span>
+                            <span className="exec-title">{exploit.title}</span>
+                            <div className="exec-row-tags">
                               {exploit.version && <span className="exec-tag version">{exploit.version}</span>}
                               {exploit.suncPercentage > 0 && <span className="exec-tag sunc">sUNC {exploit.suncPercentage}%</span>}
                               {exploit.free && <span className="exec-tag free">{t("executorsFree")}</span>}
@@ -154,7 +174,7 @@ export default function ExecutorsClient({ exploits, versions }: Props) {
                               {exploit.detected && !exploit.updateStatus && <span className="exec-tag detected">{t("executorsDetected")}</span>}
                             </div>
                             <div className="exec-row-meta">
-                              {exploit.cost && !exploit.free && <span className="exec-meta-item">{exploit.cost}</span>}
+                              {exploit.cost && !exploit.free && <span className="exec-meta-item">{localizeCost(exploit.cost)}</span>}
                               {exploit.updatedDate && <span className="exec-meta-item exec-meta-date">{t("executorsLastUpdPrefix")} {formatDate(exploit.updatedDate)}</span>}
                             </div>
                           </div>
