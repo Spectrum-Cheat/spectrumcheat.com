@@ -34,7 +34,7 @@ async function fetchVersions(): Promise<VersionsData | null> {
 }
 
 export const metadata: Metadata = {
-  title: "Executors — Roblox Executor Status & Compatibility",
+  title: "Roblox Executors",
   description:
     "Browse live executor status, version info, and compatibility data for Roblox script executors — powered by WEAO.",
   keywords: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://spectrumcheat.com/executors" },
   openGraph: {
-    title: "Executors — Roblox Executor Status & Compatibility",
+    title: "Roblox Executors | Spectrum Cheat",
     description:
       "Live executor status, version info, and compatibility data for Roblox script executors.",
     url: "https://spectrumcheat.com/executors",

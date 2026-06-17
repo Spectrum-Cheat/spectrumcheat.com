@@ -8,7 +8,7 @@ import { RECOMMEND_SCRIPTS, CUSTOM_RECOMMEND } from "../_data/recommend";
 import { AdNative } from "../../_components/ad-native";
 
 export const metadata: Metadata = {
-  title: "Recommend — Blox Cheat",
+  title: { absolute: "Recommend Scripts | Blox Cheat" },
   description: "Scripts handpicked by Spectrum — featured in our YouTube videos.",
 };
 

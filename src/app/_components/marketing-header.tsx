@@ -247,6 +247,12 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
                         </svg>
                         {t("navLoggedIn")}
                       </div>
+                      <div className="nav-user-drop-status">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        {t("navPerkKey")}
+                      </div>
                       <div className="nav-user-drop-divider" />
                       <button className="nav-user-drop-logout" onClick={handleLogout}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

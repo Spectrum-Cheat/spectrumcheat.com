@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AboutZpu } from "./about-client";
 
 export const metadata: Metadata = {
-  title: "About ZPU | Owner & Founder of Spectrum Cheat",
+  title: { absolute: "About ZPU | The Owner & Founder of Spectrum Cheat" },
   description:
     "Who is ZPU (xZPUHigh)? Meet ZPU — founder, developer, and entrepreneur building digital products and online businesses, and the creator behind Spectrum Cheat.",
   keywords: [
@@ -143,7 +143,7 @@ export const metadata: Metadata = {
     canonical: "https://spectrumcheat.com/zpu",
   },
   openGraph: {
-    title: "About ZPU | Owner & Founder of Spectrum Cheat",
+    title: "About ZPU | The Owner & Founder of Spectrum Cheat",
     description:
       "Who is ZPU (xZPUHigh)? Meet ZPU — founder, developer, and entrepreneur building digital products and online businesses.",
     url: "https://spectrumcheat.com/zpu",
@@ -154,7 +154,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About ZPU | Owner & Founder of Spectrum Cheat",
+    title: "About ZPU | The Owner & Founder of Spectrum Cheat",
     description: "Who is ZPU (xZPUHigh)? Founder, developer, and entrepreneur.",
     images: ["https://spectrumcheat.com/images/benner_1.png"],
   },
