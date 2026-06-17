@@ -26,6 +26,9 @@ const supportedGames = [
 
 const featureIcons = ["shield", "spark", "chip", "bolt", "crown", "headset"] as const;
 
+// Hero effect: "constellation" | "particles" | "aurora" | "embers" (rising glow motes)
+const HERO_FX: "constellation" | "particles" | "aurora" | "embers" = "constellation";
+
 const executors = [
   { name: "Codex", image: "/executors/codex.png" },
   { name: "Delta", image: "/executors/delta.webp" },
@@ -120,8 +123,8 @@ function DiscordLive({ online, members }: { online: number | null; members: numb
   return (
     <section className="discord-live-section">
       <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer" className="discord-live-card">
-        <svg className="discord-live-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M20.3 4.4A16.7 16.7 0 0 0 16.2 3l-.2.5c1.5.4 2.2 1 2.2 1a13.4 13.4 0 0 0-8.4 0s.8-.7 2.5-1.1L12 3a16.6 16.6 0 0 0-4.1 1.4C5.3 8.2 4.7 11.9 5 15.6a16.9 16.9 0 0 0 5 2.5l1.2-1.9c-.7-.3-1.3-.6-1.9-1 .2.2 1.6 1.4 5.4 1.4s5.2-1.2 5.4-1.4c-.6.4-1.2.7-1.9 1l1.2 1.9a16.9 16.9 0 0 0 5-2.5c.4-4.3-.7-8-2.1-11.2ZM9.8 13.4c-.8 0-1.5-.8-1.5-1.8s.6-1.8 1.5-1.8c.8 0 1.5.8 1.5 1.8s-.7 1.8-1.5 1.8Zm4.4 0c-.8 0-1.5-.8-1.5-1.8s.6-1.8 1.5-1.8c.8 0 1.5.8 1.5 1.8s-.7 1.8-1.5 1.8Z" />
+        <svg className="discord-live-icon" viewBox="0 -28.5 256 256" aria-hidden="true">
+          <path fill="currentColor" d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z" />
         </svg>
         <div className="discord-live-text">
           <span className="discord-live-name">ZPU Community</span>
@@ -141,6 +144,11 @@ function DiscordLive({ online, members }: { online: number | null; members: numb
 export default function Home({ discordOnline, discordMembers }: { discordOnline?: number | null; discordMembers?: number | null }) {
   const { t, lang } = useLang();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    document.documentElement.classList.add("page-home");
+    return () => document.documentElement.classList.remove("page-home");
+  }, []);
 
   const featureCards = [
     { icon: "shield", titleKey: "feat1Title" as const, descKey: "feat1Desc" as const, delay: "0s" },
@@ -236,7 +244,9 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
     };
   }, []);
 
-  // Starfield
+  // Hero background FX — switch HERO_FX to compare looks:
+  //   "constellation" = purple glowing dots + faint connecting lines
+  //   "particles"     = purple glowing dots drifting (no lines)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -246,21 +256,118 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
     const resize = () => { const hero = canvas.parentElement; canvas.width = hero ? hero.offsetWidth : window.innerWidth; canvas.height = hero ? hero.offsetHeight : window.innerHeight; };
     resize();
     window.addEventListener("resize", resize);
-    const stars = Array.from({ length: 180 }, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.2 + 0.2, speed: Math.random() * 0.25 + 0.05, opacity: Math.random() * 0.6 + 0.2, twinkleSpeed: Math.random() * 0.008 + 0.003, twinkleDir: Math.random() > 0.5 ? 1 : -1 }));
+
+    const COUNT = 70;
+    const LINK_DIST = 130;
+    const dots = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      r: Math.random() * 1.6 + 0.7,
+    }));
+
+    // Aurora blobs
+    const AURORA_COLORS = ["139,92,246", "168,85,247", "76,29,149", "124,58,237"];
+    const blobs = Array.from({ length: 5 }, (_, i) => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+      r: Math.random() * 160 + 220,
+      color: AURORA_COLORS[i % AURORA_COLORS.length],
+    }));
+
+    // Rising embers
+    const embers = Array.from({ length: 60 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.8 + 0.6,
+      speed: Math.random() * 0.4 + 0.2,
+      phase: Math.random() * Math.PI * 2,
+      swaySpeed: Math.random() * 0.02 + 0.01,
+      alpha: Math.random() * 0.5 + 0.3,
+    }));
+
     let last = performance.now();
     const draw = (now: number) => {
-      // delta normalized to a 60fps frame so speed is the same on any refresh rate
       const dt = Math.min((now - last) / 16.667, 3);
       last = now;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach((star) => {
-        star.opacity += star.twinkleSpeed * star.twinkleDir * dt;
-        if (star.opacity >= 0.85 || star.opacity <= 0.1) star.twinkleDir *= -1;
-        star.y += star.speed * dt;
-        if (star.y > canvas.height) { star.y = 0; star.x = Math.random() * canvas.width; }
-        ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${star.opacity})`; ctx.fill();
-      });
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      if (HERO_FX === "embers") {
+        ctx.shadowColor = "rgba(139,92,246,0.9)";
+        ctx.shadowBlur = 8;
+        for (const e of embers) {
+          e.y -= e.speed * dt;
+          e.phase += e.swaySpeed * dt;
+          e.x += Math.sin(e.phase) * 0.3 * dt;
+          if (e.y < -10) { e.y = h + 10; e.x = Math.random() * w; }
+          // fade near the top
+          const fade = e.y < h * 0.2 ? Math.max(0, e.y / (h * 0.2)) : 1;
+          ctx.beginPath();
+          ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(190,165,255,${e.alpha * fade})`;
+          ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+        animId = requestAnimationFrame(draw);
+        return;
+      }
+
+      if (HERO_FX === "aurora") {
+        ctx.globalCompositeOperation = "lighter";
+        for (const b of blobs) {
+          b.x += b.vx * dt; b.y += b.vy * dt;
+          if (b.x < -b.r) b.x = w + b.r; else if (b.x > w + b.r) b.x = -b.r;
+          if (b.y < -b.r) b.y = h + b.r; else if (b.y > h + b.r) b.y = -b.r;
+          const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+          g.addColorStop(0, `rgba(${b.color},0.16)`);
+          g.addColorStop(1, `rgba(${b.color},0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalCompositeOperation = "source-over";
+        animId = requestAnimationFrame(draw);
+        return;
+      }
+
+      // connecting lines
+      if (HERO_FX === "constellation") {
+        ctx.lineWidth = 1;
+        for (let i = 0; i < COUNT; i++) {
+          for (let j = i + 1; j < COUNT; j++) {
+            const dx = dots[i].x - dots[j].x;
+            const dy = dots[i].y - dots[j].y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < LINK_DIST) {
+              ctx.strokeStyle = `rgba(139,92,246,${(1 - dist / LINK_DIST) * 0.3})`;
+              ctx.beginPath();
+              ctx.moveTo(dots[i].x, dots[i].y);
+              ctx.lineTo(dots[j].x, dots[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // glowing dots
+      ctx.shadowColor = "rgba(139,92,246,0.9)";
+      ctx.shadowBlur = 8;
+      for (const d of dots) {
+        d.x += d.vx * dt; d.y += d.vy * dt;
+        if (d.x < 0) d.x += w; else if (d.x > w) d.x -= w;
+        if (d.y < 0) d.y += h; else if (d.y > h) d.y -= h;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(190,165,255,0.9)";
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+
       animId = requestAnimationFrame(draw);
     };
     animId = requestAnimationFrame(draw);
