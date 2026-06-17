@@ -5576,6 +5576,7 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 .zpu-music-wrap { display: contents; }
 .zpu-music-backdrop { display: none; }
 .zpu-music-note { display: none; }
+@keyframes zpu-note-spin { to { transform: rotate(360deg); } }
 .zpu-name {
   font-family: var(--font-body), system-ui, sans-serif;
   font-size: clamp(4rem, 16vw, 9rem);
@@ -6460,6 +6461,8 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   .zpu-player-volume { margin-left: 0; }
   .zpu-player-vol-slider { display: none; }
   .zpu-music-note { display: inline-flex; right: 70px; left: auto; }
+  .zpu-music-note svg { animation: zpu-note-spin 4s linear infinite; animation-play-state: paused; transform-origin: center; }
+  html.music-playing .zpu-music-note svg { animation-play-state: running; }
   .zpu-hero { border: none; background: none; overflow: visible; }
 }
 

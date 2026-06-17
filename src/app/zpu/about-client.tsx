@@ -538,6 +538,12 @@ function MusicPlayer() {
   const [volume, setVolume] = useState(0.3);
   const [popupOpen, setPopupOpen] = useState(false);
 
+  // Spin the floating note icon only while music is actually playing.
+  useEffect(() => {
+    document.documentElement.classList.toggle("music-playing", playing);
+    return () => document.documentElement.classList.remove("music-playing");
+  }, [playing]);
+
   // Restore saved preferences + autoplay (unless the user paused last time).
   useEffect(() => {
     const a = audioRef.current;
@@ -754,7 +760,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
   ];
 
   const tinyFacts = [
-    { labelKey: "zpuTinyNickname" as const, value: "ZPU / NON 😴", color: "#22c55e" },
+    { labelKey: "zpuTinyNickname" as const, value: lang === "th" ? "ซีพียู / นน 😴" : "ZPU / NON 😴", color: "#22c55e" },
     { labelKey: "zpuTinyStatus" as const, value: "WORK HARD 🔥", color: "#ff6f00" },
   ];
 
