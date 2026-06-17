@@ -44,10 +44,9 @@ const ZPU = {
   ],
 
   works: [
-    { year: "2025-2026", name: "Spectrum Cheat", tag: "Website Official", href: "/", image: "/project%20images/Website%20Spectrum%20Cheat%202026.png" },
+    { year: "2025-2026", name: "Spectrum Cheat", tag: "Website Official", href: "/", image: "/project%20images/Spectrum%20Cheat%20New%20Model%20Eng.png" },
     { year: "2024-2026", name: "Spectrum Store", tag: "Website / Store", href: "https://spectrumcheat.rexzy.xyz", image: "/project%20images/Website%20Spectrum%20Cheat%20Store%202026.png" },
     { year: "2025-2026", name: "Blox Cheat", tag: "Website / Blog", href: "/bloxcheat", image: "/project%20images/Blox%20Cheat.png" },
-    { year: "2025-2026", name: "Blaze Top-up", tag: "Website / Store", href: "https://blazetopup.net", image: "/project%20images/blazetopup2025.png" },
     { year: "2022-2026", name: "Authentication Systems", tag: "Key & Security Systems", href: "https://spectrumcheat.com/getkey", image: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb" },
     { year: "2021-2026", name: "Spectrum Hub // [ZPU HUB]", tag: "Platform", href: "https://spectrumcheat.com/scripts", image: "/project%20images/Script%20Library%20Preview.png" },
     { year: "2024-2025", name: "Script Bloxy", tag: "Website / Blog", href: "https://scriptbloxy.com", image: "/project%20images/Script%20Bloxy%20Website2%202024.png" },

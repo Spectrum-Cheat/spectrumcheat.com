@@ -344,6 +344,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Form controls don't inherit fonts by default — force LINE Seed everywhere */
+button, input, textarea, select {
+  font-family: inherit;
+}
+
 /* ── NOISE TEXTURE OVERLAY ── */
 .noise-overlay {
   position: fixed; inset: 0;
