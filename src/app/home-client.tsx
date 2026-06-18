@@ -167,21 +167,35 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
 
   const pricingPlans = [
     {
-      tierKey: "planWeekly" as const, descKey: "planWeeklyDesc" as const, amountUSD: "$1.79", amountTHB: "59฿", perKey: "planWeeklyPer" as const, ctaKey: "planWeeklyCta" as const,
+      tierKey: "planWeekly" as const, descKey: "planWeeklyDesc" as const,
+      amountUSD: "$1.79", amountTHB: "59฿", amountCNY: "¥12.49", amountVND: "₫44,459", amountBRL: "R$9.49",
+      perKey: "planWeeklyPer" as const, ctaKey: "planWeeklyCta" as const,
       href: "https://spectrumcheat.rexzy.xyz/shop/product/Mw==", primary: false, popular: false,
       featureKeys: ["planWeeklyF1","planWeeklyF2","planWeeklyF3","planWeeklyF4","planWeeklyF5","planWeeklyF6","planWeeklyF7"] as const,
     },
     {
-      tierKey: "planMonthly" as const, descKey: "planMonthlyDesc" as const, amountUSD: "$4.69", amountTHB: "149฿", perKey: "planMonthlyPer" as const, ctaKey: "planMonthlyCta" as const,
+      tierKey: "planMonthly" as const, descKey: "planMonthlyDesc" as const,
+      amountUSD: "$4.69", amountTHB: "149฿", amountCNY: "¥34.69", amountVND: "₫119,679", amountBRL: "R$27.69",
+      perKey: "planMonthlyPer" as const, ctaKey: "planMonthlyCta" as const,
       href: "https://spectrumcheat.rexzy.xyz/shop/product/NA==", primary: true, popular: true,
       featureKeys: ["planMonthlyF1","planMonthlyF2","planMonthlyF3","planMonthlyF4","planMonthlyF5","planMonthlyF6","planMonthlyF7"] as const,
     },
     {
-      tierKey: "planQuarterly" as const, descKey: "planQuarterlyDesc" as const, amountUSD: "$9.99", amountTHB: "319฿", perKey: "planQuarterlyPer" as const, ctaKey: "planQuarterlyCta" as const,
+      tierKey: "planQuarterly" as const, descKey: "planQuarterlyDesc" as const,
+      amountUSD: "$9.99", amountTHB: "319฿", amountCNY: "¥72.99", amountVND: "₫254,999", amountBRL: "R$57.99",
+      perKey: "planQuarterlyPer" as const, ctaKey: "planQuarterlyCta" as const,
       href: "https://spectrumcheat.rexzy.xyz/shop/product/OA==", primary: false, popular: false,
       featureKeys: ["planQuarterlyF1","planQuarterlyF2","planQuarterlyF3","planQuarterlyF4","planQuarterlyF5","planQuarterlyF6","planQuarterlyF7"] as const,
     },
   ];
+
+  const getPlanAmount = (plan: typeof pricingPlans[0]) => {
+    if (lang === "th") return plan.amountTHB;
+    if (lang === "zh") return plan.amountCNY;
+    if (lang === "vi") return plan.amountVND;
+    if (lang === "pt") return plan.amountBRL;
+    return plan.amountUSD;
+  };
 
   useEffect(() => {
     const topbar = document.getElementById("topbar");
@@ -652,7 +666,7 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
                 <div className="price-tier">{t(plan.tierKey)}</div>
                 <p className="price-desc">{t(plan.descKey)}</p>
                 <div className="price-amount">
-                  <span className="price-num">{lang === "th" ? plan.amountTHB : plan.amountUSD}</span>
+                  <span className="price-num">{getPlanAmount(plan)}</span>
                   <span className="price-per">{t(plan.perKey)}</span>
                 </div>
                 <ul className="price-features">

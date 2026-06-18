@@ -6,7 +6,7 @@ import { FallingBeams } from "../_components/falling-beams";
 import { useLang } from "../_i18n/context";
 import type { TranslationKey } from "../_i18n/translations";
 
-const loaderCode = "loadstring(game:HttpGet('https://spectrumcheat.com/Loader.lua'))()";
+const loaderCode = "loadstring(game:HttpGet('https://api.spectrumcheat.com/loader.lua'))()";
 
 const scriptGames: { name: string; status: "Working" | "Waiting for Update"; noteKey: TranslationKey; image: string; href: string }[] = [
   { name: "Driving Empire", status: "Waiting for Update", noteKey: "gameNote1", image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/3351674303/Driving-Empire-Car-Racing" },
