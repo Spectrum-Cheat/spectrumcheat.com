@@ -175,7 +175,7 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
     },
     {
       tierKey: "planMonthly" as const, descKey: "planMonthlyDesc" as const,
-      amountUSD: "$4.69", amountTHB: "149฿", amountCNY: "¥34.69", amountVND: "₫119,679", amountBRL: "R$27.69",
+      amountUSD: "$6.29", amountTHB: "199฿", amountCNY: "¥46.29", amountVND: "₫159,999", amountBRL: "R$36.99",
       perKey: "planMonthlyPer" as const, ctaKey: "planMonthlyCta" as const,
       href: "https://spectrumcheat.rexzy.xyz/shop/product/NA==", primary: true, popular: true,
       featureKeys: ["planMonthlyF1","planMonthlyF2","planMonthlyF3","planMonthlyF4","planMonthlyF5","planMonthlyF6","planMonthlyF7"] as const,
