@@ -432,6 +432,7 @@ export const translations = {
     gameNote4: "Patch support is being rebuilt.",
     gameNote5: "Compatibility update in progress.",
     gameNote6: "Queued for the next compatibility rebuild.",
+    gameNoteRivalsWorking: "Fully working, no known issues.",
 
     // ─── Status page ─────────────────────────────
     statusBadge:        "Spectrum Cheat // Live Status",
@@ -969,6 +970,7 @@ export const translations = {
     gameNote4: "กำลังสร้างการรองรับแพทช์ใหม่",
     gameNote5: "กำลังอัปเดตความเข้ากันได้",
     gameNote6: "รอสร้างความเข้ากันได้ในรอบถัดไป",
+    gameNoteRivalsWorking: "ใช้งานได้เต็มรูปแบบ ไม่มีปัญหา",
 
     // ─── Status page ─────────────────────────────
     statusBadge:        "Spectrum Cheat // สถานะสด",
@@ -1505,6 +1507,7 @@ export const translations = {
     gameNote4: "正在重建补丁支持。",
     gameNote5: "兼容性更新进行中。",
     gameNote6: "已排队等待下一个兼容性重建。",
+    gameNoteRivalsWorking: "完全可用，无已知问题。",
 
     // ─── Status page ─────────────────────────────
     statusBadge:        "Spectrum Cheat // 实时状态",
@@ -2041,6 +2044,7 @@ export const translations = {
     gameNote4: "Đang xây dựng lại hỗ trợ patch.",
     gameNote5: "Đang cập nhật tương thích.",
     gameNote6: "Đang chờ xây dựng lại tương thích tiếp theo.",
+    gameNoteRivalsWorking: "Hoạt động đầy đủ, không có vấn đề gì.",
 
     // ─── Status page ─────────────────────────────
     statusBadge:        "Spectrum Cheat // Trạng thái trực tiếp",
@@ -2578,6 +2582,7 @@ export const translations = {
     gameNote4: "Suporte a patch sendo reconstruído.",
     gameNote5: "Atualização de compatibilidade em andamento.",
     gameNote6: "Na fila para a próxima reconstrução de compatibilidade.",
+    gameNoteRivalsWorking: "Totalmente funcional, sem problemas conhecidos.",
 
     // ─── Status page ─────────────────────────────
     statusBadge:        "Spectrum Cheat // Status ao Vivo",

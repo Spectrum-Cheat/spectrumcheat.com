@@ -10,10 +10,9 @@ const loaderCode = "loadstring(game:HttpGet('https://api.spectrumcheat.com/loade
 
 const scriptGames: { name: string; status: "Working" | "Waiting for Update"; noteKey: TranslationKey; image: string; href: string }[] = [
   { name: "Driving Empire", status: "Waiting for Update", noteKey: "gameNote1", image: "https://tr.rbxcdn.com/180DAY-3fd9af34a6e61185a030eb8d936e91ac/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/3351674303/Driving-Empire-Car-Racing" },
-  { name: "Sailor Piece",   status: "Waiting for Update", noteKey: "gameNote2", image: "https://tr.rbxcdn.com/180DAY-af4eed326351cb513869c431e3d88787/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/77747658251236/Sailor-Piece" },
   { name: "Blox Fruits",    status: "Waiting for Update", noteKey: "gameNote3", image: "https://tr.rbxcdn.com/180DAY-90afa57850c8c8d1518b398b6c119ee9/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/2753915549/Blox-Fruits" },
   { name: "Fisch",          status: "Waiting for Update", noteKey: "gameNote4", image: "https://tr.rbxcdn.com/180DAY-911933467f0dc8e467cf3e305ea78882/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/16732694052/Fisch" },
-  { name: "Rivals",         status: "Waiting for Update", noteKey: "gameNote5", image: "https://tr.rbxcdn.com/180DAY-3df3c12313ef02c6656f378f110d72cd/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/17625359962/RIVALS" },
+  { name: "Rivals",         status: "Working", noteKey: "gameNoteRivalsWorking", image: "https://tr.rbxcdn.com/180DAY-3df3c12313ef02c6656f378f110d72cd/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/17625359962/RIVALS" },
   { name: "Grow a Garden 2", status: "Waiting for Update", noteKey: "gameNote6", image: "https://tr.rbxcdn.com/180DAY-e87bf2524ceeb4909aa2f15f555f38cf/256/256/Image/Webp/noFilter", href: "https://www.roblox.com/games/97598239454123/Grow-a-Garden-2" },
 ];
 
@@ -48,9 +47,9 @@ export default function ScriptsPage() {
   };
 
   const stats = [
-    { value: "0",  label: t("scriptsWorking"), tone: "ok" },
-    { value: "6",  label: t("scriptsWaiting"), tone: "warn" },
-    { value: "63", label: t("scriptsRetired"), tone: "muted" },
+    { value: "1",  label: t("scriptsWorking"), tone: "ok" },
+    { value: "4",  label: t("scriptsWaiting"), tone: "warn" },
+    { value: "64", label: t("scriptsRetired"), tone: "muted" },
   ];
 
   return (
