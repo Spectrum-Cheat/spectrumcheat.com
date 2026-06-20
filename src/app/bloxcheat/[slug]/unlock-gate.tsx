@@ -121,6 +121,7 @@ export function UnlockGate({
     ...(video3?.url
       ? [{ id: "watch3" as StepId, label: t("unlockStepWatch3"), url: video3.url }]
       : []),
+    { id: "like", label: t("unlockStepLike"), url: video.url },
   ];
 
   function stepState(index: number): StepState {
