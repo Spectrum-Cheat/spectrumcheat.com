@@ -57,6 +57,79 @@ export interface CustomScript {
 
 export const CUSTOM_RECOMMEND: CustomScript[] = [
   {
+    id: "speed-hub-grow-a-garden-2",
+    title: "Speed Hub | Grow A Garden 2 Script - Auto Farm & Sell",
+    game: "Grow A Garden 2",
+    image: "https://tr.rbxcdn.com/180DAY-09c20dc34b4eb6117c895edfaf142596/768/432/Image/Webp/noFilter",
+    provider: "SpeedHub",
+    verified: true,
+    key: true,
+    views: 9420,
+    likeCount: 67,
+    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
+    features: `⚡ Speed Hub — Grow A Garden 2 Script (Smart Auto Plant, Auto Harvest, Auto Sell, Pet & Egg Opener, Auto Steal & Garden Expansion)
+
+Build the richest garden on the server and rake in Sheckles completely AFK with the most advanced Grow A Garden 2 script on the market. Powered by Speed Hub and beautifully laid out using a clean Fluent UI (Glass Theme) with full config saving, this script automates your entire gameplay loop so your garden keeps earning while you're away.
+
+🛠 Smooth, lightweight, and mobile-friendly — set your seeds and let the script plant, grow, harvest, and cash out on a perfectly timed loop.
+
+🚀 Grow A Garden 2 Features:
+
+Smart Auto Farm: Auto-plants your selected seeds across your plot, auto-harvests fully grown fruit, and loops the full grow cycle hands-free.
+
+Auto Sell: Auto-sells all fruit or filtered fruit types, with sell-preview and the Daily Deal bonus built in to maximize Sheckles per run.
+
+Auto Shop Buyer: Auto-purchases seeds, gear, and crates on a configurable loop.
+
+Pets & Eggs Opener: Auto-opens eggs, crates, and seed packs, then auto-equips your best pets and buys extra pet slots.
+
+Progression Automation: Auto-spends skill points, claims mailbox rewards, redeems codes, and auto-expands your garden the moment you can afford it.
+
+Auto Steal: Runs the full steal loop to swipe rewards from other players' gardens.
+
+Player Utilities: Custom WalkSpeed, JumpPower, Infinite Jump, Noclip, Fly, and Anti-AFK.
+
+Quick Teleports: Fast-travel to shops, the sell point, and key garden zones.
+
+Server & Info Tools: Live stats readout (Sheckles, Tokens, Inventory) plus server hop utilities.
+
+📌 How to Use:
+1. Copy the script from the Script tab.
+2. Open your favorite Roblox executor.
+3. Launch Grow A Garden 2.
+4. Paste and execute the script.
+5. Press Right Shift to open the control dashboard.`,
+  },
+  {
+    id: "dupe-spawner-grow-a-garden-2",
+    title: "Dupe & Spawner | Grow A Garden 2 Script OP",
+    game: "Grow A Garden 2",
+    image: "https://tr.rbxcdn.com/180DAY-09c20dc34b4eb6117c895edfaf142596/768/432/Image/Webp/noFilter",
+    provider: "Scriptered",
+    verified: true,
+    key: false,
+    views: 5310,
+    likeCount: 38,
+    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/scripteredwinter/scripts/refs/heads/main/gag2spawner"))()`,
+    features: `🌱 Dupe & Spawner — Grow A Garden 2 Script OP
+
+A simple keyless script focused on duplicating and spawning items in Grow A Garden 2, letting you stack up rare seeds, pets, and gear fast without grinding for them manually.
+
+🚀 Features:
+
+Item Dupe: Duplicate seeds, pets, and gear from your inventory.
+
+Item Spawner: Spawn in specific items directly without needing to own them first.
+
+Lightweight & Fast: No key system, just inject and run.
+
+📌 How to Use:
+1. Copy the script above.
+2. Open your Roblox executor.
+3. Launch Grow A Garden 2.
+4. Paste and execute the script.`,
+  },
+  {
     id: "axon-hub-grow-a-garden-2",
     title: "Axon Hub | Grow A Garden 2 Script - Auto Farm & Sell",
     game: "Grow A Garden 2",
@@ -273,78 +346,5 @@ Axon Hub for Keyboard Escape is the ultimate high-performance script built to do
 6. Open the Auto Win or Speed Farm tab and enable your toggles!
 
 ⚠️ Note: The path-walker is strictly clamped at the server's 250 studs/s safety limit to protect your account. Path coordinates are optimized for World 1.`,
-  },
-  {
-    id: "speed-hub-grow-a-garden-2",
-    title: "Speed Hub | Grow A Garden 2 Script - Auto Farm & Sell",
-    game: "Grow A Garden 2",
-    image: "https://tr.rbxcdn.com/180DAY-09c20dc34b4eb6117c895edfaf142596/768/432/Image/Webp/noFilter",
-    provider: "SpeedHub",
-    verified: true,
-    key: true,
-    views: 9420,
-    likeCount: 67,
-    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
-    features: `⚡ Speed Hub — Grow A Garden 2 Script (Smart Auto Plant, Auto Harvest, Auto Sell, Pet & Egg Opener, Auto Steal & Garden Expansion)
-
-Build the richest garden on the server and rake in Sheckles completely AFK with the most advanced Grow A Garden 2 script on the market. Powered by Speed Hub and beautifully laid out using a clean Fluent UI (Glass Theme) with full config saving, this script automates your entire gameplay loop so your garden keeps earning while you're away.
-
-🛠 Smooth, lightweight, and mobile-friendly — set your seeds and let the script plant, grow, harvest, and cash out on a perfectly timed loop.
-
-🚀 Grow A Garden 2 Features:
-
-Smart Auto Farm: Auto-plants your selected seeds across your plot, auto-harvests fully grown fruit, and loops the full grow cycle hands-free.
-
-Auto Sell: Auto-sells all fruit or filtered fruit types, with sell-preview and the Daily Deal bonus built in to maximize Sheckles per run.
-
-Auto Shop Buyer: Auto-purchases seeds, gear, and crates on a configurable loop.
-
-Pets & Eggs Opener: Auto-opens eggs, crates, and seed packs, then auto-equips your best pets and buys extra pet slots.
-
-Progression Automation: Auto-spends skill points, claims mailbox rewards, redeems codes, and auto-expands your garden the moment you can afford it.
-
-Auto Steal: Runs the full steal loop to swipe rewards from other players' gardens.
-
-Player Utilities: Custom WalkSpeed, JumpPower, Infinite Jump, Noclip, Fly, and Anti-AFK.
-
-Quick Teleports: Fast-travel to shops, the sell point, and key garden zones.
-
-Server & Info Tools: Live stats readout (Sheckles, Tokens, Inventory) plus server hop utilities.
-
-📌 How to Use:
-1. Copy the script from the Script tab.
-2. Open your favorite Roblox executor.
-3. Launch Grow A Garden 2.
-4. Paste and execute the script.
-5. Press Right Shift to open the control dashboard.`,
-  },
-  {
-    id: "dupe-spawner-grow-a-garden-2",
-    title: "Dupe & Spawner | Grow A Garden 2 Script OP",
-    game: "Grow A Garden 2",
-    image: "https://tr.rbxcdn.com/180DAY-09c20dc34b4eb6117c895edfaf142596/768/432/Image/Webp/noFilter",
-    provider: "Scriptered",
-    verified: true,
-    key: false,
-    views: 5310,
-    likeCount: 38,
-    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/scripteredwinter/scripts/refs/heads/main/gag2spawner"))()`,
-    features: `🌱 Dupe & Spawner — Grow A Garden 2 Script OP
-
-A simple keyless script focused on duplicating and spawning items in Grow A Garden 2, letting you stack up rare seeds, pets, and gear fast without grinding for them manually.
-
-🚀 Features:
-
-Item Dupe: Duplicate seeds, pets, and gear from your inventory.
-
-Item Spawner: Spawn in specific items directly without needing to own them first.
-
-Lightweight & Fast: No key system, just inject and run.
-
-📌 How to Use:
-1. Copy the script above.
-2. Open your Roblox executor.
-3. Launch Grow A Garden 2.
-4. Paste and execute the script.`,
   },
 ];
