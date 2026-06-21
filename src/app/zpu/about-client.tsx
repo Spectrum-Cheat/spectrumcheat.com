@@ -130,7 +130,7 @@ const ZPU = {
     { name: "Peaky Blinders", image: "https://i.ebayimg.com/images/g/t94AAOSweNFj454I/s-l1200.jpg" },
     { name: "John Wick", image: "https://posterspy.com/wp-content/uploads/2022/11/JohnWick2_Poster.jpg" },
     { name: "Lucy", image: "https://m.media-amazon.com/images/I/81qlPSElf7L.jpg" },
-    { name: "Vampire Twilight", image: "https://upload.wikimedia.org/wikipedia/th/a/a4/The_Twilight_Saga-_New_Moon_poster.jpg" },
+    { name: "The Secret Life of Walter Mitty", image: "https://www.sjsreview.com/wp-content/uploads/2014/06/secret-life-of-walter-mitty-small.jpg" },
     { name: "Iron Man", image: "https://f.ptcdn.info/655/002/000/1362028562-ironman3po-o.jpg" },
   ] as { name: string; image?: string }[],
   // Artists — each with their top 3 songs.
