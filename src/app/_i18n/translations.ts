@@ -451,6 +451,9 @@ export const translations = {
     getkeyPageTitle: "Unlock your Spectrum Access",
     getkeyPageSub:   "Just two quick steps stand between you and a fully working Spectrum key.\nKnock them both out, grab your key, and you're ready to play. Takes less than 5 minutes.",
     getkeyRecommended: "Recommended",
+    getkeyOtherWays:   "Other ways to get a key",
+    getkeyVaultLocked:   "Locked",
+    getkeyVaultUnlocked: "Unlocked",
     getkeyComingSoon:  "Coming Soon",
     getkeyClickHere:   "Click Here",
     getkeyDesc1: "Run through the main unlock route and pull your active Spectrum key right away.",
@@ -499,7 +502,7 @@ export const translations = {
     getkeyPremF3: "Direct support line",
     getkeyCtaUnlock: "Get your key",
     getkeyCtaLocked: "Complete steps above first",
-    getkeyPremiumCta: "Get Premium →",
+    getkeyPremiumCta: "Get Premium",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executors",
@@ -989,6 +992,9 @@ export const translations = {
     getkeyPageTitle:   "ปลดล็อค Spectrum Access ของคุณ",
     getkeyPageSub:     "แค่สองขั้นตอนสั้น ๆ ก็กั้นระหว่างคุณกับคีย์ Spectrum ที่ใช้งานได้เต็มรูปแบบ\nทำให้เสร็จทั้งคู่ คว้าคีย์ของคุณ แล้วพร้อมเล่นได้เลย ใช้เวลาไม่ถึง 5 นาที",
     getkeyRecommended: "แนะนำ",
+    getkeyOtherWays:   "ช่องทางอื่นในการรับคีย์",
+    getkeyVaultLocked:   "ล็อกอยู่",
+    getkeyVaultUnlocked: "ปลดล็อกแล้ว",
     getkeyComingSoon:  "เร็วๆ นี้",
     getkeyClickHere:   "คลิกที่นี่",
     getkeyDesc1: "ผ่านช่องทางปลดล็อคหลักแล้วรับคีย์ Spectrum ที่ใช้งานอยู่ได้เลย",
@@ -1037,7 +1043,7 @@ export const translations = {
     getkeyPremF3: "สายซัพพอร์ตโดยตรง",
     getkeyCtaUnlock: "รับคีย์ของคุณ",
     getkeyCtaLocked: "ทำขั้นตอนด้านบนให้เสร็จก่อน",
-    getkeyPremiumCta: "รับ Premium →",
+    getkeyPremiumCta: "รับ Premium",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // ตัวรัน",
@@ -1526,6 +1532,9 @@ export const translations = {
     getkeyPageTitle:   "解锁你的 Spectrum 访问权限",
     getkeyPageSub:     "只需两个步骤即可获取您的密钥，完成后即可开始使用。",
     getkeyRecommended: "推荐",
+    getkeyOtherWays:   "获取密钥的其他方式",
+    getkeyVaultLocked:   "已锁定",
+    getkeyVaultUnlocked: "已解锁",
     getkeyComingSoon:  "即将推出",
     getkeyClickHere:   "点击此处",
     getkeyDesc1: "通过主解锁路线立即获取您的活跃 Spectrum 密钥。",
@@ -1574,7 +1583,7 @@ export const translations = {
     getkeyPremF3: "专属支持通道",
     getkeyCtaUnlock: "领取你的密钥",
     getkeyCtaLocked: "请先完成上方步骤",
-    getkeyPremiumCta: "获取 Premium →",
+    getkeyPremiumCta: "获取 Premium",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // 执行器",
@@ -2063,6 +2072,9 @@ export const translations = {
     getkeyPageTitle:   "Mở khóa Spectrum Access của bạn",
     getkeyPageSub:     "Chỉ hai bước là bạn có key rồi. Hoàn thành và vào dùng thôi.",
     getkeyRecommended: "Đề xuất",
+    getkeyOtherWays:   "Cách khác để lấy key",
+    getkeyVaultLocked:   "Đang khóa",
+    getkeyVaultUnlocked: "Đã mở khóa",
     getkeyComingSoon:  "Sắp ra mắt",
     getkeyClickHere:   "Nhấn vào đây",
     getkeyDesc1: "Chạy qua tuyến mở khóa chính và lấy key Spectrum hoạt động của bạn ngay.",
@@ -2111,7 +2123,7 @@ export const translations = {
     getkeyPremF3: "Hỗ trợ trực tiếp",
     getkeyCtaUnlock: "Nhận key của bạn",
     getkeyCtaLocked: "Hoàn thành các bước ở trên trước",
-    getkeyPremiumCta: "Nhận Premium →",
+    getkeyPremiumCta: "Nhận Premium",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executor",
@@ -2601,6 +2613,9 @@ export const translations = {
     getkeyPageTitle:   "Desbloqueie seu Acesso Spectrum",
     getkeyPageSub:     "Apenas dois passos te separam da sua key. Complete e já era.",
     getkeyRecommended: "Recomendado",
+    getkeyOtherWays:   "Outras formas de pegar uma key",
+    getkeyVaultLocked:   "Bloqueado",
+    getkeyVaultUnlocked: "Desbloqueado",
     getkeyComingSoon:  "Em Breve",
     getkeyClickHere:   "Clique Aqui",
     getkeyDesc1: "Siga a rota principal de desbloqueio e obtenha sua key ativa do Spectrum agora.",
@@ -2649,7 +2664,7 @@ export const translations = {
     getkeyPremF3: "Linha de suporte direta",
     getkeyCtaUnlock: "Pegue sua key",
     getkeyCtaLocked: "Conclua os passos acima primeiro",
-    getkeyPremiumCta: "Obter Premium →",
+    getkeyPremiumCta: "Obter Premium",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executores",
