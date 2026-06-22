@@ -1253,6 +1253,16 @@ html.page-home .cta-section,
 html.page-home .footer {
   background: transparent;
 }
+/* Subpages — same treatment so the footer divider line reads the same as home */
+html.page-getkey .footer,
+html.page-scripts .footer,
+html.page-status .footer,
+html.page-executors .footer,
+html.page-bloxcheat .footer,
+html.page-topup .footer,
+html.page-history .footer {
+  background: transparent;
+}
 /* These bands get their own clear purple tone (solid so they match regardless of page position) */
 html.page-home .trust-section,
 html.page-home .features-section,
