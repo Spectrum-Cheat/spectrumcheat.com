@@ -110,7 +110,7 @@ Server & Info Tools: Live stats readout (Sheckles, Tokens, Inventory) plus serve
     key: false,
     views: 5310,
     likeCount: 38,
-    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/annnan1310/gag2/refs/heads/main/starspawner"))()`,
+    script: `loadstring(game:HttpGet("https://raw.githubusercontent.com/scripteredwinter/scripts/refs/heads/main/gag2spawner"))()`,
     features: `🌱 Dupe & Spawner — Grow A Garden 2 Script OP
 
 A simple keyless script focused on duplicating and spawning items in Grow A Garden 2, letting you stack up rare seeds, pets, and gear fast without grinding for them manually.
