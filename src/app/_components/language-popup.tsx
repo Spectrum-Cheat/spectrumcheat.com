@@ -151,9 +151,7 @@ export function LanguagePopup() {
 
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) {
-      // Delay popup so it doesn't block LCP
-      const t = setTimeout(() => setVisible(true), 800);
-      return () => clearTimeout(t);
+      // No auto-popup — default to English, user switches manually via the language button.
     } else {
       document.documentElement.lang = saved;
       if (saved === "th") {
