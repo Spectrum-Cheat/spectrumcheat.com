@@ -39,7 +39,6 @@ const ZPU = {
     { label: "Facebook", handle: "zpu.mnn2", href: "https://www.facebook.com/zpu.mnn2", color: "#1877F2", platform: "facebook" as const },
     { label: "Spectrum Cheat", handle: "spectrumcheat.com", href: "/", color: "#8b5cf6", platform: "spectrum" as const },
     { label: "TikTok [Main]", handle: "@xzpuhigh", href: "https://www.tiktok.com/@xzpuhigh", color: "#ffffff", platform: "tiktok" as const },
-    { label: "TikTok [Content]", handle: "@xzpuhighreal", href: "https://www.tiktok.com/@xzpuhighreal", color: "#ffffff", platform: "tiktok" as const },
     { label: "Steam", handle: "zpureal", href: "https://steamcommunity.com/id/zpureal/", color: "#66C0F4", platform: "steam" as const },
   ],
 
@@ -760,7 +759,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
   ];
 
   const tinyFacts = [
-    { labelKey: "zpuTinyNickname" as const, value: lang === "th" ? "ซีพียู / นน 😴" : "ZPU / NON 😴", color: "#22c55e" },
+    { labelKey: "zpuTinyNickname" as const, value: "ZPU / NON 😴", color: "#22c55e" },
     { labelKey: "zpuTinyStatus" as const, value: "WORK HARD 🔥", color: "#ff6f00" },
   ];
 
