@@ -179,6 +179,13 @@ const ZPU = {
       { name: "CapCut", icon: "https://i.pinimg.com/474x/0d/64/2b/0d642b674f86ef3f50cf08a522237c2e.jpg" },
       { name: "Canva", icon: "https://zortout.com/wp-content/uploads/2023/10/unnamed.png" },
     ] },
+    { catKey: "zpuStackSpoken", items: [
+      { name: "Thai (Main)", icon: "https://flagcdn.com/w80/th.png" },
+      { name: "English (Main)", icon: "https://flagcdn.com/w80/us.png" },
+      { name: "Chinese Mandarin (Basic)", icon: "https://flagcdn.com/w80/cn.png" },
+      { name: "Vietnamese (Basic)", icon: "https://flagcdn.com/w80/vn.png" },
+      { name: "French (Basic)", icon: "https://flagcdn.com/w80/fr.png" },
+    ] },
   ] as { catKey: TranslationKey; items: { name: string; icon?: string }[] }[],
 };
 /* ═══════════════════════════════════════════════════════════════ */
