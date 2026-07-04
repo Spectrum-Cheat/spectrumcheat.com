@@ -34,7 +34,7 @@ const ZPU = {
 
   socials: [
     { label: "YouTube", handle: "@xZPUHigh", href: "https://www.youtube.com/@xZPUHigh", color: "#FF0000", platform: "youtube" as const },
-    { label: "Discord", handle: "Join server", href: "https://discord.gg/hackerclub", color: "#5865F2", platform: "discord" as const },
+    { label: "Discord", handle: "Join server", href: "https://discord.gg/C3MpUNwsDU", color: "#5865F2", platform: "discord" as const },
     { label: "Instagram", handle: "@zpu.mnn2", href: "https://www.instagram.com/zpu.mnn2", color: "#E4405F", platform: "instagram" as const },
     { label: "Facebook", handle: "zpu.mnn2", href: "https://www.facebook.com/zpu.mnn2", color: "#1877F2", platform: "facebook" as const },
     { label: "Spectrum Cheat", handle: "spectrumcheat.com", href: "/", color: "#8b5cf6", platform: "spectrum" as const },
@@ -751,7 +751,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
 
   const currently = [
     { labelKey: "zpuRoleFounder" as const, strong: "Spectrum Cheat", href: "https://spectrumcheat.com", sinceKey: "zpuSinceFounder" as const, platform: "spectrum" as const },
-    { labelKey: "zpuRoleOwner" as const, strong: "ZPU Community", href: "https://discord.gg/hackerclub", sinceKey: "zpuSinceOwner" as const, platform: "discord" as const },
+    { labelKey: "zpuRoleOwner" as const, strong: "ZPU Community", href: "https://discord.gg/C3MpUNwsDU", sinceKey: "zpuSinceOwner" as const, platform: "discord" as const },
     { labelKey: "zpuRoleYoutube" as const, strong: "@xZPUHigh", href: "https://www.youtube.com/channel/UCgMktyw9e816q0GzhBL2dnQ", sinceKey: "zpuSinceYoutube" as const, platform: "youtube" as const },
     { labelKey: "zpuRoleTiktok" as const, strong: "@xZPUHighReal", href: "https://www.tiktok.com/@xzpuhighreal", sinceKey: "zpuSinceTiktok" as const, platform: "tiktok" as const },
   ];

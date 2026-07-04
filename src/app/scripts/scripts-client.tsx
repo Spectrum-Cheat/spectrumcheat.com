@@ -86,7 +86,7 @@ export default function ScriptsPage() {
         </div>
 
         <div className="scr-loader-foot">
-          <a href="https://discord.gg/hackerclub" target="_blank" rel="noreferrer" className="scr-help-link">
+          <a href="https://discord.gg/C3MpUNwsDU" target="_blank" rel="noreferrer" className="scr-help-link">
             {t("scriptsNeedHelp")}
           </a>
         </div>

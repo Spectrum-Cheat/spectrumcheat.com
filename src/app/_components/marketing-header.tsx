@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useLang } from "../_i18n/context";
 
-const discordUrl = "https://discord.gg/hackerclub";
+const discordUrl = "https://discord.gg/C3MpUNwsDU";
 const buyNowUrl = "https://spectrumcheat.rexzy.xyz/";
 
 type MarketingHeaderProps = {

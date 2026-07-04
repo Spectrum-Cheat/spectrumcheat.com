@@ -185,7 +185,7 @@ const personJsonLd = {
     "https://www.tiktok.com/@xzpuhighreal",
     "https://www.instagram.com/zpu.mnn2",
     "https://www.facebook.com/zpu.mnn2",
-    "https://discord.gg/hackerclub",
+    "https://discord.gg/C3MpUNwsDU",
     "https://github.com/Spectrum-Cheat",
   ],
 };
@@ -209,7 +209,7 @@ async function getYouTubeSubs(): Promise<number | null> {
 async function getDiscordMembers(): Promise<number | null> {
   try {
     const res = await fetch(
-      "https://discord.com/api/v9/invites/hackerclub?with_counts=true",
+      "https://discord.com/api/v9/invites/C3MpUNwsDU?with_counts=true",
       { next: { revalidate: 300 }, headers: { "User-Agent": "Mozilla/5.0" } }
     );
     if (!res.ok) return null;

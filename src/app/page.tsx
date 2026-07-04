@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 async function getDiscord(): Promise<{ online: number | null; members: number | null }> {
   try {
     const res = await fetch(
-      "https://discord.com/api/v9/invites/hackerclub?with_counts=true",
+      "https://discord.com/api/v9/invites/C3MpUNwsDU?with_counts=true",
       { next: { revalidate: 300 }, headers: { "User-Agent": "Mozilla/5.0" } }
     );
     if (!res.ok) return { online: null, members: null };

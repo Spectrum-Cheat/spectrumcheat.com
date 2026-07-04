@@ -16,7 +16,7 @@ type SubpageShellProps = {
   pageClass?: string;
 };
 
-export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHref = "https://discord.gg/hackerclub", pageClass }: SubpageShellProps) {
+export function SubpageShell({ badge, title, subtitle, children, ctaLabel, ctaHref = "https://discord.gg/C3MpUNwsDU", pageClass }: SubpageShellProps) {
   const { t, lang } = useLang();
   const resolvedCtaLabel = ctaLabel ?? t("btnJoinDiscord");
 

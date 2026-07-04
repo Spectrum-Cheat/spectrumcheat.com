@@ -16,7 +16,7 @@ const STEPS: { titleKey: TranslationKey; descKey: TranslationKey; href: string; 
   {
     titleKey: "getkeyStep1Title",
     descKey: "getkeyStep1Desc",
-    href: "https://discord.gg/hackerclub",
+    href: "https://discord.gg/C3MpUNwsDU",
     iconType: "discord",
     btnColor: "#5865F2",
   },
