@@ -186,7 +186,7 @@ const personJsonLd = {
     "https://www.instagram.com/zpu.mnn2",
     "https://www.facebook.com/zpu.mnn2",
     "https://discord.gg/hackerclub",
-    "https://github.com/Spectrum-Trash",
+    "https://github.com/Spectrum-Cheat",
   ],
 };
 
