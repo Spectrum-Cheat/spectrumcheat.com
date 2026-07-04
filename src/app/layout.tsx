@@ -9,6 +9,7 @@ import { LangProvider } from "./_i18n/context";
 import { AdScripts } from "./_components/ad-scripts";
 import { SessionProvider } from "next-auth/react";
 import type { Lang } from "./_i18n/translations";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const LANGS = ["en", "th", "zh", "vi", "pt"];
 
@@ -110,6 +111,7 @@ export default async function RootLayout({
             <AdScripts />
           </LangProvider>
         </SessionProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
