@@ -748,6 +748,9 @@ function MusicPlayer() {
 export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
   const { t, lang } = useLang();
   const [showAllWorks, setShowAllWorks] = useState(false);
+  const [showAllGames, setShowAllGames] = useState(false);
+  const [showAllMovies, setShowAllMovies] = useState(false);
+  const [showAllArtists, setShowAllArtists] = useState(false);
 
   const currently = [
     { labelKey: "zpuRoleFounder" as const, strong: "Spectrum Cheat", href: "https://spectrumcheat.com", sinceKey: "zpuSinceFounder" as const, platform: "spectrum" as const },
@@ -899,10 +902,20 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
           <h2 className="zpu-works-title">{t("zpuFavGamesTitle")}</h2>
           <p className="zpu-works-sub">{t("zpuFavGamesSub")}</p>
           <div className="zpu-games-grid">
-            {ZPU.favGames.map((g) => (
+            {(showAllGames ? ZPU.favGames : ZPU.favGames.slice(0, 12)).map((g) => (
               <GameTile key={g.name} name={g.name} image={g.image} />
             ))}
           </div>
+          {ZPU.favGames.length > 12 && (
+            <button className="zpu-works-more" onClick={() => setShowAllGames((v) => !v)}>
+              {t(showAllGames ? "zpuShowLess" : "zpuExploreAll")}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                style={{ transform: showAllGames ? "rotate(180deg)" : undefined, transition: "transform .2s" }}>
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+          )}
         </section>
 
         {/* Favorite food */}
@@ -924,10 +937,20 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <h2 className="zpu-works-title">{t("zpuMoviesTitle")}</h2>
             <p className="zpu-works-sub">{t("zpuMoviesSub")}</p>
             <div className="zpu-games-grid zpu-poster-grid">
-              {ZPU.favMovies.map((g) => (
+              {(showAllMovies ? ZPU.favMovies : ZPU.favMovies.slice(0, 12)).map((g) => (
                 <GameTile key={g.name} name={g.name} image={g.image} />
               ))}
             </div>
+            {ZPU.favMovies.length > 12 && (
+              <button className="zpu-works-more" onClick={() => setShowAllMovies((v) => !v)}>
+                {t(showAllMovies ? "zpuShowLess" : "zpuExploreAll")}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  style={{ transform: showAllMovies ? "rotate(180deg)" : undefined, transition: "transform .2s" }}>
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+            )}
           </section>
         )}
 
@@ -950,10 +973,20 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <h2 className="zpu-works-title">{t("zpuArtistsTitle")}</h2>
             <p className="zpu-works-sub">{t("zpuArtistsSub")}</p>
             <div className="zpu-artists-grid">
-              {ZPU.favArtists.map((a) => (
+              {(showAllArtists ? ZPU.favArtists : ZPU.favArtists.slice(0, 3)).map((a) => (
                 <ArtistCard key={a.name} name={a.name} image={a.image} songs={a.songs} />
               ))}
             </div>
+            {ZPU.favArtists.length > 3 && (
+              <button className="zpu-works-more" onClick={() => setShowAllArtists((v) => !v)}>
+                {t(showAllArtists ? "zpuShowLess" : "zpuExploreAll")}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  style={{ transform: showAllArtists ? "rotate(180deg)" : undefined, transition: "transform .2s" }}>
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+            )}
           </section>
         )}
 
