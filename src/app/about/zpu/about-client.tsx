@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useLang } from "../_i18n/context";
-import type { TranslationKey } from "../_i18n/translations";
+import { useLang } from "../../_i18n/context";
+import type { TranslationKey } from "../../_i18n/translations";
 
 // tech logo helpers
 const si = (slug: string, color?: string) =>
