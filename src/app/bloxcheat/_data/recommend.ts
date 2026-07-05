@@ -57,6 +57,27 @@ export interface CustomScript {
 
 export const CUSTOM_RECOMMEND: CustomScript[] = [
   {
+    id: "spectrum-hub-rollback-grow-a-garden-2",
+    title: "Spectrum Hub | Rollback Script Grow A Garden 2",
+    game: "Grow A Garden 2",
+    image: "https://tr.rbxcdn.com/180DAY-d3506c96f41fb1085677cfc175c2bad3/768/432/Image/Webp/noFilter",
+    provider: "Spectrum",
+    verified: true,
+    key: true,
+    views: 12840,
+    likeCount: 96,
+    script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/02a62d7d800482a59dba49421fd52992.lua"))()`,
+    features: `🔄 Spectrum Hub — Rollback Script | Grow A Garden 2
+
+An exclusive rollback tool for Grow A Garden 2 that restores your garden to an earlier state, so you can recover lost or rare items fast.
+
+📌 How to Use:
+1. Copy the script from the Script tab.
+2. Open your favorite Roblox executor.
+3. Launch Grow A Garden 2.
+4. Paste and execute the script.`,
+  },
+  {
     id: "speed-hub-grow-a-garden-2",
     title: "Speed Hub | Grow A Garden 2 Script - Auto Farm & Sell",
     game: "Grow A Garden 2",
