@@ -71,7 +71,7 @@ export function SiteFooter() {
               <h4>{t("footerFaq")}</h4>
               <ul>
                 <li><Link href="/#faq">{t("footerFaqPage")}</Link></li>
-                <li><Link href="/zpu">{t("footerWhoIsZpu")}</Link></li>
+                <li><Link href="/about/zpu">{t("footerWhoIsZpu")}</Link></li>
               </ul>
             </div>
           </div>

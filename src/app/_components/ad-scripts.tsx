@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 // Pages where ads should NOT load (kept clean).
-const NO_AD_PATHS = ["/zpu"];
+const NO_AD_PATHS = ["/about/zpu"];
 
 // Site-wide Adsterra scripts.
 const SOCIAL_BAR =
@@ -24,7 +24,7 @@ function injectScript(src: string, id: string) {
 export function AdScripts() {
   const pathname = usePathname();
 
-  // Site-wide: Social Bar + Popunder on every page, except clean pages (/zpu).
+  // Site-wide: Social Bar + Popunder on every page, except clean pages (/about/zpu).
   useEffect(() => {
     if (NO_AD_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"))) return;
     injectScript(SOCIAL_BAR, "adsterra-socialbar");

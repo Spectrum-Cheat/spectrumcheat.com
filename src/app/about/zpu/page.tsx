@@ -140,13 +140,13 @@ export const metadata: Metadata = {
     "xZPUHigh Roblox",
   ],
   alternates: {
-    canonical: "https://spectrumcheat.com/zpu",
+    canonical: "https://spectrumcheat.com/about/zpu",
   },
   openGraph: {
     title: "About ZPU | The Owner & Founder of Spectrum Cheat",
     description:
       "Who is ZPU (xZPUHigh)? Meet ZPU — founder, developer, and entrepreneur building digital products and online businesses.",
-    url: "https://spectrumcheat.com/zpu",
+    url: "https://spectrumcheat.com/about/zpu",
     type: "profile",
     images: [
       { url: "https://spectrumcheat.com/images/benner_1.png", width: 6144, height: 1015, alt: "ZPU — Founder & Developer" },
@@ -167,7 +167,7 @@ const personJsonLd = {
   "@type": "Person",
   name: "ZPU",
   alternateName: ["xZPUHigh", "Chanon", "Non"],
-  url: "https://spectrumcheat.com/zpu",
+  url: "https://spectrumcheat.com/about/zpu",
   image: "https://spectrumcheat.com/images/ZPU.jpg",
   jobTitle: "Founder & Developer",
   description:

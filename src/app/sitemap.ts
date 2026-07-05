@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/zpu`,
+      url: `${baseUrl}/about/zpu`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,

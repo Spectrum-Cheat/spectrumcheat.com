@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         destination: "https://discord.gg/C3MpUNwsDU",
         permanent: false,
       },
+      {
+        source: "/zpu",
+        destination: "/about/zpu",
+        permanent: true,
+      },
     ];
   },
 };
