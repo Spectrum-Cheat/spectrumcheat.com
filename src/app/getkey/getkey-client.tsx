@@ -433,6 +433,21 @@ export default function GetKeyClient() {
         <div className="getkey-more-options">
           <span className="gmo-label">{t("getkeyOtherWays")}</span>
 
+          <a
+            href="https://ads.luarmor.net/get_key?for=Spectrum_x_Free_Trial-KZbAhlNIVBPq"
+            target="_blank" rel="noreferrer"
+            className="gmo-row gmo-exclusive"
+          >
+            <div className="gmo-icon gmo-icon-exclusive">
+              <img src="https://www.pngkey.com/png/full/19-198938_queen-crown-vector-png-gold-crown-clipart-transparent.png" alt="Exclusive" loading="lazy" />
+            </div>
+            <div className="gmo-text">
+              <strong>Exclusive</strong>
+              <span>{t("getkeyExclusiveDesc")}</span>
+            </div>
+            <span className="gmo-action gmo-action-exclusive">{t("getkeyExclusiveCta")}<ArrowIcon /></span>
+          </a>
+
           <div className="gmo-row gmo-disabled">
             <div className="gmo-icon"><img src={lootLabs.logo} alt={lootLabs.title} loading="lazy" /></div>
             <div className="gmo-text">

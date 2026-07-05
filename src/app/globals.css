@@ -2326,6 +2326,12 @@ html.page-home .services-section {
 .gmo-action-muted { color: var(--text-muted); }
 .gmo-action-premium { color: #facc15; }
 .gmo-premium:hover .gmo-action-premium { color: #fde047; }
+.gmo-icon-exclusive {
+  background: rgba(234,179,8,0.14);
+  border-color: rgba(234,179,8,0.4);
+}
+.gmo-action-exclusive { color: #fbbf24; }
+.gmo-exclusive:hover .gmo-action-exclusive { color: #fcd34d; }
 
 /* Card */
 .key-provider-card {

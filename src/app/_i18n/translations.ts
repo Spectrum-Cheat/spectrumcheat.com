@@ -504,6 +504,8 @@ export const translations = {
     getkeyCtaUnlock: "Get your key",
     getkeyCtaLocked: "Complete steps above first",
     getkeyPremiumCta: "Get Premium",
+    getkeyExclusiveDesc: "For Exclusive Scripts ONLY! (Like Grow a Garden Rollback)",
+    getkeyExclusiveCta: "Get Access",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executors",
@@ -1046,6 +1048,8 @@ export const translations = {
     getkeyCtaUnlock: "รับคีย์ของคุณ",
     getkeyCtaLocked: "ทำขั้นตอนด้านบนให้เสร็จก่อน",
     getkeyPremiumCta: "รับ Premium",
+    getkeyExclusiveDesc: "สำหรับสคริปต์ Exclusive เท่านั้น! (เช่น Grow a Garden Rollback)",
+    getkeyExclusiveCta: "รับสิทธิ์",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // ตัวรัน",
@@ -1587,6 +1591,8 @@ export const translations = {
     getkeyCtaUnlock: "领取你的密钥",
     getkeyCtaLocked: "请先完成上方步骤",
     getkeyPremiumCta: "获取 Premium",
+    getkeyExclusiveDesc: "仅限专属脚本！（例如 Grow a Garden 回档）",
+    getkeyExclusiveCta: "获取访问",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // 执行器",
@@ -2128,6 +2134,8 @@ export const translations = {
     getkeyCtaUnlock: "Nhận key của bạn",
     getkeyCtaLocked: "Hoàn thành các bước ở trên trước",
     getkeyPremiumCta: "Nhận Premium",
+    getkeyExclusiveDesc: "CHỈ dành cho Script Độc Quyền! (Như Grow a Garden Rollback)",
+    getkeyExclusiveCta: "Nhận Quyền",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executor",
@@ -2670,6 +2678,8 @@ export const translations = {
     getkeyCtaUnlock: "Pegue sua key",
     getkeyCtaLocked: "Conclua os passos acima primeiro",
     getkeyPremiumCta: "Obter Premium",
+    getkeyExclusiveDesc: "APENAS para Scripts Exclusivos! (Como Grow a Garden Rollback)",
+    getkeyExclusiveCta: "Obter Acesso",
 
     // ─── Executors page ──────────────────────────
     executorsBadge:     "Spectrum Cheat // Executores",
