@@ -902,11 +902,11 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
           <h2 className="zpu-works-title">{t("zpuFavGamesTitle")}</h2>
           <p className="zpu-works-sub">{t("zpuFavGamesSub")}</p>
           <div className="zpu-games-grid">
-            {(showAllGames ? ZPU.favGames : ZPU.favGames.slice(0, 12)).map((g) => (
+            {(showAllGames ? ZPU.favGames : ZPU.favGames.slice(0, 18)).map((g) => (
               <GameTile key={g.name} name={g.name} image={g.image} />
             ))}
           </div>
-          {ZPU.favGames.length > 12 && (
+          {ZPU.favGames.length > 18 && (
             <button className="zpu-works-more" onClick={() => setShowAllGames((v) => !v)}>
               {t(showAllGames ? "zpuShowLess" : "zpuExploreAll")}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -937,11 +937,11 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <h2 className="zpu-works-title">{t("zpuMoviesTitle")}</h2>
             <p className="zpu-works-sub">{t("zpuMoviesSub")}</p>
             <div className="zpu-games-grid zpu-poster-grid">
-              {(showAllMovies ? ZPU.favMovies : ZPU.favMovies.slice(0, 12)).map((g) => (
+              {(showAllMovies ? ZPU.favMovies : ZPU.favMovies.slice(0, 18)).map((g) => (
                 <GameTile key={g.name} name={g.name} image={g.image} />
               ))}
             </div>
-            {ZPU.favMovies.length > 12 && (
+            {ZPU.favMovies.length > 18 && (
               <button className="zpu-works-more" onClick={() => setShowAllMovies((v) => !v)}>
                 {t(showAllMovies ? "zpuShowLess" : "zpuExploreAll")}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -973,11 +973,11 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <h2 className="zpu-works-title">{t("zpuArtistsTitle")}</h2>
             <p className="zpu-works-sub">{t("zpuArtistsSub")}</p>
             <div className="zpu-artists-grid">
-              {(showAllArtists ? ZPU.favArtists : ZPU.favArtists.slice(0, 3)).map((a) => (
+              {(showAllArtists ? ZPU.favArtists : ZPU.favArtists.slice(0, 4)).map((a) => (
                 <ArtistCard key={a.name} name={a.name} image={a.image} songs={a.songs} />
               ))}
             </div>
-            {ZPU.favArtists.length > 3 && (
+            {ZPU.favArtists.length > 4 && (
               <button className="zpu-works-more" onClick={() => setShowAllArtists((v) => !v)}>
                 {t(showAllArtists ? "zpuShowLess" : "zpuExploreAll")}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
