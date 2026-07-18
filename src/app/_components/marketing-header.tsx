@@ -23,6 +23,7 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
   const [emailRevealed, setEmailRevealed] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchClosing, setSearchClosing] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const searchWrapRef = useRef<HTMLDivElement>(null);
 
@@ -82,6 +83,13 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
     };
   }, [searchOpen]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
 
   type NavItem = { href: string; label: string; badge?: string; dot?: boolean; divider?: boolean };
@@ -96,7 +104,7 @@ export function MarketingHeader({ homeBrandHref = "/#hero" }: MarketingHeaderPro
 
   return (
     <>
-      <nav className="topbar" id="topbar">
+      <nav className={`topbar${scrolled ? " scrolled" : ""}`} id="topbar">
         <div className="nav-inner">
           <div className="navLeft">
             <Link href={homeBrandHref} className="nav-brand-wrap" aria-label="Back to top" onClick={closeMenu}>

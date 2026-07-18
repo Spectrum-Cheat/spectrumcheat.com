@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "../_i18n/context";
 
 const LANGUAGES = [
@@ -90,8 +90,21 @@ const STORAGE_KEY = "spectrum-lang";
 export function LanguagePopup() {
   const { setLang } = useLang();
   const [visible, setVisible] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [showOther, setShowOther] = useState(false);
   const [search, setSearch] = useState("");
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const closeModal = () => {
+    setClosing(true);
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      setVisible(false);
+      setClosing(false);
+      setShowOther(false);
+      setSearch("");
+    }, 280);
+  };
 
   function triggerGoogleTranslate(langCode: string) {
     // Map our codes → Google Translate codes
@@ -120,7 +133,7 @@ export function LanguagePopup() {
   }
 
   useEffect(() => {
-    const handler = () => setVisible(true);
+    const handler = () => { setClosing(false); setVisible(true); };
     window.addEventListener("spectrum:show-lang", handler);
     return () => window.removeEventListener("spectrum:show-lang", handler);
   }, []);
@@ -171,7 +184,7 @@ export function LanguagePopup() {
   function select(code: string) {
     localStorage.setItem(STORAGE_KEY, code);
     document.documentElement.lang = code;
-    setVisible(false);
+    closeModal();
 
     if (code === "th") {
       setLang("th");
@@ -208,11 +221,19 @@ export function LanguagePopup() {
   );
 
   return (
-    <div className="lang-overlay">
-      <div className="lang-modal">
+    <div
+      className={`lang-overlay${closing ? " closing" : ""}`}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          localStorage.setItem(STORAGE_KEY, "en");
+          closeModal();
+        }
+      }}
+    >
+      <div className={`lang-modal${closing ? " closing" : ""}`}>
         {!showOther ? (
           <>
-            <button className="lang-close" aria-label="Close" onClick={() => { localStorage.setItem(STORAGE_KEY, "en"); setVisible(false); }}>✕</button>
+            <button className="lang-close" aria-label="Close" onClick={() => { localStorage.setItem(STORAGE_KEY, "en"); closeModal(); }}>✕</button>
             <p className="lang-eyebrow">Spectrum Cheat</p>
             <h2 className="lang-title">Select Language</h2>
             <p className="lang-sub">เลือกภาษาของเว็บ</p>

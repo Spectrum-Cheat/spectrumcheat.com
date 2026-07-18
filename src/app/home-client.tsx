@@ -198,9 +198,6 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
   };
 
   useEffect(() => {
-    const topbar = document.getElementById("topbar");
-    const updateScroll = () => { topbar?.classList.toggle("scrolled", window.scrollY > 30); };
-
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) { (entry.target as HTMLElement).style.animationPlayState = "running"; revealObserver.unobserve(entry.target); }
@@ -248,11 +245,7 @@ export default function Home({ discordOnline, discordMembers }: { discordOnline?
     const handleTiltLeave = (e: Event) => { (e.currentTarget as HTMLElement).style.transform = ""; };
     tiltTargets.forEach((el) => { el.addEventListener("mousemove", handleTiltMove); el.addEventListener("mouseleave", handleTiltLeave); });
 
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    updateScroll();
-
     return () => {
-      window.removeEventListener("scroll", updateScroll);
       revealObserver.disconnect(); statsObserver.disconnect();
       tiltTargets.forEach((el) => { el.removeEventListener("mousemove", handleTiltMove); el.removeEventListener("mouseleave", handleTiltLeave); });
     };
