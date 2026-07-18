@@ -6936,27 +6936,6 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
   transition: transform 0.3s ease;
 }
 .zpu-photo-frame:hover .zpu-photo { transform: rotate(0deg); }
-.zpu-photo-sticker {
-  position: absolute;
-  z-index: 2;
-  right: -12px;
-  bottom: -6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  font-size: 2.1rem;
-  line-height: 1;
-  border-radius: 20px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.25), transparent 70%),
-    rgba(18, 21, 38, 0.92);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55);
-  transform: rotate(5deg);
-}
 .zpu-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .zpu-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .zpu-pill {
@@ -7386,7 +7365,7 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
   transition: transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.32s ease, border 0.32s ease;
 }
 .zpu-gcard:hover .zpu-gcard-inner {
-  transform: scale(2);
+  transform: scale(1.22) rotate(4deg);
   z-index: 30;
   border: 2px solid rgba(0, 0, 0, 0.7);
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.62);
@@ -8092,25 +8071,28 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
 
 /* PC setup — auto-scrolling product cards (marquee) */
 .zpu-setup-marquee {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-top: 10px;
-  padding: 10px 0 18px;
+  padding: 10px 0 14px;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
+.zpu-setup-marquee::-webkit-scrollbar { display: none; }
+.zpu-setup-marquee.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+.zpu-setup-marquee.dragging .zpu-setup-card,
+.zpu-setup-marquee.dragging a { pointer-events: none; }
 .zpu-setup-track {
   display: flex;
   width: max-content;
-  animation: zpu-setup-scroll 55s linear infinite;
-}
-.zpu-setup-marquee:hover .zpu-setup-track { animation-play-state: paused; }
-@keyframes zpu-setup-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .zpu-setup-track { animation: none; }
-  .zpu-setup-marquee { overflow-x: auto; }
 }
 .zpu-setup-card {
   flex: 0 0 210px;
@@ -8168,6 +8150,7 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
   transition: transform .3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .zpu-setup-card:hover .zpu-setup-img img { transform: scale(1.08); }
+.zpu-setup-marquee img { -webkit-user-drag: none; user-drag: none; }
 .zpu-setup-cat {
   font-size: 0.64rem;
   letter-spacing: 0.1em;
@@ -8609,7 +8592,6 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
 .zpu-page > .footer {
   margin: 64px -24px -80px;
 }
-
 @media (max-width: 760px) {
   .zpu-about-card { padding: 22px 18px; }
   .zpu-about-card .zpu-stat + .zpu-stat::before {

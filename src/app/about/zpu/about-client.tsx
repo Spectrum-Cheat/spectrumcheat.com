@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "../../_i18n/context";
 import type { TranslationKey } from "../../_i18n/translations";
-import { SiteFooter } from "../../_components/site-footer";
 
 // tech logo helpers
 const si = (slug: string, color?: string) =>
@@ -39,7 +38,7 @@ const ZPU = {
     { label: "Instagram", handle: "@zpu.mnn2", href: "https://www.instagram.com/zpu.mnn2", color: "#E4405F", platform: "instagram" as const },
     { label: "Facebook", handle: "zpu.mnn2", href: "https://www.facebook.com/zpu.mnn2", color: "#1877F2", platform: "facebook" as const },
     { label: "Spectrum Cheat", handle: "spectrumcheat.com", href: "/", color: "#8b5cf6", platform: "spectrum" as const },
-    { label: "TikTok [Main]", handle: "@xzpuhigh", href: "https://www.tiktok.com/@xzpuhigh", color: "#ffffff", platform: "tiktok" as const },
+    { label: "TikTok", handle: "@xzpuhigh", href: "https://www.tiktok.com/@xzpuhigh", color: "#ffffff", platform: "tiktok" as const },
     { label: "Steam", handle: "zpureal", href: "https://steamcommunity.com/id/zpureal/", color: "#66C0F4", platform: "steam" as const },
     { label: "GitHub", handle: "xZPUHigh", href: "https://github.com/xZPUHigh", color: "#ffffff", platform: "github" as const },
   ],
@@ -716,24 +715,24 @@ const ZPU = {
 
   // PC build — real JIB Thailand prices (THB) with product image + link.
   setup: [
-    { part: "CPU", name: "Intel Core i5-14400F", priceThb: 5990, icon: "/images/setup/cpu.png", url: "https://www.jib.co.th/web/product/readProduct/64702" },
-    { part: "GPU", name: "MSI GeForce RTX 5060 Ti 16G Ventus 2X OC Plus", priceThb: 20800, icon: "/images/setup/gpu.png", url: "https://www.jib.co.th/web/product/readProduct/76008" },
-    { part: "Mainboard", name: "MSI PRO B760M-A WIFI DDR5", priceThb: 3790, icon: "/images/setup/mainboard.png", url: "https://www.jib.co.th/web/product/readProduct/60465" },
-    { part: "RAM", name: "Kingston FURY Beast DDR5 32GB", priceThb: 16600, icon: "/images/setup/ram32.png", url: "https://www.jib.co.th/web/product/readProduct/82590" },
-    { part: "RAM", name: "Kingston FURY Beast DDR5 8GB", priceThb: 5190, icon: "/images/setup/ram8.png", url: "https://www.jib.co.th/web/product/readProduct/68213" },
-    { part: "SSD", name: "Kingston NV2 500GB PCIe 4.0 NVMe M.2", priceThb: 1290, icon: "/images/setup/ssd.png", url: "https://www.jib.co.th/web/product/readProduct/55282" },
-    { part: "HDD", name: "WD Blue 1TB 7200RPM SATA III (3.5\")", priceThb: 3490, icon: "/images/setup/hdd.png", url: "https://www.jib.co.th/web/product/readProduct/12280" },
-    { part: "PSU", name: "Thermaltake Toughpower GF 750W 80+ Gold", priceThb: 3490, icon: "/images/setup/psu.png", url: "https://www.jib.co.th/web/product/readProduct/47447" },
+    { part: "CPU", name: "Intel Core i5-14400F", priceThb: 5990, icon: "/images/setup/cpu.png", url: "https://www.intel.com/content/www/us/en/products/sku/236777/intel-core-i5-processor-14400f-20m-cache-up-to-4-70-ghz/specifications.html" },
+    { part: "GPU", name: "MSI GeForce RTX 5060 Ti 16G Ventus 2X OC Plus", priceThb: 20800, icon: "/images/setup/gpu.png", url: "https://www.msi.com/Graphics-Card/GeForce-RTX-5060-Ti-16G-VENTUS-2X-OC-PLUS" },
+    { part: "Mainboard", name: "MSI PRO B760M-A WIFI DDR5", priceThb: 3790, icon: "/images/setup/mainboard.png", url: "https://www.msi.com/Motherboard/PRO-B760M-A-WIFI" },
+    { part: "RAM", name: "Kingston FURY Beast DDR5 32GB", priceThb: 16600, icon: "/images/setup/ram32.png", url: "https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-memory" },
+    { part: "RAM", name: "Kingston FURY Beast DDR5 8GB", priceThb: 5190, icon: "/images/setup/ram8.png", url: "https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-memory" },
+    { part: "SSD", name: "Kingston NV2 500GB PCIe 4.0 NVMe M.2", priceThb: 1290, icon: "/images/setup/ssd.png", url: "https://www.kingston.com/en/ssd/nv2-nvme-pcie-ssd" },
+    { part: "HDD", name: "WD Blue 1TB 7200RPM SATA III (3.5\")", priceThb: 3490, icon: "/images/setup/hdd.png", url: "https://www.westerndigital.com/products/internal-drives/wd-blue-desktop-sata-hdd?sku=WD10EZEX" },
+    { part: "PSU", name: "Thermaltake Toughpower GF 750W 80+ Gold", priceThb: 3490, icon: "/images/setup/psu.png", url: "https://www.thermaltake.com/toughpower-gf-750w.html" },
   ] as { part: string; name: string; priceThb: number; icon?: string; url?: string }[],
 
   // Peripherals / gaming gear on the desk — real prices (THB) + product links.
   gear: [
-    { part: "Monitor · Main", name: "ASUS TUF VG259QMR5A · 24.5″ FHD 310Hz", priceThb: 5900, icon: "/images/gear/monitor-tuf.png", url: "https://www.jib.co.th/web/product/readProduct/81912" },
-    { part: "Monitor", name: "ASUS ROG Strix XG27ACMES · 27″ 2K 255Hz", priceThb: 7950, icon: "/images/gear/monitor-rog.png", url: "https://www.jib.co.th/web/product/readProduct/81850" },
+    { part: "Monitor · Main", name: "ASUS TUF VG259QMR5A · 24.5″ FHD 310Hz", priceThb: 5900, icon: "/images/gear/monitor-tuf.png", url: "https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg259qmrl5a/" },
+    { part: "Monitor", name: "ASUS ROG Strix XG27ACMES · 27″ 2K 255Hz", priceThb: 7950, icon: "/images/gear/monitor-rog.png", url: "https://rog.asus.com/monitors/27-to-31-5-inches/rog-strix-xg27acmes/" },
     { part: "Mouse · Main", name: "Hitscan Hyperlight Wireless · Black", priceThb: 3100, icon: "/images/gear/mouse-hitscan.png", url: "https://hitscan.com/products/hyperlight" },
-    { part: "Mouse", name: "Logitech G Pro X Superlight 2 · Pink", priceThb: 3990, icon: "/images/gear/mouse-superlight.png", url: "https://www.jib.co.th/web/product/readProduct/61793" },
-    { part: "Headset", name: "HyperX Cloud III", priceThb: 2590, icon: "/images/gear/headset-cloud3.png", url: "https://www.jib.co.th/web/product/readProduct/60060" },
-    { part: "Microphone", name: "HyperX QuadCast", priceThb: 4390, icon: "/images/gear/mic-quadcast.png", url: "https://www.jib.co.th/web/product/readProduct/35557" },
+    { part: "Mouse", name: "Logitech G Pro X Superlight 2 · Pink", priceThb: 3990, icon: "/images/gear/mouse-superlight.png", url: "https://www.logitechg.com/en-us/shop/p/pro-x2-superlight-wireless-mouse" },
+    { part: "Headset", name: "HyperX Cloud III", priceThb: 2590, icon: "/images/gear/headset-cloud3.png", url: "https://row.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" },
+    { part: "Microphone", name: "HyperX QuadCast", priceThb: 4390, icon: "/images/gear/mic-quadcast.png", url: "https://hyperx.com/products/hyperx-quadcast-usb-microphone" },
   ] as { part: string; name: string; priceThb: number; icon?: string; url?: string }[],
 };
 /* ═══════════════════════════════════════════════════════════════ */
@@ -798,11 +797,13 @@ function RandomFact() {
   useEffect(() => {
     const pick = <T,>(a: T[]): T => a[Math.floor(Math.random() * a.length)];
     const pools: { icon: string; label: string; get: () => string }[] = [
-      { icon: "📖", label: "Currently reading", get: () => pick(ZPU.favBooks).name },
-      { icon: "🎧", label: "Listening to", get: () => { const a = pick(ZPU.favArtists); return `${pick(a.songs)} · ${a.name}`; } },
-      { icon: "🎮", label: "Playing", get: () => pick(ZPU.favGames).name },
-      { icon: "🎬", label: "Watching", get: () => pick([...ZPU.favMovies, ...ZPU.favAnime, ...ZPU.favSeries]).name },
-      { icon: "📕", label: "Reading", get: () => pick(ZPU.favManga).name },
+      { icon: "📖", label: "Reading Book", get: () => pick(ZPU.favBooks).name },
+      { icon: "🎧", label: "Listening to Music", get: () => { const a = pick(ZPU.favArtists); return `${pick(a.songs)} · ${a.name}`; } },
+      { icon: "🎮", label: "Playing Game", get: () => pick(ZPU.favGames).name },
+      { icon: "🎬", label: "Watching Movie", get: () => pick(ZPU.favMovies).name },
+      { icon: "🍿", label: "Watching Anime", get: () => pick(ZPU.favAnime).name },
+      { icon: "📺", label: "Watching Series", get: () => pick(ZPU.favSeries).name },
+      { icon: "📕", label: "Reading Manga", get: () => pick(ZPU.favManga).name },
     ];
     const p = pick(pools);
     setFact({ icon: p.icon, label: p.label, value: p.get() });
@@ -976,6 +977,118 @@ const FACT_WIDE = new Set(["zpuFactsPassions"]);
 
 // Section header — pulls the trailing emoji off the title to use as a left icon,
 // with the title + a short subtitle stacked beside it.
+// Horizontal rail that auto-scrolls (looping seamlessly over duplicated
+// content) yet can be grabbed and dragged with the mouse. Auto and manual both
+// drive scrollLeft, so they blend: dragging/hover pauses the drift, and it
+// resumes shortly after you let go. Vertical wheel maps to horizontal too.
+function DragScroll({
+  children,
+  className = "",
+  auto = true,
+  speed = 0.18,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  auto?: boolean;
+  speed?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  // `pos` is a float accumulator: scrollLeft rounds to integers, so sub-pixel
+  // auto-scroll speeds would otherwise stall. We drive scrollLeft from pos.
+  const st = useRef({ down: false, moved: false, startX: 0, startLeft: 0, resumeAt: 0, hover: false, pos: 0 });
+
+  // Keep the position within one content-set so the loop is seamless.
+  const wrap = (el: HTMLElement, target: number) => {
+    const h = el.scrollWidth / 2;
+    return h > 0 ? ((target % h) + h) % h : target;
+  };
+  const apply = (el: HTMLElement, target: number) => {
+    const p = wrap(el, target);
+    st.current.pos = p;
+    el.scrollLeft = p;
+  };
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    const el = ref.current;
+    if (!el || e.button !== 0) return;
+    st.current.down = true;
+    st.current.moved = false;
+    st.current.startX = e.clientX;
+    st.current.startLeft = el.scrollLeft;
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    const el = ref.current;
+    if (!el || !st.current.down) return;
+    const dx = e.clientX - st.current.startX;
+    if (!st.current.moved && Math.abs(dx) > 4) {
+      st.current.moved = true;
+      el.classList.add("dragging");
+      try { el.setPointerCapture(e.pointerId); } catch {}
+    }
+    if (st.current.moved) apply(el, st.current.startLeft - dx);
+  };
+  const onPointerUp = (e: React.PointerEvent) => {
+    const el = ref.current;
+    if (!el) return;
+    st.current.down = false;
+    st.current.resumeAt = performance.now() + 1400;
+    el.classList.remove("dragging");
+    try { el.releasePointerCapture(e.pointerId); } catch {}
+  };
+  // Swallow the click that ends a drag so cards don't navigate mid-swipe.
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (st.current.moved) { e.preventDefault(); e.stopPropagation(); st.current.moved = false; }
+  };
+  const onEnter = () => { st.current.hover = true; };
+  const onLeave = () => { st.current.hover = false; };
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (e.deltaX !== 0 || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      e.preventDefault();
+      apply(el, st.current.pos + e.deltaY);
+      st.current.resumeAt = performance.now() + 1400;
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+
+    st.current.pos = el.scrollLeft;
+    let raf = 0;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (auto && !reduce) {
+      const tick = () => {
+        const s = st.current;
+        if (!s.down && !s.hover && performance.now() >= s.resumeAt) {
+          apply(el, s.pos + speed);
+        }
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [auto, speed]);
+
+  return (
+    <div
+      ref={ref}
+      className={`zpu-hscroll ${className}`}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+      onClickCapture={onClickCapture}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      {children}
+    </div>
+  );
+}
+
 function SectionHead({ title, sub }: { title: string; sub?: string }) {
   const parts = title.trim().split(/\s+/);
   const last = parts[parts.length - 1];
@@ -1035,7 +1148,7 @@ function MangaTile({ name, image }: { name: string; image?: string }) {
       <div className="zpu-manga-inner">
         {showImg ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img className="zpu-manga-cover" src={image} alt={name} loading="lazy" onError={() => setFailed(true)} />
+          <img className="zpu-manga-cover" src={image} alt={name} loading="lazy" referrerPolicy="no-referrer" onError={() => setFailed(true)} />
         ) : (
           <span className="zpu-manga-fallback">{gameInitials(name)}</span>
         )}
@@ -1365,7 +1478,7 @@ function LiveStats({ ytSubs, discordMembers }: { ytSubs?: number | null; discord
       <div className="zpu-bn-cell zpu-bn-stat zpu-bn-s3">
         <span className="zpu-bn-stat-ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+            <path d="M7 20h10" /><path d="M10 20c5.5-2.5.8-6.4 3-10" /><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" /><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
           </svg>
         </span>
         <strong>9+</strong>
@@ -1581,6 +1694,122 @@ function MusicPlayer() {
       </div>
     </div>
     </div>
+  );
+}
+
+// Plain single-color icon (currentColor via CSS mask) matching the main
+// site's footer look — no brand colors, just muted → accent on hover.
+function FooterSocialIcon({ slug }: { slug: string }) {
+  const url = si(slug);
+  return (
+    <span
+      aria-hidden="true"
+      style={{
+        display: "inline-block",
+        width: 18,
+        height: 18,
+        backgroundColor: "currentColor",
+        WebkitMaskImage: `url(${url})`,
+        maskImage: `url(${url})`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+      }}
+    />
+  );
+}
+
+// Footer scoped to the ZPU about page — personal nav/socials instead of the
+// marketing site's Platform/Legal/FAQ columns.
+function ZpuFooter() {
+  const { t } = useLang();
+  const year = new Date().getFullYear();
+
+  const exploreLinks = [
+    { id: "zpu-top", label: t("zpuNavHome") },
+    { id: "zpu-facts", label: t("zpuNavAbout") },
+    { id: "zpu-interests", label: t("zpuNavInterests") },
+    { id: "zpu-skills", label: t("zpuNavSkills") },
+    { id: "zpu-items", label: t("zpuNavItems") },
+    { id: "zpu-works", label: t("zpuNavProjects") },
+    { id: "zpu-connect", label: t("zpuNavContact") },
+  ];
+  const connectSocials = ZPU.socials.filter((s) =>
+    ["youtube", "discord", "instagram", "tiktok"].includes(s.platform)
+  );
+  const moreLinks = [
+    { label: "Spectrum Cheat", href: "/" },
+    { label: t("navBloxCheat"), href: "/bloxcheat" },
+    { label: t("navExecutors"), href: "/#executor" },
+  ];
+  const bottomSocials = ZPU.socials.filter((s) => s.platform !== "spectrum");
+
+  return (
+    <footer className="footer zpu-own-footer">
+      <div className="footer-inner">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <div className="logo-mark">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/Spectrum Icon.png" alt="Spectrum Cheat logo" className="logo-image" width={100} height={100} />
+            </div>
+            <span className="brand-name">{ZPU.aka}</span>
+            <p className="footer-tagline">{t("zpuFooterTagline")}</p>
+          </div>
+
+          <div className="footer-links">
+            <div className="link-col">
+              <h4>{t("zpuFooterExplore")}</h4>
+              <ul>
+                {exploreLinks.map((l) => (
+                  <li key={l.id}><a href={`#${l.id}`}>{l.label}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div className="link-col">
+              <h4>{t("zpuFooterConnect")}</h4>
+              <ul>
+                {connectSocials.map((s) => (
+                  <li key={s.href}>
+                    <a href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="link-col">
+              <h4>{t("zpuFooterMore")}</h4>
+              <ul>
+                {moreLinks.map((l) => (
+                  <li key={l.href}><a href={l.href}>{l.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© 2021–{year} Spectrum Cheat. {t("zpuFooterRights")}</span>
+          <div className="footer-socials">
+            {bottomSocials.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                aria-label={s.label}
+              >
+                <FooterSocialIcon slug={s.platform} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -1919,7 +2148,6 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={ZPU.photo} alt={ZPU.brand} />
               </div>
-              <div className="zpu-photo-sticker">💻 ☕ 🌟</div>
             </div>
 
             <RandomFact />
@@ -2305,7 +2533,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         {ZPU.setup.length > 0 && (
           <section className="zpu-stack-sec">
             <SectionHead title={t("zpuSetupTitle")} sub={t("zpuSetupSub")} />
-            <div className="zpu-setup-marquee">
+            <DragScroll className="zpu-setup-marquee">
               <div className="zpu-setup-track">
                 {[...ZPU.setup, ...ZPU.setup].map((c, i) => (
                   <div key={`${c.name}-${i}`} className="zpu-setup-card" aria-hidden={i >= ZPU.setup.length}>
@@ -2328,7 +2556,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                   </div>
                 ))}
               </div>
-            </div>
+            </DragScroll>
             <div className="zpu-setup-total">
               <span className="zpu-setup-total-label">{t("zpuSetupTotal")}</span>
               <span className="zpu-setup-total-value">
@@ -2342,7 +2570,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         {ZPU.gear.length > 0 && (
           <section className="zpu-stack-sec">
             <SectionHead title={t("zpuGearTitle")} sub={t("zpuGearSub")} />
-            <div className="zpu-setup-marquee">
+            <DragScroll className="zpu-setup-marquee">
               <div className="zpu-setup-track">
                 {[...ZPU.gear, ...ZPU.gear].map((c, i) => (
                   <div key={`${c.name}-${i}`} className="zpu-setup-card" aria-hidden={i >= ZPU.gear.length}>
@@ -2365,7 +2593,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                   </div>
                 ))}
               </div>
-            </div>
+            </DragScroll>
             <div className="zpu-setup-total">
               <span className="zpu-setup-total-label">{t("zpuSetupTotal")}</span>
               <span className="zpu-setup-total-value">
@@ -2434,7 +2662,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         </section>
 
       </div>
-      <SiteFooter />
+      <ZpuFooter />
     </main>
   );
 }
