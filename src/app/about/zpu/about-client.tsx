@@ -792,6 +792,23 @@ function LiveDate({ timezone }: { timezone: string }) {
 }
 
 // A live "status" that picks a random thing ZPU is into — reshuffled every refresh.
+// All 77 Thai provinces — "Living in" picks a fresh one on every refresh.
+const TH_PROVINCES = [
+  "Chiang Mai, Thailand", "Chiang Rai, Thailand", "Lampang, Thailand", "Lamphun, Thailand",
+  "Mae Hong Son, Thailand", "Nan, Thailand", "Phayao, Thailand", "Phrae, Thailand",
+  "Uttaradit, Thailand", "Sukhothai, Thailand", "Tak, Thailand", "Kamphaeng Phet, Thailand",
+  "Phitsanulok, Thailand", "Phichit, Thailand", "Phetchabun, Thailand", "Nakhon Sawan, Thailand",
+  "Uthai Thani, Thailand", "Bangkok, Thailand", "Nonthaburi, Thailand", "Pathum Thani, Thailand",
+  "Phra Nakhon Si Ayutthaya, Thailand", "Ang Thong, Thailand", "Lopburi, Thailand", "Sing Buri, Thailand",
+  "Chai Nat, Thailand", "Saraburi, Thailand", "Nakhon Nayok, Thailand", "Suphan Buri, Thailand",
+  "Nakhon Pathom, Thailand", "Samut Prakan, Thailand", "Samut Sakhon, Thailand", "Samut Songkhram, Thailand",
+  "Phetchaburi, Thailand", "Prachuap Khiri Khan, Thailand", "Kanchanaburi, Thailand", "Ratchaburi, Thailand",
+  "Chachoengsao, Thailand", "Prachinburi, Thailand", "Sa Kaeo, Thailand", "Chumphon, Thailand",
+  "Ranong, Thailand", "Surat Thani, Thailand", "Nakhon Si Thammarat, Thailand", "Krabi, Thailand",
+  "Phang Nga, Thailand", "Phuket, Thailand", "Trang, Thailand", "Phatthalung, Thailand",
+  "Satun, Thailand", "Songkhla, Thailand", "Pattani, Thailand", "Yala, Thailand", "Narathiwat, Thailand",
+];
+
 function RandomFact() {
   const [fact, setFact] = useState<{ icon: string; label: string; value: string } | null>(null);
   useEffect(() => {
@@ -1827,6 +1844,30 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
   const [showAllArtists, setShowAllArtists] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("zpu-top");
+  // Picked once per page load so the "Living in" fact card and the location
+  // pill always agree — two independent random picks would show two cities.
+  const [livingCity, setLivingCity] = useState<string | null>(null);
+  useEffect(() => {
+    setLivingCity(TH_PROVINCES[Math.floor(Math.random() * TH_PROVINCES.length)]);
+  }, []);
+
+  // Dark is the base/OG design; light is opt-in and remembered per browser.
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useEffect(() => {
+    const saved = localStorage.getItem("zpu-theme");
+    if (saved === "light" || saved === "dark") setTheme(saved);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("zpu-theme", theme);
+  }, [theme]);
+  // The Select Language and Music popups render outside .zpu-page (language
+  // is global, music sits in a portal-like sibling), so mirror the theme onto
+  // <html> for them to pick up — and clean up on unmount so other pages
+  // that don't have this toggle aren't affected.
+  useEffect(() => {
+    document.documentElement.setAttribute("data-zpu-theme", theme);
+    return () => document.documentElement.removeAttribute("data-zpu-theme");
+  }, [theme]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -1983,12 +2024,12 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
     { labelKey: "zpuRoleFounder" as const, strong: "Spectrum Cheat", href: "https://spectrumcheat.com", sinceKey: "zpuSinceFounder" as const, platform: "spectrum" as const },
     { labelKey: "zpuRoleOwner" as const, strong: "ZPU Community", href: "https://discord.gg/C3MpUNwsDU", sinceKey: "zpuSinceOwner" as const, platform: "discord" as const },
     { labelKey: "zpuRoleYoutube" as const, strong: "@xZPUHigh", href: "https://www.youtube.com/channel/UCgMktyw9e816q0GzhBL2dnQ", sinceKey: "zpuSinceYoutube" as const, platform: "youtube" as const },
-    { labelKey: "zpuRoleTiktok" as const, strong: "@xZPUHighReal", href: "https://www.tiktok.com/@xzpuhighreal", sinceKey: "zpuSinceTiktok" as const, platform: "tiktok" as const },
+    { labelKey: "zpuRoleTiktok" as const, strong: "@xZPUHigh", href: "https://www.tiktok.com/@xzpuhigh", sinceKey: "zpuSinceTiktok" as const, platform: "tiktok" as const },
   ];
 
   const facts = [
     { labelKey: "zpuFactsPassions" as const, value: t("zpuFactsPassionsV"), color: "#8b5cf6" },
-    { labelKey: "zpuFactsLiving" as const, value: t("zpuFactsLivingV"), color: "#3b82f6" },
+    { labelKey: "zpuFactsLiving" as const, value: livingCity, color: "#3b82f6" },
     { labelKey: "zpuFactsTimezone" as const, value: (
       <span className="zpu-fact-tz">
         <span>ICT (Indochina Time)</span>
@@ -2008,7 +2049,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
   ];
 
   return (
-    <main className="zpu-page">
+    <main className="zpu-page" data-theme={theme}>
       <div className="zpu-dots" />
 
       {/* Floating personal header — full-width at top, collapses into a pill on scroll */}
@@ -2049,6 +2090,21 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                 strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </button>
+            <button
+              className={`zpu-tb-btn zpu-tb-theme${theme === "light" ? " is-light" : ""}`}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={() => setTheme((p) => (p === "dark" ? "light" : "dark"))}
+            >
+              <svg className="zpu-tb-theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+              <svg className="zpu-tb-theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
               </svg>
             </button>
             <button
@@ -2159,7 +2215,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                {ZPU.location}
+                {livingCity}
               </span>
               <span className="zpu-pill">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2211,7 +2267,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             <p className="zpu-current-label">{t("zpuCurrent")}</p>
             <div className="zpu-current-list">
               {currently.map((c) => (
-                <div key={c.strong} className="zpu-current-item">
+                <div key={c.labelKey} className="zpu-current-item">
                   <PlatformIcon platform={c.platform} />
                   <span>
                     {t(c.labelKey)}{" "}

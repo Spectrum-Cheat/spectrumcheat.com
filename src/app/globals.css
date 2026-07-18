@@ -5856,6 +5856,254 @@ blockquote::after  { content: close-quote; color: var(--accent); }
   color: var(--text-primary);
   overflow: hidden;
   padding: 64px 24px 80px;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+/* ── Light theme also reaches the Select Language / Music popups, which
+   render outside .zpu-page — bridged via a data-zpu-theme attribute on
+   <html> (see AboutZpu). Only text/border tokens are overridden at this
+   level since --bg/--surface aren't used by those two popups. ── */
+html[data-zpu-theme="light"] {
+  --text-primary:   #14172B;
+  --text-secondary: #4B5170;
+  --text-muted:     #8991AC;
+  --border:         rgba(15, 23, 42, 0.10);
+  --border-glow:    rgba(139, 92, 246, 0.35);
+}
+html[data-zpu-theme="light"] .lang-overlay,
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-music-backdrop {
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+    rgba(246, 247, 251, 0.82);
+}
+html[data-zpu-theme="light"] .lang-modal,
+html[data-zpu-theme="light"] .zpu-music-wrap.open > .zpu-player {
+  background:
+    radial-gradient(130% 60% at 50% -8%, rgba(139, 92, 246, 0.14), transparent 62%),
+    linear-gradient(165deg, #ffffff, #f7f7fb);
+  border-color: rgba(15, 23, 42, 0.10);
+  box-shadow:
+    0 44px 110px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(15, 23, 42, 0.04);
+}
+html[data-zpu-theme="light"] .lang-modal::before,
+html[data-zpu-theme="light"] .zpu-music-wrap.open > .zpu-player::before {
+  background: linear-gradient(150deg, rgba(139, 92, 246, 0.45), rgba(15, 23, 42, 0.04) 45%, rgba(109, 40, 217, 0.35));
+}
+html[data-zpu-theme="light"] .lang-modal::after,
+html[data-zpu-theme="light"] .zpu-music-wrap.open > .zpu-player::after {
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.18), transparent);
+}
+html[data-zpu-theme="light"] .lang-title {
+  background: linear-gradient(135deg, #1e2140 0%, #6d28d9 55%, #a855f7 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+html[data-zpu-theme="light"] .lang-option {
+  border-color: rgba(15, 23, 42, 0.12);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.035), rgba(15, 23, 42, 0.012));
+}
+html[data-zpu-theme="light"] .lang-option:hover {
+  border-color: rgba(168, 85, 247, 0.55);
+  background: linear-gradient(160deg, rgba(139, 92, 246, 0.14), rgba(15, 23, 42, 0.02));
+}
+html[data-zpu-theme="light"] .lang-option--other {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+html[data-zpu-theme="light"] .lang-close,
+html[data-zpu-theme="light"] .lang-back,
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-close {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.14);
+}
+html[data-zpu-theme="light"] .lang-close:hover,
+html[data-zpu-theme="light"] .lang-back:hover,
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-close:hover {
+  background: rgba(168, 85, 247, 0.16);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+html[data-zpu-theme="light"] .lang-search {
+  background: rgba(15, 23, 42, 0.035);
+  border-color: rgba(15, 23, 42, 0.14);
+}
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-bar,
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-vol-slider {
+  background: rgba(15, 23, 42, 0.12);
+}
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-btn {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.14);
+}
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-btn:hover {
+  background: rgba(139, 92, 246, 0.14);
+}
+html[data-zpu-theme="light"] .zpu-music-wrap.open .zpu-player-cover {
+  box-shadow: 0 20px 46px rgba(109, 40, 217, 0.25), inset 0 0 0 1px rgba(15, 23, 42, 0.1);
+}
+
+/* ── Light theme — opt-in via the header toggle, dark stays the base design ── */
+.zpu-page[data-theme="light"] {
+  --bg:          #F6F7FB;
+  --bg-2:        #EEF0F8;
+  --bg-3:        #E5E8F3;
+  --surface:     #FFFFFF;
+  --surface-2:   #F3F4FA;
+  --border:      rgba(15, 23, 42, 0.10);
+  --border-glow: rgba(139, 92, 246, 0.35);
+
+  --text-primary:   #14172B;
+  --text-secondary: #4B5170;
+  --text-muted:     #8991AC;
+}
+.zpu-page[data-theme="light"] .zpu-dots {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+}
+.zpu-page[data-theme="light"] .zpu-topbar {
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+.zpu-page[data-theme="light"] .zpu-topbar.scrolled .zpu-topbar-inner {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(15, 23, 42, 0.10);
+}
+.zpu-page[data-theme="light"] .zpu-tb-btn {
+  border-color: rgba(15, 23, 42, 0.12);
+  background: rgba(15, 23, 42, 0.04);
+}
+.zpu-page[data-theme="light"] .zpu-tb-btn:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+/* The logo art is white/purple on transparent — a dark drop-shadow keeps
+   its white edges visible against a light bg. */
+.zpu-page[data-theme="light"] .zpu-topbar-logo,
+.zpu-page[data-theme="light"] .zpu-current-icon--img img,
+.zpu-page[data-theme="light"] .logo-image {
+  filter:
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.75))
+    drop-shadow(0 0 5px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Simple solid light cards instead of dark-page glass. */
+.zpu-page[data-theme="light"] .zpu-bn-cell,
+.zpu-page[data-theme="light"] .zpu-fact,
+.zpu-page[data-theme="light"] .zpu-tiny-card,
+.zpu-page[data-theme="light"] .zpu-bn-social,
+.zpu-page[data-theme="light"] .zpu-pill {
+  background: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.18);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+}
+/* Restate the colourful :hover accents — the flat overrides above have
+   higher specificity than the base :hover rules and would otherwise mute them. */
+.zpu-page[data-theme="light"] .zpu-bn-cell:hover {
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--c) 20%, transparent);
+}
+.zpu-page[data-theme="light"] .zpu-fact:hover {
+  border-color: color-mix(in srgb, var(--c) 60%, transparent);
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--c) 20%, transparent),
+              0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent);
+}
+.zpu-page[data-theme="light"] .zpu-tiny-card:hover {
+  border-color: color-mix(in srgb, var(--c) 60%, transparent);
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--c) 22%, transparent),
+              0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent);
+}
+.zpu-page[data-theme="light"] .zpu-bn-social:hover {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+.zpu-page[data-theme="light"] .zpu-bio-hl { color: #6d28d9; }
+/* TikTok/GitHub icons are baked white — invert to black everywhere they're
+   used (currently-list, social cards, footer) so they show on a light page. */
+.zpu-page[data-theme="light"] img[alt="tiktok"],
+.zpu-page[data-theme="light"] img[alt="github"] {
+  filter: invert(1);
+}
+.zpu-page[data-theme="light"] .zpu-home-name {
+  background: linear-gradient(135deg, #1e2140 0%, #6d28d9 55%, #a855f7 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 10px 30px rgba(139, 92, 246, 0.22));
+}
+.zpu-page[data-theme="light"] .zpu-home-desc { color: #4B5170; }
+.zpu-page[data-theme="light"] .zpu-home-stat span { color: #6B7290; }
+.zpu-page[data-theme="light"] .zpu-home-btn:not(.zpu-home-btn--primary) {
+  background: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.14);
+}
+.zpu-page[data-theme="light"] .zpu-home-btn:not(.zpu-home-btn--primary):hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(139, 92, 246, 0.10);
+}
+.zpu-page[data-theme="light"] .zpu-setup-total {
+  border-top-color: rgba(15, 23, 42, 0.12);
+}
+.zpu-page[data-theme="light"] .zpu-setup-total-value {
+  background: linear-gradient(90deg, #6d28d9, #14172B);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+/* Setup / gear / everyday-item cards — same white-alpha-on-dark-bg problem. */
+.zpu-page[data-theme="light"] .zpu-setup-card,
+.zpu-page[data-theme="light"] .zpu-edc-card {
+  border-color: rgba(15, 23, 42, 0.16);
+  box-shadow: inset 0 1px 0 rgba(15, 23, 42, 0.04);
+}
+.zpu-page[data-theme="light"] .zpu-price-thb,
+.zpu-page[data-theme="light"] .zpu-edc-price {
+  color: #14172B;
+  background: rgba(15, 23, 42, 0.08);
+}
+.zpu-page[data-theme="light"] .zpu-price-view {
+  color: #6d28d9;
+}
+.zpu-page[data-theme="light"] .zpu-price-view:hover {
+  color: #fff;
+}
+/* Connect section social cards — same invisible-on-light border. */
+.zpu-page[data-theme="light"] .zpu-social {
+  border-color: rgba(15, 23, 42, 0.18);
+}
+.zpu-page[data-theme="light"] .zpu-stack-panel,
+.zpu-page[data-theme="light"] .zpu-stack-chip,
+.zpu-page[data-theme="light"] .zpu-artist,
+.zpu-page[data-theme="light"] .zpu-artist-photo {
+  border-color: rgba(15, 23, 42, 0.18);
+}
+.zpu-page[data-theme="light"] .zpu-artist-head {
+  border-bottom-color: rgba(15, 23, 42, 0.12);
+}
+.zpu-page[data-theme="light"] .zpu-home-line::before {
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.16) 15%, rgba(15, 23, 42, 0.16) 85%, transparent);
+}
+/* "View Collection" / "Show Less" pill — was white-on-white glass. */
+.zpu-page[data-theme="light"] .zpu-works-more {
+  color: #14172B;
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.16);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 3px rgba(15, 23, 42, 0.06),
+    0 10px 24px rgba(15, 23, 42, 0.10);
+}
+.zpu-page[data-theme="light"] .zpu-works-more svg {
+  color: #14172B;
+  background: rgba(15, 23, 42, 0.08);
+}
+.zpu-page[data-theme="light"] .zpu-works-more:hover {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 3px rgba(15, 23, 42, 0.08),
+    0 16px 34px rgba(15, 23, 42, 0.14);
+}
+.zpu-page[data-theme="light"] .zpu-works-more:hover svg {
+  background: rgba(139, 92, 246, 0.22);
 }
 
 /* ── Floating personal header (full-width → pill on scroll) ── */
@@ -6012,6 +6260,15 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 .zpu-topbar.scrolled .zpu-tb-btn { width: 34px; height: 34px; }
 .zpu-tb-music svg { transform-origin: center; }
 html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infinite; }
+.zpu-tb-theme { position: relative; }
+.zpu-tb-theme svg {
+  position: absolute; inset: 0; margin: auto;
+  transition: opacity .35s ease, transform .5s cubic-bezier(.4, 0, .2, 1);
+}
+.zpu-tb-theme-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+.zpu-tb-theme-sun { opacity: 0; transform: rotate(-90deg) scale(.5); color: #fbbf24; }
+.zpu-tb-theme.is-light .zpu-tb-theme-moon { opacity: 0; transform: rotate(90deg) scale(.5); }
+.zpu-tb-theme.is-light .zpu-tb-theme-sun { opacity: 1; transform: rotate(0deg) scale(1); }
 .zpu-dots {
   position: absolute;
   inset: 0;
