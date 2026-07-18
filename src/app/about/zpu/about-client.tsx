@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLang } from "../../_i18n/context";
 import type { TranslationKey } from "../../_i18n/translations";
 
@@ -808,6 +808,218 @@ const TH_PROVINCES = [
   "Phang Nga, Thailand", "Phuket, Thailand", "Trang, Thailand", "Phatthalung, Thailand",
   "Satun, Thailand", "Songkhla, Thailand", "Pattani, Thailand", "Yala, Thailand", "Narathiwat, Thailand",
 ];
+
+// Quote card under "Facts About Me" — shows one quote in the currently
+// selected site language, rotating on its own.
+const QUOTES: Record<"en" | "th" | "zh" | "vi" | "pt", string>[] = [
+  { th: "จงเริ่ม แม้จะยังไม่พร้อม", en: "Start before you're ready.", zh: "即使还没准备好，也要开始。", vi: "Hãy bắt đầu dù chưa sẵn sàng.", pt: "Comece mesmo sem estar pronto." },
+  { th: "ทำไปทั้งที่กลัว ทำไปทั้งที่เหนื่อย แต่จงทำต่อ", en: "Do it scared, do it tired, just do it anyway.", zh: "害怕也做，疲惫也做，无论如何都去做。", vi: "Hãy làm dù sợ, dù mệt, cứ làm thôi.", pt: "Faça com medo, faça cansado, mas faça mesmo assim." },
+  { th: "ความสม่ำเสมอชนะพรสวรรค์", en: "Consistency beats talent.", zh: "坚持胜过天赋。", vi: "Sự kiên trì vượt qua tài năng.", pt: "A consistência vence o talento." },
+  { th: "ความก้าวหน้าเล็ก ๆ ยังดีกว่าไม่เริ่มเลย", en: "Small progress is still progress.", zh: "小小的进步也是进步。", vi: "Tiến bộ nhỏ vẫn là tiến bộ.", pt: "Pequenos progressos ainda são progresso." },
+  { th: "อย่าหยุดเพียงเพราะมันยาก", en: "Don't stop because it's hard.", zh: "不要因为困难而停止。", vi: "Đừng dừng lại chỉ vì khó.", pt: "Não pare só porque é difícil." },
+  { th: "ทุกวันที่คุณลงมือ คุณกำลังเข้าใกล้ความฝัน", en: "Every day you show up, you're closer to your dream.", zh: "每一天坚持，都会更接近梦想。", vi: "Mỗi ngày cố gắng là một ngày gần hơn với ước mơ.", pt: "Cada dia que você aparece é um dia mais perto do seu sonho." },
+  { th: "ความสำเร็จสร้างจากวินัย ไม่ใช่แรงบันดาลใจ", en: "Success is built by discipline, not motivation.", zh: "成功来自自律，而不是一时的动力。", vi: "Thành công đến từ kỷ luật, không phải cảm hứng.", pt: "O sucesso é construído pela disciplina, não pela motivação." },
+  { th: "อย่าเปรียบเทียบตัวเองกับคนอื่น", en: "Compare yourself only to who you were yesterday.", zh: "只和昨天的自己比较。", vi: "Chỉ so sánh với chính mình của hôm qua.", pt: "Compare-se apenas com quem você era ontem." },
+  { th: "ความอดทนมักได้รับผลตอบแทนเสมอ", en: "Patience always pays off.", zh: "耐心终会得到回报。", vi: "Kiên nhẫn luôn được đền đáp.", pt: "A paciência sempre recompensa." },
+  { th: "จงเป็นคนที่ตัวเองในวัยเด็กจะภูมิใจ", en: "Become someone your younger self would admire.", zh: "成为小时候的自己会骄傲的人。", vi: "Hãy trở thành người mà bản thân ngày bé sẽ tự hào.", pt: "Torne-se alguém que seu eu mais jovem admiraria." },
+  { th: "ความกล้าคือการลงมือ แม้จะไม่มั่นใจ", en: "Courage is acting without certainty.", zh: "勇敢是在没有把握时依然行动。", vi: "Dũng cảm là hành động dù chưa chắc chắn.", pt: "Coragem é agir mesmo sem certeza." },
+  { th: "จงสร้างชีวิตที่คุณไม่ต้องหนีจากมัน", en: "Build a life you don't need to escape from.", zh: "创造一个无需逃离的人生。", vi: "Xây dựng cuộc sống mà bạn không muốn trốn khỏi.", pt: "Construa uma vida da qual você não precise fugir." },
+  { th: "ความฝันจะไม่มีวันทำงาน ถ้าคุณไม่ลงมือ", en: "Dreams don't work unless you do.", zh: "梦想不会自己实现。", vi: "Ước mơ sẽ không tự thành hiện thực.", pt: "Sonhos não funcionam sem você." },
+  { th: "ทำวันนี้ให้ดีกว่าเมื่อวาน", en: "Be better than yesterday.", zh: "今天比昨天更好。", vi: "Hôm nay tốt hơn hôm qua.", pt: "Seja melhor do que ontem." },
+  { th: "ความสำเร็จคือผลลัพธ์ของการไม่ยอมแพ้", en: "Success is the reward for not giving up.", zh: "成功是不放弃的回报。", vi: "Thành công là phần thưởng của sự không bỏ cuộc.", pt: "O sucesso é a recompensa por não desistir." },
+  { th: "ความเร็วไม่สำคัญ ถ้ายังเดินไปข้างหน้า", en: "It doesn't matter how fast you go, as long as you don't stop.", zh: "走得慢没关系，只要不停下。", vi: "Đi chậm không sao, miễn là đừng dừng lại.", pt: "Não importa a velocidade, desde que você continue." },
+  { th: "อย่ารอเวลาที่สมบูรณ์แบบ", en: "Don't wait for perfect timing.", zh: "不要等待完美时机。", vi: "Đừng chờ thời điểm hoàn hảo.", pt: "Não espere o momento perfeito." },
+  { th: "ลงมือก่อน แล้วค่อยเก่งขึ้นระหว่างทาง", en: "Learn by doing.", zh: "在实践中成长。", vi: "Học bằng cách bắt đầu làm.", pt: "Aprenda fazendo." },
+  { th: "ความพยายามไม่มีวันสูญเปล่า", en: "Effort is never wasted.", zh: "努力永远不会白费。", vi: "Mọi nỗ lực đều có giá trị.", pt: "Nenhum esforço é em vão." },
+  { th: "อย่าปล่อยให้ความกลัวกำหนดชีวิตคุณ", en: "Don't let fear decide your future.", zh: "不要让恐惧决定你的未来。", vi: "Đừng để nỗi sợ quyết định tương lai của bạn.", pt: "Não deixe o medo decidir seu futuro." },
+  { th: "อย่ากลัวการเริ่มใหม่", en: "Never be afraid to start over.", zh: "永远不要害怕重新开始。", vi: "Đừng bao giờ sợ bắt đầu lại.", pt: "Nunca tenha medo de recomeçar." },
+  { th: "ทุกความสำเร็จเคยเป็นแค่ความคิด", en: "Every achievement was once just an idea.", zh: "每个成就都曾只是一个想法。", vi: "Mọi thành tựu từng chỉ là một ý tưởng.", pt: "Toda conquista já foi apenas uma ideia." },
+  { th: "ชัยชนะที่แท้จริงคือการไม่หยุด", en: "The real victory is refusing to quit.", zh: "真正的胜利是不放弃。", vi: "Chiến thắng thật sự là không bỏ cuộc.", pt: "A verdadeira vitória é não desistir." },
+  { th: "ความเงียบคือที่ที่การเติบโตเกิดขึ้น", en: "Growth happens in silence.", zh: "成长发生在安静之中。", vi: "Sự trưởng thành diễn ra trong im lặng.", pt: "O crescimento acontece em silêncio." },
+  { th: 'อย่าปล่อยให้คำว่า "สักวัน" กลายเป็น "ไม่เคย"', en: 'Don\'t let "someday" become "never."', zh: "别让“总有一天”变成“永远不会”。", vi: 'Đừng để "một ngày nào đó" trở thành "không bao giờ".', pt: 'Não deixe o "algum dia" virar "nunca".' },
+  { th: "ทุกวันที่ยาก กำลังสร้างคุณให้แข็งแกร่งขึ้น", en: "Hard days build strong people.", zh: "艰难的日子造就坚强的人。", vi: "Những ngày khó khăn tạo nên con người mạnh mẽ.", pt: "Dias difíceis formam pessoas fortes." },
+  { th: "อย่าหยุดเรียนรู้", en: "Never stop learning.", zh: "永远不要停止学习。", vi: "Đừng bao giờ ngừng học hỏi.", pt: "Nunca pare de aprender." },
+  { th: "ทำสิ่งเล็ก ๆ ให้ดี แล้วสิ่งใหญ่จะตามมา", en: "Master the small things first.", zh: "先做好小事，大事自然会来。", vi: "Hãy làm tốt những điều nhỏ trước.", pt: "Domine as pequenas coisas primeiro." },
+  { th: "อย่าเสียเวลาเป็นคนอื่น", en: "Don't waste your life being someone else.", zh: "不要浪费生命去成为别人。", vi: "Đừng lãng phí cuộc đời để trở thành người khác.", pt: "Não desperdice sua vida sendo outra pessoa." },
+  { th: "อนาคตสร้างจากสิ่งที่คุณทำวันนี้", en: "Tomorrow is built by what you do today.", zh: "明天由今天的行动决定。", vi: "Ngày mai được tạo nên từ việc bạn làm hôm nay.", pt: "O amanhã é construído pelo que você faz hoje." },
+  { th: "อย่าปล่อยให้ข้ออ้างใหญ่กว่าความฝัน", en: "Don't let excuses become bigger than your dreams.", zh: "不要让借口比梦想更大。", vi: "Đừng để lý do lớn hơn ước mơ.", pt: "Não deixe as desculpas serem maiores que seus sonhos." },
+  { th: "การลงมือคือจุดเริ่มต้นของทุกอย่าง", en: "Action is where everything begins.", zh: "一切都始于行动。", vi: "Hành động là nơi mọi thứ bắt đầu.", pt: "A ação é onde tudo começa." },
+  { th: "ไม่มีทางลัดสู่ความยิ่งใหญ่", en: "There are no shortcuts to greatness.", zh: "通往卓越没有捷径。", vi: "Không có đường tắt đến sự vĩ đại.", pt: "Não há atalhos para a grandeza." },
+  { th: "ชนะตัวเองทุกวัน", en: "Win against yourself every day.", zh: "每天战胜昨天的自己。", vi: "Chiến thắng chính mình mỗi ngày.", pt: "Vença a si mesmo todos os dias." },
+  { th: "จงทำให้ตัวเองมีค่าจนโอกาสต้องตามหา", en: "Become so valuable that opportunities find you.", zh: "让自己足够优秀，机会自然会来。", vi: "Hãy trở nên giá trị để cơ hội tự tìm đến.", pt: "Torne-se tão valioso que as oportunidades encontrem você." },
+  { th: "วินัยจะพาคุณไปไกลกว่าแรงจูงใจ", en: "Discipline will take you further than motivation.", zh: "自律比动力更可靠。", vi: "Kỷ luật sẽ đưa bạn đi xa hơn cảm hứng.", pt: "A disciplina leva você mais longe do que a motivação." },
+  { th: "อย่าหยุดเพราะคนอื่นไม่เชื่อ", en: "Don't stop because others don't believe.", zh: "不要因为别人不相信就停下。", vi: "Đừng dừng lại chỉ vì người khác không tin.", pt: "Não pare porque os outros não acreditam." },
+  { th: "ความล้มเหลวคือบทเรียน ไม่ใช่จุดจบ", en: "Failure is a lesson, not the end.", zh: "失败是课程，不是终点。", vi: "Thất bại là bài học, không phải kết thúc.", pt: "O fracasso é uma lição, não um fim." },
+  { th: "ความฝันต้องการการลงมือ ไม่ใช่แค่ความหวัง", en: "Dreams need action, not wishes.", zh: "梦想需要行动，而不是幻想。", vi: "Ước mơ cần hành động, không chỉ hy vọng.", pt: "Sonhos precisam de ação, não apenas de desejos." },
+  { th: "ทุกก้าวเล็ก ๆ มีความหมาย", en: "Every small step matters.", zh: "每一步都算数。", vi: "Mỗi bước nhỏ đều có ý nghĩa.", pt: "Cada pequeno passo importa." },
+  { th: "อย่ากลัวที่จะเติบโต", en: "Don't be afraid to grow.", zh: "不要害怕成长。", vi: "Đừng sợ trưởng thành.", pt: "Não tenha medo de crescer." },
+  { th: "เวลาจะผ่านไปอยู่ดี จงใช้มันให้คุ้ม", en: "Time will pass anyway, use it well.", zh: "时间终会流逝，好好利用它。", vi: "Thời gian vẫn sẽ trôi, hãy tận dụng nó.", pt: "O tempo vai passar de qualquer forma, aproveite-o." },
+  { th: "ความพยายามในวันนี้ คือความภูมิใจในวันหน้า", en: "Today's effort becomes tomorrow's pride.", zh: "今天的努力，是明天的骄傲。", vi: "Nỗ lực hôm nay là niềm tự hào ngày mai.", pt: "O esforço de hoje será o orgulho de amanhã." },
+  { th: "สิ่งที่ยากที่สุด มักคุ้มค่าที่สุด", en: "The hardest things are often the most rewarding.", zh: "最难的事情往往最值得。", vi: "Điều khó nhất thường đáng giá nhất.", pt: "As coisas mais difíceis costumam valer mais a pena." },
+  { th: "อย่าให้เมื่อวานกำหนดพรุ่งนี้", en: "Don't let yesterday define tomorrow.", zh: "不要让昨天决定明天。", vi: "Đừng để hôm qua quyết định ngày mai.", pt: "Não deixe o ontem definir o amanhã." },
+  { th: "ชีวิตดีขึ้นเมื่อคุณดีขึ้น", en: "Your life improves when you do.", zh: "当你变得更好，生活也会变好。", vi: "Cuộc sống tốt hơn khi bạn tốt hơn.", pt: "Sua vida melhora quando você melhora." },
+  { th: "ความฝันใหญ่ เริ่มจากก้าวเล็ก", en: "Big dreams begin with small steps.", zh: "伟大的梦想始于小小的一步。", vi: "Ước mơ lớn bắt đầu từ những bước nhỏ.", pt: "Grandes sonhos começam com pequenos passos." },
+  { th: "ทำให้ตัวเองภูมิใจ ไม่ใช่แค่คนอื่น", en: "Make yourself proud, not just others.", zh: "让自己骄傲，而不仅是别人。", vi: "Hãy khiến chính mình tự hào, không chỉ người khác.", pt: "Orgulhe a si mesmo, não apenas os outros." },
+  { th: "ไม่มีใครทำแทนคุณได้", en: "No one can do it for you.", zh: "没有人能替你完成。", vi: "Không ai có thể làm thay bạn.", pt: "Ninguém pode fazer isso por você." },
+  { th: "จงเป็นเหตุผลที่ทำให้ตัวเองยิ้มได้", en: "Be your own reason to smile.", zh: "成为让自己微笑的理由。", vi: "Hãy là lý do để chính mình mỉm cười.", pt: "Seja o seu próprio motivo para sorrir." },
+];
+
+function QuoteCard() {
+  const { t, lang } = useLang();
+  const [idx, setIdx] = useState<number | null>(null);
+  useEffect(() => {
+    setIdx(Math.floor(Math.random() * QUOTES.length));
+    const id = setInterval(() => {
+      setIdx((prev) => {
+        if (QUOTES.length <= 1) return prev;
+        let next = Math.floor(Math.random() * QUOTES.length);
+        while (next === prev) next = Math.floor(Math.random() * QUOTES.length);
+        return next;
+      });
+    }, 15000);
+    return () => clearInterval(id);
+  }, []);
+  if (idx === null) return null;
+  const q = QUOTES[idx];
+  const text = q[lang] || q.en;
+  return (
+    <section className="zpu-quote-sec">
+      <div className="zpu-quote-card">
+        <span className="zpu-quote-mark zpu-quote-mark--open" aria-hidden="true">&ldquo;</span>
+        <span className="zpu-quote-mark zpu-quote-mark--close" aria-hidden="true">&rdquo;</span>
+        <div className="zpu-quote-body">
+          <span className="zpu-quote-title">{t("zpuQuoteOfDay")}</span>
+          <p key={`${idx}-${lang}`} className="zpu-quote-text" lang={lang}>{text}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Deterministic pseudo-random 0-4 intensity per day so the grid is stable
+// across server/client renders (no real activity data source — decorative).
+function activityLevel(dateKey: string): number {
+  let h = 0;
+  for (let i = 0; i < dateKey.length; i++) h = (h * 31 + dateKey.charCodeAt(i)) >>> 0;
+  const r = (h % 1000) / 1000;
+  if (r < 0.3) return 0;
+  if (r < 0.56) return 1;
+  if (r < 0.78) return 2;
+  if (r < 0.93) return 3;
+  return 4;
+}
+
+const ACTIVITY_MONTH_NAMES = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+// GitHub-style contribution heatmap — 12 months × 7 days, "Month, Year"
+// labels above the week each month starts, count + legend below. Uses real
+// GitHub contribution counts when passed in; otherwise falls back to a
+// deterministic fake pattern so the widget still looks populated.
+function ActivityOverview({ githubDays }: { githubDays?: { date: string; count: number }[] | null }) {
+  const { t } = useLang();
+  const { weeks, monthLabels, total } = useMemo(() => {
+    const WEEKS = 52;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const start = new Date(today);
+    start.setDate(start.getDate() - (WEEKS * 7 - 1));
+    start.setDate(start.getDate() - start.getDay()); // back up to that week's Sunday
+
+    const real = githubDays && githubDays.length > 0 ? new Map(githubDays.map((d) => [d.date, d.count])) : null;
+    const maxCount = real ? Math.max(1, ...Array.from(real.values())) : 0;
+    const levelFromCount = (count: number) => {
+      if (count <= 0) return 0;
+      const r = count / maxCount;
+      if (r <= 0.25) return 1;
+      if (r <= 0.5) return 2;
+      if (r <= 0.75) return 3;
+      return 4;
+    };
+
+    const cols: { date: Date; key: string; level: number }[][] = [];
+    const labels: { col: number; label: string }[] = [];
+    let cursor = new Date(start);
+    let lastMonth = -1;
+    let total = 0;
+    for (let w = 0; w < WEEKS; w++) {
+      const col: { date: Date; key: string; level: number }[] = [];
+      for (let d = 0; d < 7; d++) {
+        const inRange = cursor >= start && cursor <= today;
+        const key = cursor.toISOString().slice(0, 10);
+        let level = -1;
+        if (inRange) {
+          if (real) {
+            const count = real.get(key) ?? 0;
+            level = levelFromCount(count);
+            total += count;
+          } else {
+            level = activityLevel(key);
+            total += level;
+          }
+        }
+        col.push({ date: new Date(cursor), key, level });
+        cursor.setDate(cursor.getDate() + 1);
+      }
+      const firstOfWeek = col[0].date;
+      // Months land ~4.3 columns apart, too tight for "Month, Year" — use a
+      // compact "Mon 'YY". The very first column is often a partial month
+      // (grid starts mid-month), which would otherwise get its own label
+      // just 1-2 columns before the next real one — enforce a minimum gap.
+      const MIN_LABEL_GAP = 3;
+      const lastLabelCol = labels.length > 0 ? labels[labels.length - 1].col : -Infinity;
+      if (firstOfWeek.getMonth() !== lastMonth && firstOfWeek <= today && w - lastLabelCol >= MIN_LABEL_GAP) {
+        labels.push({ col: w, label: `${ACTIVITY_MONTH_NAMES[firstOfWeek.getMonth()]} '${String(firstOfWeek.getFullYear()).slice(-2)}` });
+        lastMonth = firstOfWeek.getMonth();
+      }
+      cols.push(col);
+    }
+    return { weeks: cols, monthLabels: labels, total };
+  }, [githubDays]);
+
+  return (
+    <section className="zpu-activity-sec">
+      <SectionHead title={t("zpuActivityTitle")} sub={t("zpuActivitySub")} />
+      <div className="zpu-activity-card">
+        <div className="zpu-activity-scroll">
+          <div className="zpu-activity-grid" style={{ ["--weeks" as string]: weeks.length }}>
+            <div className="zpu-activity-months">
+              {monthLabels.map((m, i) => (
+                <span key={`${m.col}-${i}`} style={{ gridColumnStart: m.col + 1 }}>{m.label}</span>
+              ))}
+            </div>
+            <div className="zpu-activity-cells">
+              {weeks.map((col, w) => (
+                <div key={w} className="zpu-activity-col">
+                  {col.map((cell) => (
+                    <span
+                      key={cell.key}
+                      className={`zpu-activity-cell${cell.level >= 0 ? ` lv${cell.level}` : " empty"}`}
+                      title={cell.level >= 0 ? cell.date.toDateString() : undefined}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="zpu-activity-foot">
+          <span className="zpu-activity-total">{total.toLocaleString()} {t("zpuActivityCount")}</span>
+          <div className="zpu-activity-legend">
+            <span>{t("zpuActivityLess")}</span>
+            <span className="zpu-activity-cell lv0" />
+            <span className="zpu-activity-cell lv1" />
+            <span className="zpu-activity-cell lv2" />
+            <span className="zpu-activity-cell lv3" />
+            <span className="zpu-activity-cell lv4" />
+            <span>{t("zpuActivityMore")}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function RandomFact() {
   const [fact, setFact] = useState<{ icon: string; label: string; value: string } | null>(null);
@@ -1830,7 +2042,7 @@ function ZpuFooter() {
   );
 }
 
-export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
+export function AboutZpu({ ytSubs, discordMembers, githubDays }: { ytSubs?: number | null; discordMembers?: number | null; githubDays?: { date: string; count: number }[] | null }) {
   const { t, lang } = useLang();
   const [showAllWorks, setShowAllWorks] = useState(false);
   const [showAllGames, setShowAllGames] = useState(false);
@@ -2325,6 +2537,8 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
           </div>
         </section>
 
+        <QuoteCard />
+
         {/* Favorite games */}
         <section className="zpu-games-sec" id="zpu-interests">
           <SectionHead title={t("zpuFavGamesTitle")} sub={t("zpuFavGamesSub")} />
@@ -2550,6 +2764,8 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
             ))}
           </div>
         </section>
+
+        <ActivityOverview githubDays={githubDays} />
 
         {/* Everyday items */}
         {ZPU.everyday.length > 0 && (

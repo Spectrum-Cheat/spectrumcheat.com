@@ -7433,6 +7433,83 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
   text-shadow: 0 0 26px color-mix(in srgb, var(--c) 45%, transparent);
 }
 
+/* Quote card — sits under Facts About Me, one big quote, auto-rotates */
+.zpu-quote-sec { margin-top: 28px; }
+.zpu-quote-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(60% 140% at 88% 30%, rgba(139, 92, 246, 0.14), transparent 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  padding: 40px 56px 36px 84px;
+  min-height: 132px;
+  display: flex;
+  align-items: center;
+}
+.zpu-quote-card::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%);
+  mask-image: linear-gradient(180deg, #000, transparent 85%);
+}
+.zpu-quote-mark {
+  position: absolute;
+  font-family: Georgia, serif;
+  font-size: 3.6rem; line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.zpu-quote-mark--open { top: 18px; left: 28px; }
+.zpu-quote-mark--close { bottom: 6px; right: 32px; }
+.zpu-quote-body { position: relative; z-index: 1; min-width: 0; }
+.zpu-quote-title {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent-2, #c084fc);
+  margin-bottom: 10px;
+}
+.zpu-quote-text {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text-primary);
+  text-wrap: balance;
+  animation: zpu-quote-in 0.5s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes zpu-quote-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zpu-quote-text { animation: none; }
+}
+@media (max-width: 640px) {
+  .zpu-quote-card { padding: 46px 22px 30px; }
+  .zpu-quote-mark { font-size: 2.6rem; }
+  .zpu-quote-mark--open { left: 20px; }
+  .zpu-quote-mark--close { right: 20px; }
+}
+.zpu-page[data-theme="light"] .zpu-quote-card {
+  border-color: rgba(15, 23, 42, 0.10);
+  background:
+    radial-gradient(60% 140% at 88% 30%, rgba(139, 92, 246, 0.12), transparent 70%),
+    #ffffff;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+}
+.zpu-page[data-theme="light"] .zpu-quote-card::before {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+}
+
 /* Favorite games */
 .zpu-games-sec { margin-top: 72px; }
 .zpu-games-grid {
@@ -8482,6 +8559,68 @@ html.music-playing .zpu-tb-music svg { animation: zpu-note-spin 4s linear infini
   .zpu-setup-card { flex-basis: 168px; padding: 18px 12px 14px; }
   .zpu-setup-img { height: 108px; }
 }
+/* Activity overview — GitHub-style contribution heatmap (decorative, no
+   real data source), sits under My Skills. */
+.zpu-activity-sec { margin-top: 72px; }
+.zpu-activity-card {
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  padding: 22px 24px 20px;
+  box-sizing: border-box;
+}
+.zpu-activity-scroll { overflow-x: auto; padding-bottom: 2px; }
+.zpu-activity-grid { display: inline-flex; flex-direction: column; min-width: max-content; }
+.zpu-activity-months {
+  display: grid;
+  grid-template-columns: repeat(var(--weeks), 13px);
+  gap: 3px;
+  margin-bottom: 6px;
+  font-size: 0.62rem;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.zpu-activity-cells { display: flex; gap: 3px; }
+.zpu-activity-col { display: flex; flex-direction: column; gap: 3px; }
+.zpu-activity-cell {
+  width: 11px; height: 11px; border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.zpu-activity-cell.empty { background: transparent; }
+.zpu-activity-cell.lv0 { background: rgba(139, 92, 246, 0.12); }
+.zpu-activity-cell.lv1 { background: rgba(139, 92, 246, 0.34); }
+.zpu-activity-cell.lv2 { background: rgba(139, 92, 246, 0.56); }
+.zpu-activity-cell.lv3 { background: rgba(168, 85, 247, 0.8); }
+.zpu-activity-cell.lv4 { background: #a855f7; box-shadow: 0 0 6px rgba(168, 85, 247, 0.6); }
+.zpu-activity-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.zpu-activity-total {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.zpu-activity-legend {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.zpu-activity-legend .zpu-activity-cell { width: 11px; height: 11px; }
+.zpu-page[data-theme="light"] .zpu-activity-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.10);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+}
+.zpu-page[data-theme="light"] .zpu-activity-foot {
+  border-top-color: rgba(15, 23, 42, 0.10);
+}
+
 /* Everyday items — grouped grid (current / previously owned) */
 .zpu-edc-group { margin-top: 22px; }
 .zpu-edc-gl {
