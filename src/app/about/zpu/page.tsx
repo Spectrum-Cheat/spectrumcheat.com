@@ -220,58 +220,11 @@ async function getDiscordMembers(): Promise<number | null> {
   }
 }
 
-// Real GitHub contribution calendar for the Activity Overview heatmap —
-// requires a GITHUB_TOKEN env var (scope: read:user is enough, contribution
-// data is public). Falls back to null (client uses fake data) if unset/fails.
-export type GithubDay = { date: string; count: number };
-async function getGithubContributions(login: string): Promise<GithubDay[] | null> {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) return null;
-  try {
-    const to = new Date();
-    const from = new Date(to);
-    from.setFullYear(from.getFullYear() - 1);
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      next: { revalidate: 3600 },
-      body: JSON.stringify({
-        query: `
-          query($login: String!, $from: DateTime!, $to: DateTime!) {
-            user(login: $login) {
-              contributionsCollection(from: $from, to: $to) {
-                contributionCalendar {
-                  weeks {
-                    contributionDays { date contributionCount }
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: { login, from: from.toISOString(), to: to.toISOString() },
-      }),
-    });
-    if (!res.ok) return null;
-    const json = await res.json();
-    const weeks = json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks;
-    if (!Array.isArray(weeks)) return null;
-    return weeks.flatMap((w: { contributionDays: { date: string; contributionCount: number }[] }) =>
-      w.contributionDays.map((d) => ({ date: d.date, count: d.contributionCount }))
-    );
-  } catch {
-    return null;
-  }
-}
 
 export default async function AboutZpuPage() {
-  const [ytSubs, discordMembers, githubDays] = await Promise.all([
+  const [ytSubs, discordMembers] = await Promise.all([
     getYouTubeSubs(),
     getDiscordMembers(),
-    getGithubContributions("xZPUHigh"),
   ]);
   return (
     <>
@@ -279,7 +232,7 @@ export default async function AboutZpuPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <AboutZpu ytSubs={ytSubs} discordMembers={discordMembers} githubDays={githubDays} />
+      <AboutZpu ytSubs={ytSubs} discordMembers={discordMembers} />
     </>
   );
 }
