@@ -19,9 +19,31 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const script = CUSTOM_RECOMMEND.find((c) => c.id === id);
   if (!script) return { title: "Script Not Found" };
+
+  const title = `${script.title} — Blox Cheat`;
+  const description = script.features?.slice(0, 160) ?? `${script.title} script for ${script.game}`;
+  const url = `https://spectrumcheat.com/bloxcheat/recommend/${script.id}`;
+  const image = script.image || "/images/Spectrum Cheat Banner.png";
+
   return {
-    title: `${script.title} — Blox Cheat`,
-    description: script.features?.slice(0, 160) ?? `${script.title} script for ${script.game}`,
+    title,
+    description,
+    keywords: [script.title, script.game, "Roblox script", "Blox Cheat", "ZPU recommended"].filter(Boolean) as string[],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      siteName: "Spectrum Cheat",
+      title,
+      description,
+      url,
+      images: [{ url: image, alt: script.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
   };
 }
 

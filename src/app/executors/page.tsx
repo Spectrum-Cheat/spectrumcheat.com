@@ -47,10 +47,19 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://spectrumcheat.com/executors" },
   openGraph: {
+    type: "website",
+    siteName: "Spectrum Cheat",
     title: "Roblox Executors | Spectrum Cheat",
     description:
       "Live executor status, version info, and compatibility data for Roblox script executors.",
     url: "https://spectrumcheat.com/executors",
+    images: [{ url: "/images/Spectrum Cheat Banner.png", width: 2000, height: 600, alt: "Spectrum Cheat — Roblox Executors" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Roblox Executors | Spectrum Cheat",
+    description: "Live executor status, version info, and compatibility data.",
+    images: ["/images/Spectrum Cheat Banner.png"],
   },
 };
 

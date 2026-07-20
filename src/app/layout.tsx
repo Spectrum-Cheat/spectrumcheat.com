@@ -77,6 +77,39 @@ export const metadata: Metadata = {
   },
 };
 
+// Site identity schema — tells search engines "Spectrum Cheat" is both an
+// Organization (with a logo + social profiles) and the WebSite behind this
+// domain, which is what unlocks the sitelinks searchbox / knowledge panel.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Spectrum Cheat",
+  url: "https://spectrumcheat.com",
+  logo: "https://spectrumcheat.com/images/Spectrum Cheat Banner.png",
+  sameAs: [
+    "https://www.youtube.com/@xZPUHigh",
+    "https://www.facebook.com/zpu.mnn2",
+    "https://www.instagram.com/zpu.mnn2",
+    "https://github.com/Spectrum-Cheat",
+    "https://discord.gg/C3MpUNwsDU",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Spectrum Cheat",
+  url: "https://spectrumcheat.com",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://spectrumcheat.com/bloxcheat?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -100,6 +133,16 @@ export default async function RootLayout({
         />
       </head>
       <body>
+        <script
+          id="organization-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          id="website-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <SessionProvider>
           <LangProvider initialLang={lang}>
             <div id="google_translate_element" style={{ display: "none" }} />

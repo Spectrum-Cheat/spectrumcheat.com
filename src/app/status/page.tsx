@@ -14,10 +14,19 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://spectrumcheat.com/status" },
   openGraph: {
+    type: "website",
+    siteName: "Spectrum Cheat",
     title: "Script Status | Spectrum Cheat",
     description:
       "See which Roblox scripts are working right now and which are waiting for updates.",
     url: "https://spectrumcheat.com/status",
+    images: [{ url: "/images/Spectrum Cheat Banner.png", width: 2000, height: 600, alt: "Spectrum Cheat — Script Status" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Script Status | Spectrum Cheat",
+    description: "See which Roblox scripts are working right now and which are waiting for updates.",
+    images: ["/images/Spectrum Cheat Banner.png"],
   },
 };
 

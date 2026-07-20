@@ -69,9 +69,31 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const script = await fetchScript(slug);
   if (!script) return { title: "Script Not Found" };
+
+  const title = `${script.title} — Blox Cheat`;
+  const description = script.features?.slice(0, 160) ?? `${script.title} script for ${script.game?.name}`;
+  const url = `https://spectrumcheat.com/bloxcheat/${script.slug}`;
+  const image = getImageUrl(script.image) ?? script.game?.imageUrl ?? "/images/Spectrum Cheat Banner.png";
+
   return {
-    title: `${script.title} — Blox Cheat`,
-    description: script.features ?? `${script.title} script for ${script.game?.name}`,
+    title,
+    description,
+    keywords: [script.title, script.game?.name, "Roblox script", "Blox Cheat", ...(script.tags ?? [])].filter(Boolean) as string[],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      siteName: "Spectrum Cheat",
+      title,
+      description,
+      url,
+      images: [{ url: image, alt: script.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
   };
 }
 

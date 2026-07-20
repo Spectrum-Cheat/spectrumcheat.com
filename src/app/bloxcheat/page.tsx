@@ -80,10 +80,19 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://spectrumcheat.com/bloxcheat" },
   openGraph: {
+    type: "website",
+    siteName: "Spectrum Cheat",
     title: "Free Roblox Scripts | Blox Cheat",
     description:
       "Search and discover free Roblox scripts — auto farms, ESP, aimbots, dupes and more, all in one hub.",
     url: "https://spectrumcheat.com/bloxcheat",
+    images: [{ url: "/images/Spectrum Cheat Banner.png", width: 2000, height: 600, alt: "Blox Cheat — Free Roblox Scripts" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Roblox Scripts | Blox Cheat",
+    description: "Search and discover free Roblox scripts, all in one hub.",
+    images: ["/images/Spectrum Cheat Banner.png"],
   },
 };
 

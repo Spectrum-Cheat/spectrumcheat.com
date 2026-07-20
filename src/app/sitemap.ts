@@ -1,8 +1,16 @@
 import type { MetadataRoute } from "next";
+import { CUSTOM_RECOMMEND } from "./bloxcheat/_data/recommend";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://spectrumcheat.com";
   const now = new Date();
+
+  const recommendScripts: MetadataRoute.Sitemap = CUSTOM_RECOMMEND.map((c) => ({
+    url: `${baseUrl}/bloxcheat/recommend/${c.id}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
 
   return [
     {
@@ -42,10 +50,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/bloxcheat/recommend`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    ...recommendScripts,
+    {
       url: `${baseUrl}/about/zpu`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about/zpu/favorites`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
     {
       url: `${baseUrl}/terms`,

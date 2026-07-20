@@ -10,6 +10,27 @@ import { AdNative } from "../../_components/ad-native";
 export const metadata: Metadata = {
   title: { absolute: "Recommend Scripts | Blox Cheat" },
   description: "Scripts handpicked by Spectrum — featured in our YouTube videos.",
+  keywords: [
+    "Roblox scripts",
+    "Blox Cheat recommend",
+    "ZPU recommended scripts",
+    "Spectrum Cheat scripts",
+  ],
+  alternates: { canonical: "https://spectrumcheat.com/bloxcheat/recommend" },
+  openGraph: {
+    type: "website",
+    siteName: "Spectrum Cheat",
+    title: "Recommend Scripts | Blox Cheat",
+    description: "Scripts handpicked by Spectrum — featured in our YouTube videos.",
+    url: "https://spectrumcheat.com/bloxcheat/recommend",
+    images: [{ url: "/images/Spectrum Cheat Banner.png", width: 2000, height: 600, alt: "Blox Cheat — Recommend Scripts" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Recommend Scripts | Blox Cheat",
+    description: "Scripts handpicked by Spectrum — featured in our YouTube videos.",
+    images: ["/images/Spectrum Cheat Banner.png"],
+  },
 };
 
 const HEADERS = {
