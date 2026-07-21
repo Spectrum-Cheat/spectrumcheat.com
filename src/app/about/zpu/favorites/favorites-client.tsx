@@ -355,9 +355,9 @@ export function ZpuFavorites() {
           </div>
         </nav>
 
-        {FAV_TOPICS.map((topic) => {
+        {FAV_TOPICS.flatMap((topic) => {
           const expanded = !!open[topic.id];
-          return (
+          const nodes: React.ReactNode[] = [
             <section
               key={topic.id}
               id={`fav-${topic.id}`}
@@ -369,8 +369,40 @@ export function ZpuFavorites() {
               {topic.count > (PREVIEW[topic.id] ?? 12) && (
                 <ShowMore open={expanded} onToggle={() => toggle(topic.id)} />
               )}
-            </section>
-          );
+            </section>,
+          ];
+          // Everyday Accessories isn't a ranked favorite (real prices, no
+          // badges) so it isn't in FAV_TOPICS — it just rides in right after
+          // Sports in the section order.
+          if (topic.id === "sports" && ZPU.accessories.length > 0) {
+            nodes.push(
+              <section
+                key="accessories"
+                id="fav-accessories"
+                className="zpu-games-sec zpu-fav-sec"
+                style={{ "--coll-accent": "#f59e0b" } as React.CSSProperties}
+              >
+                <SectionHead title={t("zpuAccessoriesTitle")} sub={t("zpuAccessoriesSub")} />
+                <div className="zpu-edc-grid">
+                  {ZPU.accessories.map((a) => (
+                    <div key={a.name} className="zpu-edc-card zpu-edc-card-current">
+                      <div className="zpu-edc-img">
+                        {a.icon && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={a.icon} alt={a.name} loading="lazy" />
+                        )}
+                      </div>
+                      <span className="zpu-edc-cat">{a.cat}</span>
+                      <span className="zpu-edc-name">{a.name}</span>
+                      <span className="zpu-edc-detail">{a.detail}</span>
+                      <span className="zpu-edc-price">{fmtPrice(a.priceThb, lang)}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          }
+          return nodes;
         })}
       </div>
 

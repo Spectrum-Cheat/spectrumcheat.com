@@ -762,6 +762,11 @@ export const ZPU = {
     { cat: "Earbuds", name: "AirPods (3rd gen)", detail: "MagSafe Case", status: "previous", priceThb: 6490, icon: "/images/everyday/airpods3.png" },
   ] as { cat: string; name: string; detail: string; status: "current" | "previous"; priceThb: number; icon?: string; url?: string }[],
 
+  // Everyday accessories — rings, chains, etc. worn daily (no current/previous split).
+  accessories: [
+    { cat: "Ring", name: "Cartier LOVE Ring", detail: "Classic Model · 3 Diamonds", priceThb: 150000, icon: "/images/accessories/cartier-love-ring.png", url: "https://www.cartier.com/en-us/jewelry/rings/love/love-ring-classic-model-3-diamonds-CRB4032400.html" },
+  ] as { cat: string; name: string; detail: string; priceThb: number; icon?: string; url?: string }[],
+
   // PC build — real JIB Thailand prices (THB) with product image + link.
   setup: [
     { part: "CPU", name: "Intel Core i5-14400F", priceThb: 5990, icon: "/images/setup/cpu.png", url: "https://www.intel.com/content/www/us/en/products/sku/236777/intel-core-i5-processor-14400f-20m-cache-up-to-4-70-ghz/specifications.html" },

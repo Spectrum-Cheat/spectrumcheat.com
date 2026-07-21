@@ -982,7 +982,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         <section className="zpu-collections" id="zpu-interests">
           <SectionHead title={t("zpuCollectionsTitle")} sub={t("zpuCollectionsSub")} />
           <div className="zpu-coll-grid">
-            {FAV_TOPICS.map((topic) => (
+            {FAV_TOPICS.filter((topic) => topic.id !== "animals").map((topic) => (
               <a
                 key={topic.id}
                 className="zpu-coll"
